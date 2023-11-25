@@ -1,0 +1,339 @@
+<!-- nav -->
+<!-- <nav class="navbar navbar-expand  px-3" *ngIf="user" style="width: 15%; background: #FFFFFF;">
+    <ul class="navbar-nav d-flex flex-column text-start justify-content-end" style="color: #346CB0;">
+        <li class="nav-item nav-link" routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Home</li> 
+        <li class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</li>
+        <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
+    </ul>
+</nav> -->
+
+<div class="d-flex gap-5">
+    <div class="col-1">
+        <div class=" " hidden style="">
+            <h4 style="color: white; margin-top: 8px;">Experiya Book </h4>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                    The current link item
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+                <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+                <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+                <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
+            </div>
+        </div>
+
+        <style>
+            /* Basic menu styles */
+            .menu {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .menu-item {
+                display: inline-block;
+                padding: 1px 20px;
+                cursor: pointer;
+            }
+
+            /* Hover effect */
+            .menu-item:hover {
+                background-color: #f0f0f0;
+
+            }
+
+            /* Selected effect */
+            .menu-item.selected {
+                background-color: #007bff;
+                color: #fff;
+            }
+        </style>
+
+        <div class="app">
+
+            <header class="app-header app-header-dark">
+                <!-- .top-bar -->
+                <div class="top-bar">
+                    <!-- .top-bar-brand -->
+                    <div class="top-bar-brand d-none1" style="background: #346CB0;">
+                        <!-- toggle aside menu -->
+                        <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside-menu"
+                            aria-label="toggle aside menu" style="background: #346CB0;">
+
+                            <span class="hamburger-box">
+
+                                <span class="hamburger-inner"></span>
+
+                            </span>
+
+                        </button> <!-- /toggle aside menu -->
+
+                        <h4 style="color: white; margin-top: 8px;">Experiya Book </h4>
+
+                    </div>
+                    <!-- /.top-bar-brand -->
+                    <!-- .top-bar-list -->
+                    <div class="top-bar-list">
+                        <!-- .top-bar-item -->
+                        <div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
+                            <!-- toggle menu -->
+                            <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside"
+                                aria-label="toggle menu"><span class="hamburger-box"><span
+                                        class="hamburger-inner"></span></span></button> <!-- /toggle menu -->
+                        </div>
+                        <!-- /.top-bar-item -->
+                        <!-- .top-bar-item -->
+                        <div class="top-bar-item top-bar-item-full d-md-none d-lg-none d-xl-none">
+                            <!-- <img src="{%static 'images/logo.png' %}" width="150px"> -->
+                            <h4 style="color: white; margin-top: 8px;">Experiya Book </h4>
+
+                        </div>
+                        <div id="notification_div"
+                            style=" width: 100%;  display: none; justify-content: space-between; padding: 0px 20px; ">
+                            <div>
+                                <h6 id="notification" style="font-size: 14px; letter-spacing: 0.7; "> </h6>
+                            </div>
+                            <div style="display: flex; width: 120px; justify-content: space-around; padding: 0px 5px;">
+
+                                <a id="countFormData" href="#" style="color: white;" data-toggle="modal" hidden
+                                    data-target="#mdlFormData"> ... </a>
+                            </div>
+                        </div>
+
+                        <!-- /.top-bar-item -->
+                        <!-- .top-bar-item -->
+                        <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
+                            <!-- .btn-account -->
+                            <div class="dropdown d-none d-md-flex">
+                                <button id="hello" class="btn-account" type="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="user-avatar user-avatar-md">
+                                        <img src="" alt="Demo">
+                                        <!-- <img src="/media/{{request.session.profile_image }}" alt="Demo"> -->
+
+                                    </span>
+
+                                </button> <!-- .dropdown-menu -->
+                                <div class="dropdown-menu" style="color: #FFFFFF; background: #346CB0; ">
+                                    <div class="dropdown-arrow d-lg-none" x-arrow=""></div>
+                                    <div class="dropdown-arrow ml-3 d-none d-lg-block"></div>
+                                    <h6 class="dropdown-header d-none d-md-block d-lg-none"> Demo </h6>
+
+
+                                    <a class="dropdown-item" style="color: #FFFFFF; background: #346CB0;">
+
+                                        <i class="fa fa-key" style="color: #FFFFFF;" aria-hidden="true"
+                                            id='icon'></i>&nbsp;&nbsp;
+                                        Profile
+                                    </a>
+
+
+
+                                    <a class="dropdown-item" style="color: #FFFFFF; background: #346CB0;">
+                                        <i class="fa fa-key" style="color: #FFFFFF;" aria-hidden="true"
+                                            id='icon'></i>&nbsp;&nbsp;
+                                        Profile
+                                    </a>
+
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" style="color: #FFFFFF; background: #346CB0;"
+                                        onclick="localStorage.clear()" href="{%url 'bima_policy:logout'%}">
+                                        <i class="fa fa-sign-out" style="color: #FFFFFF;" aria-hidden="true"
+                                            id='icon'></i>&nbsp;&nbsp; Logout
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- /.top-bar-item -->
+                    </div>
+                    <!-- /.top-bar-list -->
+                </div>
+                <!-- /.top-bar -->
+            </header>
+
+            <aside class="app-aside app-aside-expand-md app-aside-light" style="background: #FFFFFF;">
+                <!-- .aside-content -->
+                <div class="aside-content">
+
+                    <div class="aside-menu overflow-hidden ps ps--active-y">
+                        <!-- .stacked-menu -->
+                        <nav id="stacked-menu" class="stacked-menu stacked-menu-has-collapsible">
+                            <!-- .menu -->
+                            <ul class="menu">
+
+                                <style>
+                                    .text-blue {
+                                        color: #346CB0;
+                                        font-weight: 700;
+
+                                    }
+
+                                    .text-white-ff {
+                                        color: #FFFFFF
+                                    }
+                                </style>
+
+                                <li class="text-center text-primary"><span class="" id="liteDate"></span>
+                                </li>
+
+                                <li class="menu-header">General </li>
+
+                                <li class="menu-item has-active" style="width: 100%;" routerLink="/">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-home" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Dashboard</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item has-child" style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-book text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">New
+                                            Policy</span></a>
+
+                                    <ul class="">
+
+                                        <li class="menu-item" onclick="ShowPage('motor_entry')" style="width: 100%;">
+                                            <a href="#" style="margin-left: 1rem; "
+                                                class="menu-link text-blue">Motor</a>
+                                        </li>
+                                        <li class="menu-item " onclick="ShowPage('non_motor_entry')">
+                                            <a href="#" style="margin-left: 1rem; "
+                                                class="menu-link text-blue">Non-Motor</a>
+                                        </li>
+                                        <li class="menu-item ">
+                                            <a href="#" style="margin-left: 1rem;" class="menu-link text-blue"
+                                                onclick="alert('Claim-section is Under Construction!!')">Claim</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+                                <li routerLink="entrylist" class="menu-item has-active" style="width: 100%;">
+                                    <a  class="menu-link">
+                                        <i class="fa fa-bars text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Entry List</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            <ul class="menu">
+
+                                <style>
+                                    .text-blue {
+                                        color: #346CB0;
+                                        font-weight: 700;
+
+                                    }
+
+                                    .text-white-ff {
+                                        color: #FFFFFF
+                                    }
+                                </style>
+
+                                <li class="text-center text-primary"><span class="" id="liteDate"></span>
+                                </li>
+
+                                <li class="menu-header">Manage </li>
+
+                                <li class="menu-item " style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-user-friends text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">POSP</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item " style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-solid fa-book text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Payouts</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item " style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-solid fa-building text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Insurers</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item " style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-solid fa-user-tie text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Providers</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item " style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-product-hunt text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Products</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item has-child" style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-car text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Vehicles</span></a>
+
+                                    <ul class="menu">
+
+                                        <li class="menu-item" onclick="ShowPage('vcategory')">
+                                            <a href="#" style="margin-left: 1rem; "
+                                                class="menu-link text-blue">Category</a>
+                                        </li>
+                                        <li class="menu-item " onclick="ShowPage('vmake')">
+                                            <a href="#" style="margin-left: 1rem; " class="menu-link text-blue">Make</a>
+                                        </li>
+                                        <li class="menu-item " onclick="ShowPage('vmodel')">
+                                            <a href="#" style="margin-left: 1rem; "
+                                                class="menu-link text-blue">Model</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="menu-item " onclick="ShowPage('staff')" style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-user text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Users</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item " style="width: 100%;">
+                                    <a href="#" class="menu-link">
+                                        <i class="fa fa-trash text-blue" aria-hidden="true" id='icon'></i>
+                                        <span class="menu-text text-blue" style="margin-left: 10px;">Trash</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </nav>
+                    </div>
+
+                    <footer class="aside-footer border-top p-2">
+                        <button class="btn btn-light btn-block text-primary" data-toggle="skin" disabled>
+                        </button>
+                    </footer>
+                    <!-- /Skin changer -->
+                </div>
+                <!-- /.aside-content -->
+            </aside>
+
+            <div class="aside-backdrop"></div>
+        </div>
+
+    </div>
+
+    <div class="col">
+        <alert></alert>
+        <router-outlet></router-outlet>
+
+    </div>
+</div>
