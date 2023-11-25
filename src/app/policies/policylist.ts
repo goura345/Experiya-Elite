@@ -14,6 +14,7 @@ import { delay } from 'rxjs';
 export class EntrylistComponent {
 
   loading = true
+  policies: Policy[] = []
 
   constructor(private accountService: AccountService) { }
 
@@ -24,6 +25,7 @@ export class EntrylistComponent {
     this.loading = true
     this.accountService.getAllPolicy().pipe(delay(5000)).subscribe((data: Policy[])=> {
       console.log(data);
+      this.policies = data
       this.loading = false
     })
 

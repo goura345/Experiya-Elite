@@ -1,11 +1,8 @@
 <div class="app-main ms-5">
     <div class="wrapper">
         <div class="page" id="entrylist">
-
             <div class="page-inner text-blue116">
-
                 <header class="page-title-bar">
-                    <!-- page title stuff goes here -->
                     <div class="row">
                         <div class="col">
                             <h1 id="page_heading" class="page-title" style="display: inline-block;"> Policy List </h1>
@@ -310,11 +307,14 @@
                                             </tr>
                                         </thead>
 
-                                      
+
                                         <tbody id="tbdy">
 
                                             <tr *ngIf="loading" class="py-5">
-                                                <span class="spinner-border spinner-border-sm me-1 "></span>Loading
+                                                <th colspan="3">
+
+                                                    <span class="spinner-border spinner-border-sm me-1 "></span>Loading
+                                                </th>
                                             </tr>
 
 
