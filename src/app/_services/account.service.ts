@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
-import { User } from '@app/_models';
+import { Policy, User } from '@app/_models';
 import * as CryptoJS from 'crypto-js';
 
 export function encryptData(data: string | undefined): string {
@@ -111,4 +111,9 @@ export class AccountService {
                 return x;
             }));
     }
+
+    getAllPolicy() {
+        return this.http.get<Policy[]>(`${environment.apiUrl}/policies`);
+    }
+
 }

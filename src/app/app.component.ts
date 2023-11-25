@@ -7,6 +7,7 @@ import { User } from './_models';
 import { AlertComponent } from './_components/alert.component';
 import { BaseComponent } from "./base/base";
 
+
 @Component({
     selector: 'app-root', templateUrl: 'app.component.html',
     standalone: true,
@@ -22,4 +23,5 @@ export class AppComponent {
     logout() {
         this.accountService.logout();
     }
+
 }

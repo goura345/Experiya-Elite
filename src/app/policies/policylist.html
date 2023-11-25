@@ -1,4 +1,4 @@
-<div class="app-main ms-5" >
+<div class="app-main ms-5">
     <div class="wrapper">
         <div class="page" id="entrylist">
 
@@ -310,11 +310,14 @@
                                             </tr>
                                         </thead>
 
+                                      
                                         <tbody id="tbdy">
 
-                                        
-                                          
-                                          
+                                            <tr *ngIf="loading" class="py-5">
+                                                <span class="spinner-border spinner-border-sm me-1 "></span>Loading
+                                            </tr>
+
+
                                         </tbody>
 
                                     </table>
