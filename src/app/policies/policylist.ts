@@ -18,27 +18,9 @@ export class EntrylistComponent {
   public configuration!: Config;
   public columns!: Columns[];
 
-  public data = [
-    {
-    phone: '+1 (934) 551-2224',
-    age: 20,
-    address: { street: 'North street', number: 12 },
-    company: 'ZILLANET',
-    name: 'Valentine Webb',
-    isActive: false,
-  }, {
-    phone: '+1 (948) 460-3627',
-    age: 31,
-    address: { street: 'South street', number: 12 },
-    company: 'KNOWLYSIS',
-    name: 'Heidi Duncan',
-    isActive: true,
-  }
-];
-
-
   loading = true
   policies: Policy[] = []
+  id = ''
 
   constructor(private accountService: AccountService) { }
 
@@ -46,7 +28,7 @@ export class EntrylistComponent {
 
     this.configuration = { ...DefaultConfig };
     this.configuration.searchEnabled = true;
-   
+
     this.columns = [
       // { key: 'SrNo', title: 'Sr. No.' },
       { key: 'proposal_no', title: 'Proposal No' },
@@ -106,7 +88,7 @@ export class EntrylistComponent {
       { key: 'vehicle_rc', title: 'vehicle_rc' },
       { key: 'inspection_report', title: 'inspection_report' },
       { key: 'remark', title: 'remark' },
-      { key: 'status', title: 'status' },          
+      { key: 'status', title: 'status' },
     ];
 
     // return
@@ -117,5 +99,11 @@ export class EntrylistComponent {
       this.loading = false
     })
 
+  }
+
+  eventEmitted($event: { event: string; value: any }): void {
+    // this.clicked = JSON.stringify($event);    
+    console.log('$event', $event);   
+    this.id =$event.value.row.id
   }
 }

@@ -12,7 +12,7 @@ const policyRoutes = () => import('./policies/policies.routes').then(x => x.POLI
 export const APP_ROUTES: Routes = [
     { path: '', component: HomeComponent, canActivate: [authGuard] },  
     { path: 'users', loadChildren: usersRoutes, canActivate: [authGuard] },
-    { path: 'entrylist', loadChildren: policyRoutes, canActivate: [authGuard] },
+    { path: 'policies', loadChildren: policyRoutes, canActivate: [authGuard] },
     { path: 'account/login', component: LoginComponent },
     { path: 'account/register', component: RegisterComponent },
 

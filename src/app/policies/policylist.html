@@ -235,13 +235,13 @@
                                 <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
 
                                     <ngx-table style="text-wrap: nowrap" [configuration]="configuration"
-                                        [data]="policies" [columns]="columns">
+                                        [data]="policies" [columns]="columns" (event)="eventEmitted($event)">
                                     </ngx-table>
 
                                 </div>
 
-
                             </div>
+
                         </div>
 
                         <a id="upButton" class="btn  " href="#" title="Scroll to Top">
@@ -252,6 +252,8 @@
                             style="float: right; background-color: #346CB0; color: #FFFFFF; ">Back</button>
 
                     </div>
+
+
 
                     <!-- /.page-inner -->
                 </div>
