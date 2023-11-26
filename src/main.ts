@@ -9,6 +9,7 @@ import { AppComponent } from '@app/app.component';
 import { jwtInterceptor, errorInterceptor } from '@app/_helpers';
 import { APP_ROUTES } from '@app/app.routes';
 
+
 bootstrapApplication(AppComponent, {
     providers: [
         provideRouter(APP_ROUTES),

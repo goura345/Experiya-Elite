@@ -184,7 +184,7 @@
                     <!-- .card-body -->
                     <div class="card-body">
 
-                        <div class="">
+                        <div class="" hidden>
                             <div id="tblInsurance_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer no-scroll">
                                 <div class="form-row  mb-3">
                                     <div class="col-md-6">
@@ -233,161 +233,14 @@
                                     </div>
                                 </div>
                                 <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
-                                    <table id="tblInsurance"
-                                        class="table table-striped1 table-hover no-wrap table-bordered no-footer dataTable"
-                                        aria-describedby="tblInsurance_info" role="grid">
 
-                                        <thead style="border-bottom: inset;">
-                                            <tr role="row" id="tbdy_head">
-                                                <th class=" text-center sorting thShow" tabindex="0"
-                                                    aria-controls="tblInsurance" rowspan="1" colspan="1"
-                                                    style="width: 83.2344px;"
-                                                    aria-label="Sr.No.: activate to sort column ascending">Sr.No.</th>
-
-                                                <!-- <th class="sorting">PolicyID</th> -->
-                                                <th class="sorting thShow">Proposal No.</th>
-                                                <th class="sorting text-center">Policy No. </th>
-                                                <th class="sorting thShow">Customer Name</th>
-                                                <th class="sorting  thShow">Insurer Name</th>
-                                                <th class="sorting">Service Provider</th>
-                                                <th class="sorting">Broker Code</th>
-                                                <th class="sorting">Product Name</th>
-                                                <th class="sorting">Registration No.</th>
-                                                <th class="sorting">RTO State</th>
-                                                <th class="sorting">RTO City</th>
-                                                <th class="sorting">Vehicle Makeby </th>
-                                                <th class="sorting">Vehicle Model </th>
-                                                <th class="sorting thShow">Vehicle Catagory </th>
-                                                <th class="sorting">Vehicle Fuel Type</th>
-                                                <th class="sorting">Manufacture Year </th>
-                                                <th class="sorting">Addon</th>
-                                                <th class="sorting">NCB</th>
-                                                <th class="sorting">Cubic Capacity</th>
-                                                <th class="sorting">GVW</th>
-                                                <th class="sorting">Seating Capacity</th>
-                                                <th class="sorting">Coverage Type</th>
-                                                <th class="sorting">Policy Type</th>
-                                                <th class="sorting">CPA</th>
-                                                <th class="sorting">Risk Start Date</th>
-                                                <th class="sorting">Risk End Date</th>
-                                                <th class="sorting">Issue Date</th>
-                                                <th class="sorting">Insured Age</th>
-                                                <th class="sorting">Policy Term</th>
-                                                <th class="sorting">BQP</th>
-                                                <th class="sorting">POS</th>
-                                                <th class="sorting">Employee</th>
-                                                <th class="sorting">Remark</th>
-                                                <th class="sorting thShow">OD Premium</th>
-                                                <th class="sorting thShow">TP / Terrorism</th>
-                                                <th class="sorting thShow">NET Premium</th>
-                                                <th class="sorting thShow">GST 18%</th>
-                                                <th class="sorting thShow">GST 12%</th>
-                                                <th class="sorting thShow">Total</th>
-                                                <th class="sorting">Payment Mode</th>
-
-                                                <th class="sorting thShow">Agent OD Reward %</th>
-                                                <th class="sorting thShow">Agent OD Amount</th>
-                                                <th class="sorting thShow">Agent TP Reward %</th>
-                                                <th class="sorting thShow">Agent TP Amount</th>
-
-                                                <th class="sorting thShow">Self OD Reward %</th>
-                                                <th class="sorting thShow">Self OD Amount</th>
-                                                <th class="sorting thShow">Self TP Reward %</th>
-                                                <th class="sorting thShow">Self TP Amount</th>
-
-                                                <th class="sorting">Proposal</th>
-                                                <th class="sorting">Mandate</th>
-                                                <th class="sorting">Policy</th>
-                                                <th class="sorting">Previous Policy</th>
-                                                <th class="sorting">Pan Card</th>
-                                                <th class="sorting">Aadhar Card</th>
-                                                <th class="sorting">Vehicle RC</th>
-                                                <th class="sorting">Inspection Report</th>
-                                                <th class="sorting">Action</th>
-                                            </tr>
-                                        </thead>
-
-
-                                        <tbody id="tbdy">
-
-                                            <tr *ngIf="loading" class="py-5">
-                                                <th colspan="5">
-                                                    <span class="spinner-border spinner-border-sm me-1 "></span>Loading
-                                                </th>
-                                            </tr>
-
-                                            @for (policy of policies; track $index) {
-
-                                            <tr>
-                                                <th>{{ $index + 1}}</th>
-                                                <th>{{ policy.proposal_no}}</th>
-                                                <th>{{ policy.policy_no}}</th>
-                                                <th>{{ policy.customer_name}}</th>
-                                                <th>{{ policy.insurance_company}}</th>
-                                                <th>{{ policy.sp_name}}</th>
-                                                <th>{{ policy.sp_brokercode}}</th>
-                                                <th>{{ policy.product_name}}</th>
-                                                <th>{{ policy.registration_no}}</th>
-                                                <th>{{ policy.rto_state}}</th>
-                                                <th>{{ policy.rto_city}}</th>
-                                                <th>{{ policy.vehicle_makeby}}</th>
-
-                                                <th>{{ policy.vehicle_model}}</th>
-                                                <th>{{ policy.vehicle_catagory}}</th>
-                                                <th>{{ policy.vehicle_fuel_type}}</th>
-                                                <th>{{ policy.mfg_year}}</th>
-                                                <th>{{ policy.addon}}</th>
-                                                <th>{{ policy.ncb}}</th>
-                                                <th>{{ policy.cubic_capacity}}</th>
-                                                <th>{{ policy.gvw}}</th>
-                                                <th>{{ policy.seating_capacity}}</th>
-                                                <th>{{ policy.coverage_type}}</th>
-                                                <th>{{ policy.policy_type}}</th>
-                                                <th>{{ policy.cpa}}</th>
-                                                <th>{{ policy.risk_start_date}}</th>
-                                                <th>{{ policy.risk_end_date}}</th>
-                                                <th>{{ policy.issue_date}}</th>
-                                                <th>{{ policy.insured_age}}</th>
-                                                <th>{{ policy.policy_term}}</th>
-                                                <th>{{ policy.bqp}}</th>
-                                                <th>{{ policy.pos}}</th>
-                                                <th>{{ policy.employee}}</th>
-                                                <th>{{ policy.OD_premium}}</th>
-                                                <th>{{ policy.TP_terrorism}}</th>
-                                                <th>{{ policy.net}}</th>
-                                                <th>{{ policy.gst_amount}}</th>
-                                                <th>{{ policy.gst_gcv_amount}}</th>
-                                                <th>{{ policy.total}}</th>
-                                                <th>{{ policy.payment_mode}}</th>
-                                                <th>{{ policy.agent_od_reward}}</th>
-                                                <th>{{ policy.agent_od_amount}}</th>
-                                                <th>{{ policy.agent_tp_reward}}</th>
-                                                <th>{{ policy.agent_tp_amount}}</th>
-                                                <th>{{ policy.self_od_reward}}</th>
-                                                <th>{{ policy.self_od_amount}}</th>
-                                                <th>{{ policy.self_tp_reward}}</th>
-                                                <th>{{ policy.self_tp_amount}}</th>
-                                                <th>{{ policy.proposal}}</th>
-                                                <th>{{ policy.mandate}}</th>
-                                                <th>{{ policy.policy}}</th>
-                                                <th>{{ policy.previous_policy}}</th>
-                                                <th>{{ policy.pan_card}}</th>
-                                                <th>{{ policy.aadhar_card}}</th>
-                                                <th>{{ policy.vehicle_rc}}</th>
-                                                <th>{{ policy.inspection_report}}</th>
-                                                <th>{{ policy.remark}}</th>
-                                                <th>{{ policy.status}}</th>
-
-                                            </tr>
-                                            }
-
-
-                                        </tbody>
-
-                                    </table>
-
+                                    <ngx-table style="text-wrap: nowrap" [configuration]="configuration"
+                                        [data]="policies" [columns]="columns">
+                                    </ngx-table>
 
                                 </div>
+
+
                             </div>
                         </div>
 
