@@ -6,5 +6,7 @@ export class User {
     lastName?: string;
     token?: string;
     mobileNumber?: string;
+    role?: string;
+    status?: string = 'default';
 
 }

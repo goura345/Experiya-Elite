@@ -154,7 +154,7 @@ export class AddEditPolicyComponent {
   }
 
   private saveUser() {
-    // create or update user based on id param
+    // create or update policy based on id param
     return this.id
       ? this.accountService.updatePolicyById(this.id!, this.form.value)
       : this.accountService.registerPolicy(this.form.value);
