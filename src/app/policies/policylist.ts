@@ -21,9 +21,9 @@ export class EntrylistComponent {
   ngOnInit() {
 
 
-    return
+    // return
     this.loading = true
-    this.accountService.getAllPolicy().pipe(delay(5000)).subscribe((data: Policy[])=> {
+    this.accountService.getAllPolicy().subscribe((data: Policy[])=> {
       console.log(data);
       this.policies = data
       this.loading = false

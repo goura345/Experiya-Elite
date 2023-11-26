@@ -311,11 +311,75 @@
                                         <tbody id="tbdy">
 
                                             <tr *ngIf="loading" class="py-5">
-                                                <th colspan="3">
-
+                                                <th colspan="5">
                                                     <span class="spinner-border spinner-border-sm me-1 "></span>Loading
                                                 </th>
                                             </tr>
+
+                                            @for (policy of policies; track $index) {
+
+                                            <tr>
+                                                <th>{{ $index + 1}}</th>
+                                                <th>{{ policy.proposal_no}}</th>
+                                                <th>{{ policy.policy_no}}</th>
+                                                <th>{{ policy.customer_name}}</th>
+                                                <th>{{ policy.insurance_company}}</th>
+                                                <th>{{ policy.sp_name}}</th>
+                                                <th>{{ policy.sp_brokercode}}</th>
+                                                <th>{{ policy.product_name}}</th>
+                                                <th>{{ policy.registration_no}}</th>
+                                                <th>{{ policy.rto_state}}</th>
+                                                <th>{{ policy.rto_city}}</th>
+                                                <th>{{ policy.vehicle_makeby}}</th>
+
+                                                <th>{{ policy.vehicle_model}}</th>
+                                                <th>{{ policy.vehicle_catagory}}</th>
+                                                <th>{{ policy.vehicle_fuel_type}}</th>
+                                                <th>{{ policy.mfg_year}}</th>
+                                                <th>{{ policy.addon}}</th>
+                                                <th>{{ policy.ncb}}</th>
+                                                <th>{{ policy.cubic_capacity}}</th>
+                                                <th>{{ policy.gvw}}</th>
+                                                <th>{{ policy.seating_capacity}}</th>
+                                                <th>{{ policy.coverage_type}}</th>
+                                                <th>{{ policy.policy_type}}</th>
+                                                <th>{{ policy.cpa}}</th>
+                                                <th>{{ policy.risk_start_date}}</th>
+                                                <th>{{ policy.risk_end_date}}</th>
+                                                <th>{{ policy.issue_date}}</th>
+                                                <th>{{ policy.insured_age}}</th>
+                                                <th>{{ policy.policy_term}}</th>
+                                                <th>{{ policy.bqp}}</th>
+                                                <th>{{ policy.pos}}</th>
+                                                <th>{{ policy.employee}}</th>
+                                                <th>{{ policy.OD_premium}}</th>
+                                                <th>{{ policy.TP_terrorism}}</th>
+                                                <th>{{ policy.net}}</th>
+                                                <th>{{ policy.gst_amount}}</th>
+                                                <th>{{ policy.gst_gcv_amount}}</th>
+                                                <th>{{ policy.total}}</th>
+                                                <th>{{ policy.payment_mode}}</th>
+                                                <th>{{ policy.agent_od_reward}}</th>
+                                                <th>{{ policy.agent_od_amount}}</th>
+                                                <th>{{ policy.agent_tp_reward}}</th>
+                                                <th>{{ policy.agent_tp_amount}}</th>
+                                                <th>{{ policy.self_od_reward}}</th>
+                                                <th>{{ policy.self_od_amount}}</th>
+                                                <th>{{ policy.self_tp_reward}}</th>
+                                                <th>{{ policy.self_tp_amount}}</th>
+                                                <th>{{ policy.proposal}}</th>
+                                                <th>{{ policy.mandate}}</th>
+                                                <th>{{ policy.policy}}</th>
+                                                <th>{{ policy.previous_policy}}</th>
+                                                <th>{{ policy.pan_card}}</th>
+                                                <th>{{ policy.aadhar_card}}</th>
+                                                <th>{{ policy.vehicle_rc}}</th>
+                                                <th>{{ policy.inspection_report}}</th>
+                                                <th>{{ policy.remark}}</th>
+                                                <th>{{ policy.status}}</th>
+
+                                            </tr>
+                                            }
 
 
                                         </tbody>
