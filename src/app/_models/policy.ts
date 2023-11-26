@@ -1,8 +1,8 @@
 export class Policy {
     policyid = '';
     profile_id_id = "";
-    proposal_no = "";
     policy_no = "";
+    proposal_no = "";
     customer_name = "";
     insurance_company = "";
     sp_name = "";

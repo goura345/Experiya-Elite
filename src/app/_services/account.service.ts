@@ -116,4 +116,56 @@ export class AccountService {
         return this.http.get<Policy[]>(`${environment.apiUrl}/policies`);
     }
 
+    getPolicyById(id: string) {
+        return this.http.get<Policy>(`${environment.apiUrl}/policies/${id}`);
+    }
+
+    updatePolicyById(id: string, params: any) {
+        return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+            .pipe(map(x => {
+                // update stored user if the logged in user updated their own record
+                if (id == this.userValue?.id) {
+                    // update local storage
+                    const user = { ...this.userValue, ...params };
+                    localStorage.setItem('user', JSON.stringify(user));
+
+                    // publish updated user to subscribers
+                    this.userSubject.next(user);
+                }
+                return x;
+            }));
+    }
+
+    registerPolicy(user: User) {
+
+        console.log(user, user.firstName);
+        // const encryptedFirstName = encryptData(user.firstName);
+        // const encryptedLastName = encryptData(user.lastName);
+        // const encryptedUsername = encryptData(user.username);
+        // const encryptedPassword = encryptData(user.password);
+        // const encryptedMobileNumber = encryptData("86072968062");
+    
+
+        // if (!user || !user.username || !user.password || !user.firstName || !user.lastName || !user.mobileNumber) {
+        //     return throwError('Invalid user data'); // You can handle this error as needed
+        // }
+
+        // const dataToEncryptForRegister = {
+        //     id: null,
+        //     firstName: encryptedFirstName,
+        //     lastName: encryptedLastName,
+        //     username: encryptedUsername,
+        //     mobileNumber: encryptedMobileNumber,
+        //     password: encryptedPassword,
+        //     token: null,
+        //     role: 'lead'
+        // };
+        // console.log('Encrypted data sent to server: ', dataToEncryptForRegister);
+
+        return this.http.post(`${environment.apiUrl}/users/register`, user);
+        
+    }
+
+    
+
 }

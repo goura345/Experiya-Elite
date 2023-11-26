@@ -4,6 +4,7 @@ import { AccountService } from '@app/_services';
 import { Policy } from '@app/_models';
 import { delay } from 'rxjs';
 import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entrylist',
@@ -17,12 +18,19 @@ export class EntrylistComponent {
 
   public configuration!: Config;
   public columns!: Columns[];
+  public pagination = {
+    limit: 10,
+    offset: 0,
+    count: -1,
+    sort: '',
+    order: '',
+  };
 
   loading = true
   policies: Policy[] = []
   id = ''
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
 
@@ -103,7 +111,10 @@ export class EntrylistComponent {
 
   eventEmitted($event: { event: string; value: any }): void {
     // this.clicked = JSON.stringify($event);    
-    console.log('$event', $event);   
-    this.id =$event.value.row.id
+    console.log('$event', $event);
+    this.id = $event.value.row.id
+   
+    this.router.navigateByUrl('policies/edit/' + this.id)
+
   }
 }
