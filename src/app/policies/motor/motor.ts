@@ -9,10 +9,10 @@ import { first } from 'rxjs';
   selector: 'app-add-edit-policy',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './add-edit-policy.html',
+  templateUrl: './motor.html',
 
 })
-export class AddEditPolicyComponent {
+export class MotorComponent {
 
   form!: FormGroup;
   id?: string;
