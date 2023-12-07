@@ -1,0 +1,267 @@
+<div class="app-main ms-5">
+    <div class="wrapper">
+
+        <div class="page" id="entrylist">
+            <div class="page-inner text-blue116">
+                <header class="page-title-bar">
+                    <div class="row">
+                        <div class="col">
+                            <h1 id="page_heading" class="page-title" style="display: inline-block;"> Service Provider List </h1>
+                            <a onclick="addNewSomething()" href="#" class="btn btn-secondary btn-sm float-right mr-2"><i
+                                    class="fa fa-plus"></i> Add
+                                New</a>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- .card -->
+                <div class="card card-fluid">
+                    <!-- .card-header -->
+                    <div class="card-header">
+                        <form id="frminslist" autocomplete="off">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-12">
+                                    <select class="custom-select" name="period" id="select-period">
+                                        <option value="today">Today</option>
+                                        <option value="yesterday">Yesterday</option>
+                                        <option value="this_month">This Month</option>
+                                        <option value="last_month">Last Month</option>
+                                        <option value="current_year">Current Year</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" id="frmDate" data-alt-format="Y-m-d" data-date-format="d/m/Y"
+                                            data-toggle="flatpickr" placeholder="DD-MM-YYYY"
+                                            class="form-control flatpickr-input" disabled="" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" id="toDate" data-alt-format="Y-m-d" data-date-format="d/m/Y"
+                                            data-toggle="flatpickr" placeholder="DD-MM-YYYY"
+                                            class="form-control datepicker flatpickr-input" disabled=""
+                                            readonly="readonly">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-12" hidden>
+                                    <select name="agents" data-parsley-required-message=""
+                                        class="custom-select select2 select2-hidden-accessible" id="agents"
+                                        data-parsley-required="true" tabindex="-1" aria-hidden="true">
+                                        <option value=""> All Agents</option>
+                                        <!-- {%for value in datag%}
+                                 <option value={{value.full_name}}>{{value.full_name}}</option>
+                                 {%endfor%} -->
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <button onclick="entry_filter()" type="button" id="filterlist"
+                                            class="btn btn-secondary " title="Filter"><i class="fa fa-search"
+                                                aria-hidden="true"></i> </button>
+
+                                        <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
+                                            onclick="resertDocument()"><i class="icofont icofont-refresh"
+                                                aria-hidden="true"></i>
+                                        </button>
+
+                                        <button onclick="addToFilterList()" type="button" id="btnlock"
+                                            class="btn btn-secondary " title="Freeze"><i class="fa fa-snowflake"
+                                                aria-hidden="true"></i> </button>
+
+                                        <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
+                                            class="btn btn-secondary " title="Download"><i class="fa fa-download"
+                                                aria-hidden="true"></i> </button>
+
+                                        <!-- data-toggle="modal" data-target=""  -->
+                                        <button type="button" id="bulk_remove" onclick="clearFilterList()"
+                                            class="btn btn-secondary" title="Clear filters"><i
+                                                class="icofont icofont-trash" aria-hidden="true"></i> </button>
+
+                                        <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter"
+                                            title="More Filter" onclick="showMoreFilters()"><small>More
+                                                Filter</small></a>
+
+
+                                        <div class="modal fade" id="mdlcolsetting"
+                                            onmouseenter="document.getElementById('inp_search').focus()"
+                                            style="height: 400px">
+
+                                            <div class="modal-dialog" role="document">
+
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 id="rtoModalLabel" class="modal-title"> Delete Policy</h5>
+                                                    </div>
+                                                    <div class="modal-body ">
+                                                        <div class="form-row">
+                                                            <div class="col-md-12 mb-4">
+                                                                <div class=""><label>Are You Sure? You want to delete
+                                                                        the
+                                                                        Record(s)..<input hidden id="inp_search"
+                                                                            type="text" value="" class="form-control"
+                                                                            name="agent"
+                                                                            style="text-transform: uppercase;"
+                                                                            title="Search POS using Name, mobile no, email, pan/aadhar number">
+                                                                    </label></div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button id="btnExit" type="button"
+                                                                class="btn btn-secondary w-100p"
+                                                                data-dismiss="modal">Cancel</button>
+
+                                                            <button type="button" id="posUpdate"
+                                                                onclick="bulk_policy_remove()"
+                                                                class="btn btn-primary w-100p "
+                                                                style="background: red;">Delete</button>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <!-- <body onload="setFocus()">
+                                                
+                                             </body> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 ">
+
+                                </div>
+
+                            </div>
+                            <div id="morefilters" class="row" hidden>
+                                <div class="form-row">
+                                    <input id="ps1" name="ps1" type="checkbox" value="No Payouts" class="checkbox mr-2"
+                                        style="margin-bottom: auto; margin-top: 4px;">
+                                    <label for="ps1">Payout-less Policies</label>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+
+                                    <input type="text" id="search-select_vc" class="form-control"
+                                        placeholder="Select any field">
+                                    <select id="filter_type" name="filter_type" data-parsley-required-message=""
+                                        multiple data-parsley-required="true" class="custom-select " required
+                                        onchange="add_filter_type()">
+                                        <option value="pos">POSPS</option>
+                                        <option value="insurance_company">Insurers</option>
+                                        <option value="vehicle_catagory">Vehicle Catagory</option>
+                                        <option value="vehicle_makeby">Vehicle Makeby</option>
+                                        <option value="vehicle_model">Vehicle Model</option>
+                                        <option value="vehicle_fuel_type">Fuel Type</option>
+                                        <option value="cubic_capacity">Cubic Capacity</option>
+                                        <option value="seating_capacity">Seating Capacity</option>
+                                        <option value="coverage_type">Coverage Type</option>
+                                        <option value="gvw">GVW</option>
+                                        <option value="policy_type">Policy Type</option>
+                                        <option value="addon">Addon</option>
+                                        <option value="ncb">NCB</option>
+                                        <option value="cpa">CPA</option>
+
+                                    </select>
+                                    <!-- <input type="text" id="search-select_vc" class="form-control"> -->
+
+                                    <button id="select-all_vc" hidden>Select All</button>
+                                    <button id="deselect-all_vc" hidden>Deselect All</button>
+
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- .card-body -->
+                    <div class="card-body">
+
+                        <div class="" hidden>
+                            <div id="tblInsurance_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer no-scroll">
+                                <div class="form-row  mb-3">
+                                    <div class="col-md-6">
+                                        <div class="dataTables_length" id="tblInsurance_length">
+                                            <label>
+                                                Show
+                                                <select id="select_length" name="tblInsurance_length"
+                                                    onchange="showNextRows(true)" aria-controls="tblInsurance"
+                                                    class="custom-select">
+                                                    <option value="3">3</option>
+                                                    <option value="5">5</option>
+                                                    <option value="10">10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                    <option value="100">100</option>
+                                                    <option value="0" selected>all</option>
+                                                </select>
+                                                entries
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div id="tblInsurance_filter" class="dataTables_filter"><label>Search:<input
+                                                    value="" type="search" id="myInput" oninput="delayedSearch()"
+                                                    onkeypress="searchTableOnEnterKey(event)" class="form-control"
+                                                    placeholder="" aria-controls="tblInsurance"></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="table-responsive">
+                            <div class="dataTables_scroll">
+                                <div class="dataTables_scrollHead"
+                                    style="position: relative; border: 0px; width: 100%;">
+                                    <div class="dataTables_scrollHeadInner"
+                                        style="box-sizing: content-box; width: auto; padding-right: 0px;">
+                                        <table
+                                            class="table table-striped1 table-hover no-wrap table-bordered no-footer dataTable"
+                                            aria-describedby="tblInsurance_info" role="grid"
+                                            style="margin-left: 0px; width: 5774.97px;">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
+
+                                    <ngx-table style="text-wrap: nowrap" [configuration]="configuration"
+                                        [data]="agents" [columns]="columns" (event)="eventEmitted($event)">
+                                    </ngx-table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <a id="upButton" class="btn  " href="#" title="Scroll to Top">
+                            <i class="fas fa-chevron-up"></i>
+                        </a>
+
+                        <button id="pevButton" class="btn btn-secondary mt-3" hidden
+                            style="float: right; background-color: #346CB0; color: #FFFFFF; ">Back</button>
+
+                    </div>
+
+
+
+                    <!-- /.page-inner -->
+                </div>
+                <!-- /.page -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
