@@ -5,107 +5,116 @@ import { Policy } from '@app/_models';
 import { delay } from 'rxjs';
 import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
 import { Router } from '@angular/router';
+import { AgGridModule } from 'ag-grid-angular';
+import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 
 @Component({
   selector: 'app-entrylist',
   standalone: true,
   imports: [CommonModule,
-    TableModule],
+    AgGridModule],
   templateUrl: './policylist.html',
 
 })
 export class EntrylistComponent {
 
-  public configuration!: Config;
-  public columns!: Columns[];
-  public pagination = {
-    limit: 10,
-    offset: 0,
-    count: -1,
-    sort: '',
-    order: '',
-  };
-
   loading = true
   policies: Policy[] = []
   id = ''
+
+  // Column Definitions: Defines & controls grid columns.
+  colDefs: ColDef[] = [
+    { headerName: "SR. NO.", field: 'serialNumber', sortable: true, filter: true },
+    { headerName: "PROPOSAL NO.", field: 'proposal_no', sortable: true, filter: true },
+    { headerName: "POLICY NO.", field: 'policy_no', sortable: true, filter: true },
+    { headerName: "CUSTOMER NAME", field: 'customer_name', sortable: true, filter: true },
+    { headerName: "INSURER NAME", field: 'insurance_company', sortable: true, filter: true },
+    { headerName: "SERVICE PROVIDER", field: 'sp_name', sortable: true, filter: true },
+    { headerName: "BROKER CODE", field: 'sp_brokercode', sortable: true, filter: true },
+    { headerName: "PRODUCT NAME", field: 'product_name', sortable: true, filter: true },
+    { headerName: "REGISTRATION NO.", field: 'registration_no', sortable: true, filter: true },
+    { headerName: "RTO STATE", field: 'rto_state', sortable: true, filter: true },
+    { headerName: "RTO CITY", field: 'rto_city', sortable: true, filter: true },
+    { headerName: "VEHICLE CATAGORY", field: 'vehicle_catagory', sortable: true, filter: true },
+    { headerName: "VEHICLE MAKEBY", field: 'vehicle_makeby', sortable: true, filter: true },
+    { headerName: "VEHICLE MODEL", field: 'vehicle_model', sortable: true, filter: true },
+    { headerName: "FUEL TYPE", field: 'vehicle_fuel_type', sortable: true, filter: true },
+    { headerName: "MFG. YEAR", field: 'mfg_year', sortable: true, filter: true },
+    { headerName: "ADDON", field: 'addon', sortable: true, filter: true },
+    { headerName: "NCB", field: 'ncb', sortable: true, filter: true },
+    { headerName: "CUBIC CAPACITY", field: 'cubic_capacity', sortable: true, filter: true },
+    { headerName: "COVERAGE TYPE", field: 'coverage_type', sortable: true, filter: true },
+    { headerName: "SEATING CAPACITY", field: 'seating_capacity', sortable: true, filter: true },
+    { headerName: "GVW", field: 'gvw', sortable: true, filter: true },
+    { headerName: "POLICY TYPE", field: 'policy_type', sortable: true, filter: true },
+    { headerName: "CPA", field: 'cpa', sortable: true, filter: true },
+    { headerName: "RISK START DATE", field: 'risk_start_date', sortable: true, filter: true },
+    { headerName: "RISK END DATE", field: 'risk_end_date', sortable: true, filter: true },
+    { headerName: "ISSUE DATE", field: 'issue_date', sortable: true, filter: true },
+    { headerName: "INSURED AGE", field: 'insured_age', sortable: true, filter: true },
+    { headerName: "POLICY TERM", field: 'policy_term', sortable: true, filter: true },
+    { headerName: "POSP NAME", field: 'pos', sortable: true, filter: true },
+
+    // { headerName: "POSP CODE", field: 'status', sortable: true, filter: true },
+
+    { headerName: "BQP", field: 'bqp', sortable: true, filter: true },
+    { headerName: "EMPLOYEE", field: 'employee', sortable: true, filter: true },
+    { headerName: "REMARK", field: 'remark', sortable: true, filter: true },
+    { headerName: "OD", field: 'OD_premium', sortable: true, filter: true },
+    { headerName: "TP", field: 'TP_terrorism', sortable: true, filter: true },
+    { headerName: "NET", field: 'net', sortable: true, filter: true },
+    { headerName: "GST 18%", field: 'gst_amount', sortable: true, filter: true },
+    { headerName: "GST 12%", field: 'gst_gcv_amount', sortable: true, filter: true },
+    { headerName: "TOTAL", field: 'total', sortable: true, filter: true },
+    { headerName: "PAYMENT MODE", field: 'payment_mode', sortable: true, filter: true },
+    { headerName: "PROPOSAL", field: 'proposal', sortable: true, filter: true },
+    { headerName: "MANDATE", field: 'mandate', sortable: true, filter: true },
+    { headerName: "POLICY", field: 'policy', sortable: true, filter: true },
+    { headerName: "PREVIOUS POLICY", field: 'previous_policy', sortable: true, filter: true },
+    { headerName: "PAN CARD", field: 'pan_card', sortable: true, filter: true },
+    { headerName: "AADHAR CARD", field: 'aadhar_card', sortable: true, filter: true },
+    { headerName: "VEHICLE RC", field: 'vehicle_rc', sortable: true, filter: true },
+    { headerName: "INSPECTION REPORT", field: 'inspection_report', sortable: true, filter: true },
+    { headerName: "STATUS", field: 'status', sortable: true, filter: true },
+
+    {
+      headerName: "ACTION"
+      , cellRenderer: (params: { value: string; }) => {
+        // put the value in bold
+        return `${this.editIcon} ${this.deleteIcon}`;
+      }
+    },
+
+  ];
+  // Row Data: The data to be displayed.
+  rowData: any[] = []
+  editIcon = '<a> <i class="bi bi-pencil"></i></a>';
+  deleteIcon = '<a class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
+  gridOptions: any = {
+    rowSelection: 'single',
+    // alwaysShowHorizontalScroll: true,
+    // alwaysShowVerticalScroll: true,
+    // columnDefs: this.columnDefs,
+    // rowData: this.rowData,
+  };
 
   constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
 
-    this.configuration = { ...DefaultConfig };
-    this.configuration.searchEnabled = true;
-
-    this.columns = [
-      // { key: 'SrNo', title: 'Sr. No.' },
-      { key: 'proposal_no', title: 'Proposal No' },
-      { key: 'policy_no', title: 'Policy No' },
-      { key: 'customer_name', title: 'Customer Name' },
-      { key: 'insurance_company', title: 'Insurance Company' },
-      { key: 'sp_name', title: 'SP Name' },
-      { key: 'sp_brokercode', title: 'Broker Code' },
-      { key: 'product_name', title: 'Product Name' },
-      { key: 'registration_no', title: 'Registration No.' },
-      { key: 'rto_state', title: 'RTO State' },
-      { key: 'rto_city', title: 'rto_city' },
-      { key: 'vehicle_makeby', title: 'vehicle_makeby' },
-      { key: 'vehicle_model', title: 'vehicle_model' },
-      { key: 'vehicle_catagory', title: 'vehicle_catagory' },
-      { key: 'vehicle_fuel_type', title: 'vehicle_fuel_type' },
-
-      { key: 'mfg_year', title: 'mfg_year' },
-      { key: 'addon', title: 'addon' },
-      { key: 'ncb', title: 'ncb' },
-      { key: 'cubic_capacity', title: 'cubic_capacity' },
-      { key: 'gvw', title: 'gvw' },
-      { key: 'seating_capacity', title: 'seating_capacity' },
-      { key: 'coverage_type', title: 'coverage_type' },
-      { key: 'policy_type', title: 'policy_type' },
-      { key: 'cpa', title: 'cpa' },
-      { key: 'risk_start_date', title: 'risk_start_date' },
-      { key: 'risk_end_date', title: 'risk_end_date' },
-      { key: 'issue_date', title: 'issue_date' },
-      { key: 'insured_age', title: 'insured_age' },
-      { key: 'policy_term', title: 'policy_term' },
-      { key: 'bqp', title: 'bqp' },
-      { key: 'pos', title: 'pos' },
-      { key: 'employee', title: 'employee' },
-      { key: 'OD_premium', title: 'OD_premium' },
-      { key: 'TP_terrorism', title: 'TP_terrorism' },
-      { key: 'net', title: 'net' },
-      { key: 'gst_amount', title: 'gst_amount' },
-      { key: 'gst_gcv_amount', title: 'gst_gcv_amount' },
-      { key: 'total', title: 'total' },
-      { key: 'payment_mode', title: 'payment_mode' },
-      { key: 'agent_od_reward', title: 'agent_od_reward' },
-      { key: 'agent_od_amount', title: 'agent_od_amount' },
-      { key: 'agent_tp_reward', title: 'agent_tp_reward' },
-      { key: 'agent_tp_amount', title: 'agent_tp_amount' },
-      { key: 'self_od_reward', title: 'self_od_reward' },
-      { key: 'self_od_amount', title: 'self_od_amount' },
-      { key: 'self_tp_reward', title: 'self_tp_reward' },
-      { key: 'self_tp_amount', title: 'self_tp_amount' },
-      { key: 'proposal', title: 'proposal' },
-
-      { key: 'mandate', title: 'mandate' },
-      { key: 'policy', title: 'policy' },
-      { key: 'previous_policy', title: 'previous_policy' },
-      { key: 'pan_card', title: 'pan_card' },
-      { key: 'aadhar_card', title: 'aadhar_card' },
-      { key: 'vehicle_rc', title: 'vehicle_rc' },
-      { key: 'inspection_report', title: 'inspection_report' },
-      { key: 'remark', title: 'remark' },
-      { key: 'status', title: 'status' },
-    ];
-
     // return
     this.loading = true
-    this.accountService.getAllPolicy().subscribe((data: Policy[]) => {
-      console.log(data);
+    this.accountService.getAllPolicy().subscribe((data: any) => {
+      // console.log(data);
       this.policies = data
-      this.loading = false
-    })
+      this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+
+    }, (error => {
+      console.log(error);
+    }),
+      () => {
+        this.loading = false;
+      })
 
   }
 
@@ -113,8 +122,28 @@ export class EntrylistComponent {
     // this.clicked = JSON.stringify($event);    
     console.log('$event', $event);
     this.id = $event.value.row.id
-   
+
     this.router.navigateByUrl('policies/edit/' + this.id)
 
   }
+
+  onEditDelete(event: any) {
+    return
+    console.log(event);
+    console.log(event.colDef.headerName);
+    console.log(event.data.mobileNumber);
+
+    // let submission = this.policies.filter((item) => item.mobileNumber == event.data.mobileNumber)[0]
+    // console.log(submission);
+
+    if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
+
+    }
+
+    else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
+      // this.deleteUser(event.data.mobileNumber)
+
+    }
+  }
+
 }

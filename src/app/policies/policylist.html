@@ -234,9 +234,9 @@
                                 </div>
                                 <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
 
-                                    <ngx-table style="text-wrap: nowrap" [configuration]="configuration"
-                                        [data]="policies" [columns]="columns" (event)="eventEmitted($event)">
-                                    </ngx-table>
+                                    <ag-grid-angular class="ag-theme-quartz" style="height: 350px;"
+                                        [columnDefs]="colDefs" [rowData]="rowData" (cellClicked)="onEditDelete($event)">
+                                    </ag-grid-angular>
 
                                 </div>
 
