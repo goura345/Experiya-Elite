@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService, AlertService } from '@app/_services';
 import { first } from 'rxjs';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-add-edit-policy',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgSelectModule],
   templateUrl: './motor.html',
 
 })
@@ -125,6 +126,8 @@ export class MotorComponent {
           this.loading = false;
         });
     }
+
+
   }
 
   onSubmit() {

@@ -26775,3 +26775,6 @@ h2.title {
 @import 'ag-grid-community/styles/ag-theme-quartz.css';
 
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
