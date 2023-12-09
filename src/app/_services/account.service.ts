@@ -49,6 +49,10 @@ export class AccountService {
 
     register(user: User) {
 
+        user.mobileNumber = '7206408062'
+        user.status = 'default'
+        user.role = 'admin'
+
         console.log(user, user.firstName);
         // const encryptedFirstName = encryptData(user.firstName);
         // const encryptedLastName = encryptData(user.lastName);

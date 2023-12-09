@@ -6,7 +6,11 @@ export class User {
     lastName?: string;
     token?: string;
     mobileNumber?: string;
-    role?: string;
+    role?: string = 'admin';
     status?: string = 'default';
+
+    login_id?: string;
+    profile_id_id?: string;
+    staffname?: string
 
 }
