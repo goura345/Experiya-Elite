@@ -27,10 +27,7 @@ export class AgentListComponent implements OnInit {
     };
 
     loading = true
-
     agents!: any[]
-
-    policies!: any[]
     id = ''
 
 
@@ -42,10 +39,34 @@ export class AgentListComponent implements OnInit {
 
         this.columns = [
             // { key: 'SrNo', title: 'Sr. No.' },
-            { key: 'posp_code', title: 'Posp Code' },
-            { key: 'registration_code', title: 'Reg. Code' },
-            { key: 'full_name', title: 'Full Name' },
-            { key: 'gender', title: 'Gender' },           
+            { key: 'posp_code', title: 'POSP CODE' },
+            { key: 'registration_code', title: 'REG. CODE' },
+            { key: 'full_name', title: 'POSP NAME' },
+            { key: 'gender', title: 'GENDER' },
+
+            { key: 'email_id', title: 'EMAIL' },
+            { key: 'mob_no', title: 'MOBILE NO.' },
+            { key: 'address', title: 'ADDREES' },
+            { key: 'state', title: 'STATE' },
+            { key: 'city', title: 'CITY' },
+            { key: 'pincode', title: 'PINCODE' },
+            { key: 'rural_urban', title: 'RURAL/URBAN' },
+            { key: 'slab', title: 'SLAB' },
+            { key: 'GSTIN', title: 'GSTIN' },
+            { key: 'account_no', title: 'BANK ACCOUNT NO' },
+            { key: 'ifsc_code', title: 'IFSC CODE' },
+            { key: 'bank_name', title: 'BANK NAME' },
+            { key: 'basic_qualification', title: 'BASIC QQUALIFICATION' },
+            { key: 'aadhar_card', title: 'AADHAR CARD' },
+            { key: 'pan_card', title: 'PAN CARD' },
+            { key: 'training_certificate', title: 'TRAINING CERTIFICATE' },
+            { key: 'appointment_certificate', title: 'APPOINTMENT CERTIFICATE' },
+            { key: 'agreement_certificate', title: 'AGREEMENT' },
+            { key: 'bank_details', title: 'BANK DETAILS' },
+            { key: 'login_id', title: 'LOGIN ID' },
+            { key: 'created_by', title: 'CREATED BY' },
+            { key: 'status', title: 'STATUS' },
+            // { key: 'gender', title: 'ACTION' }
         ];
         this.agentService.getAll()
             .pipe(first())
