@@ -5,48 +5,72 @@ import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AccountService } from '@app/_services';
-import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
 import { User } from '@app/_models';
+import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
+import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+
 
 @Component({
     templateUrl: 'list.component.html',
     standalone: true,
-    imports: [RouterLink, NgFor, NgIf, TableModule]
+    imports: [RouterLink, NgFor, NgIf, AgGridModule]
 })
 export class ListComponent implements OnInit {
-
-    public configuration!: Config;
-    public columns!: Columns[];
-    public pagination = {
-        limit: 10,
-        offset: 0,
-        count: -1,
-        sort: '',
-        order: '',
-    };
 
     loading = true
     users!: any[]
     id = ''
 
+    // Column Definitions: Defines & controls grid columns.
+    colDefs: ColDef[] = [
+        { headerName: "SR. NO.", field: 'serialNumber', sortable: true, filter: true },
+        { headerName: "FIRST NAME", field: 'firstName', sortable: true, filter: true },
+        { headerName: "LAST NAME", field: 'lastName', sortable: true, filter: true },
+        { headerName: "USER NAME", field: 'username', sortable: true, filter: true },
+        { headerName: "MOBILE NUMBER", field: 'mobileNumber', sortable: true, filter: true },
+        { headerName: "ROLE", field: 'role', sortable: true, filter: true },
+        { headerName: "STATUS", field: 'status', sortable: true, filter: true },
+        {
+            headerName: "ACTION"
+            , cellRenderer: (params: { value: string; }) => {
+                // put the value in bold
+                return `${this.editIcon} ${this.deleteIcon}`;
+            }
+        },
+
+    ];
+    // Row Data: The data to be displayed.
+    rowData: any[] = []
+
+    editIcon = '<a> <i class="bi bi-pencil"></i></a>';
+    deleteIcon = '<a class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
+    gridOptions: any = {
+        rowSelection: 'single',
+        // alwaysShowHorizontalScroll: true,
+        // alwaysShowVerticalScroll: true,
+        // columnDefs: this.columnDefs,
+        // rowData: this.rowData,
+    };
+
     constructor(private accountService: AccountService, private router: Router) { }
 
     ngOnInit() {
-        this.configuration = { ...DefaultConfig };
-        this.configuration.searchEnabled = true;
 
-        this.columns = [
-            // { key: 'SrNo', title: 'Sr. No.' },
-            { key: 'firstName', title: 'First Name' },
-            { key: 'lastName', title: 'Last Name' },
-            { key: 'username', title: 'Username' },
-            { key: 'mobileNumber', title: 'Mobile Number' },
-            { key: 'role', title: 'Role' },
-            { key: 'status', title: 'Status' },
-        ];
+        this.loading = true;
+
         this.accountService.getAll()
             .pipe(first())
-            .subscribe(users => this.users = users);
+            .subscribe((data: any) => {
+                // console.log(data);
+                this.users = data
+                this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+
+            }, (error => {
+                console.log(error);
+            }),
+                () => {
+                    this.loading = false;
+                })
     }
 
     deleteUser(id: string) {
@@ -62,5 +86,24 @@ export class ListComponent implements OnInit {
         console.log('$event', $event);
         this.id = $event.value.row.id
         this.router.navigateByUrl('users/edit/' + this.id)
+    }
+
+    onEditDelete(event: any) {
+        return
+        console.log(event);
+        console.log(event.colDef.headerName);
+        console.log(event.data.mobileNumber);
+
+        let submission = this.users.filter((item) => item.mobileNumber == event.data.mobileNumber)[0]
+        console.log(submission);
+
+        if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
+
+        }
+
+        else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
+            this.deleteUser(event.data.mobileNumber)
+
+        }
     }
 }

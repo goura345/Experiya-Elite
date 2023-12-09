@@ -26769,3 +26769,7 @@ h2.title {
 
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
+/* Core Grid CSS */
+@import 'ag-grid-community/styles/ag-grid.css';
+/* Quartz Theme Specific CSS */
+@import 'ag-grid-community/styles/ag-theme-quartz.css';

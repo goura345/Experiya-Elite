@@ -9,10 +9,13 @@ import { AgentService } from '@app/_services';
 import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
 import { User } from '@app/_models';
 
+import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
+import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+
 @Component({
     templateUrl: 'agent-list.html',
     standalone: true,
-    imports: [RouterLink, NgFor, NgIf, TableModule]
+    imports: [RouterLink, NgFor, NgIf, TableModule, AgGridModule]
 })
 export class AgentListComponent implements OnInit {
 
@@ -29,6 +32,20 @@ export class AgentListComponent implements OnInit {
     loading = true
     agents!: any[]
     id = ''
+   
+    // Column Definitions: Defines & controls grid columns.
+    colDefs: ColDef[] = [
+        { field: "full_name" },
+        { field: "company" },
+        { field: "location" },
+        { field: "date" },
+        { field: "price" },
+        { field: "successful" },
+        { field: "rocket" }
+    ];
+    
+     // Row Data: The data to be displayed.
+     rowData: any[] = []
 
 
     constructor(private agentService: AgentService, private router: Router) { }
@@ -70,7 +87,7 @@ export class AgentListComponent implements OnInit {
         ];
         this.agentService.getAll()
             .pipe(first())
-            .subscribe(agents => this.agents = agents);
+            .subscribe(agents => this.rowData = agents);
     }
 
     deleteUser(id: string) {

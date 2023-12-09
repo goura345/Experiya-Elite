@@ -7,11 +7,14 @@ import { User } from './_models';
 import { AlertComponent } from './_components/alert.component';
 import { BaseComponent } from "./base/base";
 
+import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
+import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+
 
 @Component({
     selector: 'app-root', templateUrl: 'app.component.html',
     standalone: true,
-    imports: [NgIf, RouterOutlet, RouterLink, RouterLinkActive, AlertComponent, BaseComponent]
+    imports: [NgIf, RouterOutlet, RouterLink, RouterLinkActive, AlertComponent, BaseComponent, AgGridModule]
 })
 export class AppComponent {
     user?: User | null;
