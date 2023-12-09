@@ -4,7 +4,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { AccountService } from '@app/_services';
+import { AgentService } from '@app/_services';
+
 import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
 import { User } from '@app/_models';
 
@@ -33,7 +34,7 @@ export class AgentListComponent implements OnInit {
     id = ''
 
 
-    constructor(private accountService: AccountService, private router: Router) { }
+    constructor(private agentService: AgentService, private router: Router) { }
 
     ngOnInit() {
         this.configuration = { ...DefaultConfig };
@@ -41,27 +42,26 @@ export class AgentListComponent implements OnInit {
 
         this.columns = [
             // { key: 'SrNo', title: 'Sr. No.' },
-            { key: 'firstName', title: 'First Name' },
-            { key: 'lastName', title: 'Last Name' },
-            { key: 'username', title: 'Username' },
-            { key: 'mobileNumber', title: 'Mobile Number' },
-            { key: 'role', title: 'Role' },
-            { key: 'status', title: 'Status' },
+            { key: 'posp_code', title: 'Posp Code' },
+            { key: 'registration_code', title: 'Reg. Code' },
+            { key: 'full_name', title: 'Full Name' },
+            { key: 'gender', title: 'Gender' },           
         ];
-        this.accountService.getAll()
+        this.agentService.getAll()
             .pipe(first())
-            .subscribe(users => this.policies = users);
+            .subscribe(agents => this.agents = agents);
     }
 
     deleteUser(id: string) {
         const user = this.agents!.find(x => x.id === id);
         user.isDeleting = true;
-        this.accountService.delete(id)
+        this.agentService.delete(id)
             .pipe(first())
             .subscribe(() => this.agents = this.agents!.filter(x => x.id !== id));
     }
 
     eventEmitted($event: { event: string; value: any }): void {
+        return
         // this.clicked = JSON.stringify($event);    
         console.log('$event', $event);
         this.id = $event.value.row.id
