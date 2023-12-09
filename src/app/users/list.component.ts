@@ -41,7 +41,6 @@ export class ListComponent implements OnInit {
     ];
     // Row Data: The data to be displayed.
     rowData: any[] = []
-
     editIcon = '<a> <i class="bi bi-pencil"></i></a>';
     deleteIcon = '<a class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
     gridOptions: any = {
