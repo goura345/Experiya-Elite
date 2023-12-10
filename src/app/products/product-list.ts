@@ -4,61 +4,77 @@ import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { AccountService } from '@app/_services';
-import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
+import { AccountService, ProductService } from '@app/_services';
 import { User } from '@app/_models';
+import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
+import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 
 @Component({
     templateUrl: 'product-list.html',
     standalone: true,
-    imports: [RouterLink, NgFor, NgIf, TableModule]
+    imports: [RouterLink, NgFor, NgIf, AgGridModule]
 })
 export class ProductListComponent implements OnInit {
 
-    public configuration!: Config;
-    public columns!: Columns[];
-    public pagination = {
-        limit: 10,
-        offset: 0,
-        count: -1,
-        sort: '',
-        order: '',
-    };
-
     loading = true
-
-    agents!: any[]
-
-    policies!: any[]
+    products!: any[]
     id = ''
 
+    // Column Definitions: Defines & controls grid columns.
+    colDefs: ColDef[] = [
+        { headerName: "SR. NO.", field: 'serialNumber', sortable: true, filter: true },
+        { headerName: "PRODUCT NAME", field: 'name', sortable: true, filter: true },
+        { headerName: "STATUS", field: 'status', sortable: true, filter: true },
 
-    constructor(private accountService: AccountService, private router: Router) { }
+        {
+            headerName: "ACTION"
+            , cellRenderer: (params: { value: string; }) => {
+                // put the value in bold
+                return `${this.editIcon} ${this.deleteIcon}`;
+            }
+        },
+
+    ];
+    // Row Data: The data to be displayed.
+    rowData: any[] = []
+    editIcon = '<a> <i class="bi bi-pencil"></i></a>';
+    deleteIcon = '<a class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
+    gridOptions: any = {
+        rowSelection: 'single',
+        // alwaysShowHorizontalScroll: true,
+        // alwaysShowVerticalScroll: true,
+        // columnDefs: this.columnDefs,
+        // rowData: this.rowData,
+    };
+
+
+    constructor(private productService: ProductService, private router: Router) { }
 
     ngOnInit() {
-        this.configuration = { ...DefaultConfig };
-        this.configuration.searchEnabled = true;
 
-        this.columns = [
-            // { key: 'SrNo', title: 'Sr. No.' },
-            { key: 'firstName', title: 'First Name' },
-            { key: 'lastName', title: 'Last Name' },
-            { key: 'username', title: 'Username' },
-            { key: 'mobileNumber', title: 'Mobile Number' },
-            { key: 'role', title: 'Role' },
-            { key: 'status', title: 'Status' },
-        ];
-        this.accountService.getAll()
+
+        // return
+        this.productService.getAll()
             .pipe(first())
-            .subscribe(users => this.policies = users);
+            .subscribe((data: any) => {
+                console.log(data);
+                this.products = data
+                this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+
+            }, (error => {
+                console.log(error);
+            }),
+                () => {
+                    this.loading = false;
+                })
     }
 
     deleteUser(id: string) {
-        const user = this.agents!.find(x => x.id === id);
+        const user = this.products!.find(x => x.id === id);
         user.isDeleting = true;
-        this.accountService.delete(id)
+        this.productService.delete(id)
             .pipe(first())
-            .subscribe(() => this.agents = this.agents!.filter(x => x.id !== id));
+            .subscribe(() => this.products = this.products!.filter(x => x.id !== id));
     }
 
     eventEmitted($event: { event: string; value: any }): void {
@@ -67,4 +83,25 @@ export class ProductListComponent implements OnInit {
         this.id = $event.value.row.id
         this.router.navigateByUrl('users/edit/' + this.id)
     }
+
+    onEditDelete(event: any) {
+        return
+        console.log(event);
+        console.log(event.colDef.headerName);
+        console.log(event.data.mobileNumber);
+
+        let submission = this.products.filter((item) => item.mobileNumber == event.data.mobileNumber)[0]
+        console.log(submission);
+
+        if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
+
+        }
+
+        else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
+            this.deleteUser(event.data.mobileNumber)
+
+        }
+    }
+
 }
+
