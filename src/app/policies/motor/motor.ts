@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService, AlertService } from '@app/_services';
+import { AccountService, AlertService, InsurerService, ProductService } from '@app/_services';
 import { first } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-add-edit-policy',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgSelectModule],
+  imports: [CommonModule, ReactiveFormsModule, NgSelectModule, FormsModule],
   templateUrl: './motor.html',
 
 })
@@ -40,11 +40,15 @@ export class MotorComponent {
     "E CART - GCV"
   ]
 
+  insurers = []
+  selectedInsurer = null
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
+    private insurerService: InsurerService,
     private alertService: AlertService
   ) { }
 
@@ -126,6 +130,19 @@ export class MotorComponent {
           this.loading = false;
         });
     }
+// return
+    this.insurerService.getAll()
+            .pipe(first())
+            .subscribe((data: any) => {
+                console.log(data);
+                this.insurers = data
+
+            }, (error => {
+                console.log(error);
+            }),
+                () => {
+                    this.loading = false;
+                })
 
 
   }

@@ -42,15 +42,13 @@
                                                 <legend>Policy Details</legend>
                                                 <div class="form-row">
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Vehicle Catagory <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <select class="custom-select"
-                                                            formControlName="vehicle_catagory">
-                                                            <option value=""> SELECT CATEGORY</option>
-                                                            @for (category of vehicleCategories; track $index) {
-                                                            <option value="{{category}}"> {{ category }}</option>
-                                                            }
-                                                        </select>
+                                                        <label for="">Vehicle Catagory<b
+                                                                style="color: red;">*</b></label>
+                                                        <ng-select class="custom text-uppercase mt-1"
+                                                            formControlName="state" placeholder="Select Category">
+                                                            <ng-option *ngFor="let category of vehicleCategories"
+                                                                [value]="category">{{ category }}</ng-option>
+                                                        </ng-select>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
@@ -75,34 +73,32 @@
                                                             formControlName="customer_name">
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Insurer Name<abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <select class="custom-select"
-                                                            formControlName="insurance_company">
-                                                            <option value=""> SELECT INSURER</option>
-                                                            <!-- @for (category of vehicleCategories; track $index) {
-                                                            <option value="{{category}}"> {{ category }}</option>
-                                                            } -->
-                                                        </select>
+                                                        <label for="">Insurer Name<b style="color: red;">*</b></label>
+                                                        <ng-select [items]="insurers" bindLabel="comp_name"
+                                                            placeholder="SELECT INSURER" bindValue="id"
+                                                            [(ngModel)]="selectedInsurer"
+                                                            [ngModelOptions]="{standalone: true}">
+                                                        </ng-select>
+
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Serving Office <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <select class="custom-select" formControlName="sp_name">
-                                                            <option value=""> SELECT OFFICE</option>
-                                                            <!-- @for (category of vehicleCategories; track $index) {
-                                                            <option value="{{category}}"> {{ category }}</option>
-                                                            } -->
-                                                        </select>
+
+                                                        <label for="">Serving Office <b
+                                                                style="color: red;">*</b></label>
+                                                        <ng-select class="custom text-uppercase mt-1"
+                                                            formControlName="state" placeholder="Select Branch">
+                                                            <ng-option>ROHTAK</ng-option>
+                                                            <ng-option>DELHI</ng-option>
+                                                        </ng-select>
+
                                                     </div>
                                                     <div class="col-md-3 mb-4">
                                                         <label>Office Code <abbr title=""
                                                                 class="text-danger">*</abbr></label>
                                                         <select class="custom-select" formControlName="sp_brokercode">
                                                             <option value=""> SELECT CODE</option>
-                                                            <!-- @for (category of vehicleCategories; track $index) {
-                                                            <option value="{{category}}"> {{ category }}</option>
-                                                            } -->
+                                                            <option value="124001"> 124001</option>
+                                                            <option value="110001"> 1100001</option>
                                                         </select>
 
                                                     </div>
@@ -180,8 +176,7 @@
                                                     <div class="col-md-3 mb-4">
                                                         <label>Vehicle Make <abbr title=""
                                                                 class="text-danger">*</abbr></label>
-                                                        <select class="custom-select"
-                                                            formControlName="vehicle_makeby">
+                                                        <select class="custom-select" formControlName="vehicle_makeby">
                                                             <option value=""> SELECT MAKE</option>
                                                             @for (category of vehicleCategories; track $index) {
                                                             <option value="{{category}}"> {{ category }}</option>
@@ -193,8 +188,7 @@
                                                     <div class="col-md-3 mb-4">
                                                         <label>Vehicle Model <abbr title=""
                                                                 class="text-danger">*</abbr></label>
-                                                        <select class="custom-select"
-                                                            formControlName="vehicle_model">
+                                                        <select class="custom-select" formControlName="vehicle_model">
                                                             <option value=""> SELECT MODEL</option>
                                                             @for (category of vehicleCategories; track $index) {
                                                             <option value="{{category}}"> {{ category }}</option>
@@ -437,7 +431,8 @@
 
                                                     <div class="col-md-3 mb-4">
                                                         <label>BQP <abbr title="" class="text-danger">*</abbr></label>
-                                                        <select id="bqp" name="bqp" class="custom-select" formControlName="registration_no">
+                                                        <select id="bqp" name="bqp" class="custom-select"
+                                                            formControlName="registration_no">
                                                             <option value="">-- Select BQP --</option>
                                                             <option value="SATVEER SINGH"> SATVEER SINGH </option>
 
@@ -576,9 +571,8 @@
                                                     <div class="col-md-4 mb-4">
                                                         <label for="remark">Remarks <abbr title=""
                                                                 class="text-danger">*</abbr></label>
-                                                        <input id="remark" type="text" 
-                                                            maxlength="255" class="form-control"
-                                                            style="text-transform: uppercase;"
+                                                        <input id="remark" type="text" maxlength="255"
+                                                            class="form-control" style="text-transform: uppercase;"
                                                             formControlName="remark">
                                                     </div>
 
