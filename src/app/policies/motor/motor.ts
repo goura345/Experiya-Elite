@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService, AlertService, InsurerService, ProductService } from '@app/_services';
+import { AccountService, AlertService, InsurerService, PolicyService, ProductService } from '@app/_services';
 import { first } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -47,7 +47,7 @@ export class MotorComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService,
+    private policyService: PolicyService,
     private insurerService: InsurerService,
     private alertService: AlertService
   ) { }
@@ -122,7 +122,7 @@ export class MotorComponent {
       // edit mode
       this.title = 'Edit Policy';
       this.loading = true;
-      this.accountService.getPolicyById(this.id)
+      this.policyService.getById(this.id)
         .pipe(first())
         .subscribe(x => {
           this.form.patchValue(x);
@@ -166,8 +166,8 @@ export class MotorComponent {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.alertService.success('User saved', true);
-          this.router.navigateByUrl('/users');
+          this.alertService.success('Policy saved', true);
+          this.router.navigateByUrl('/policies');
         },
         error: error => {
           this.alertService.error(error);
@@ -179,8 +179,8 @@ export class MotorComponent {
   private saveUser() {
     // create or update policy based on id param
     return this.id
-      ? this.accountService.updatePolicyById(this.id!, this.form.value)
-      : this.accountService.registerPolicy(this.form.value);
+      ? this.policyService.update(this.id!, this.form.value)
+      : this.policyService.register(this.form.value);
   }
 
 }

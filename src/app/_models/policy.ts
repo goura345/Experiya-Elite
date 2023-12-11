@@ -57,5 +57,5 @@ export class Policy {
     inspection_report = "";
     remark = "";
     status = "";
-    createdDate = Date;
+   
 }

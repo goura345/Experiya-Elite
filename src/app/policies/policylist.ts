@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AccountService } from '@app/_services';
+import { AccountService, PolicyService } from '@app/_services';
 import { Policy } from '@app/_models';
 import { delay } from 'rxjs';
 import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
@@ -98,13 +98,13 @@ export class EntrylistComponent {
     // rowData: this.rowData,
   };
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private policyService: PolicyService, private router: Router) { }
 
   ngOnInit() {
 
     // return
     this.loading = true
-    this.accountService.getAllPolicy().subscribe((data: any) => {
+    this.policyService.getAll().subscribe((data: any) => {
       // console.log(data);
       this.policies = data
       this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
