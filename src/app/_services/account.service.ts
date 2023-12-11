@@ -59,7 +59,7 @@ export class AccountService {
         // const encryptedUsername = encryptData(user.username);
         // const encryptedPassword = encryptData(user.password);
         // const encryptedMobileNumber = encryptData("86072968062");
-    
+
 
         // if (!user || !user.username || !user.password || !user.firstName || !user.lastName || !user.mobileNumber) {
         //     return throwError('Invalid user data'); // You can handle this error as needed
@@ -78,7 +78,7 @@ export class AccountService {
         // console.log('Encrypted data sent to server: ', dataToEncryptForRegister);
 
         return this.http.post(`${environment.apiUrl}/users/register`, user);
-        
+
     }
 
     getAll() {
@@ -125,51 +125,16 @@ export class AccountService {
     }
 
     updatePolicyById(id: string, params: any) {
-        return this.http.put(`${environment.apiUrl}/users/${id}`, params)
-            .pipe(map(x => {
-                // update stored user if the logged in user updated their own record
-                if (id == this.userValue?.id) {
-                    // update local storage
-                    const user = { ...this.userValue, ...params };
-                    localStorage.setItem('user', JSON.stringify(user));
-
-                    // publish updated user to subscribers
-                    this.userSubject.next(user);
-                }
-                return x;
-            }));
+        return this.http.put(`${environment.apiUrl}/policies/${id}`, params);
     }
 
-    registerPolicy(user: User) {
+    registerPolicy(policy: any) {
 
-        console.log(user, user.firstName);
-        // const encryptedFirstName = encryptData(user.firstName);
-        // const encryptedLastName = encryptData(user.lastName);
-        // const encryptedUsername = encryptData(user.username);
-        // const encryptedPassword = encryptData(user.password);
-        // const encryptedMobileNumber = encryptData("86072968062");
-    
+        console.log('service register method calling: ', policy);        
+        return this.http.post(`${environment.apiUrl}/policies/register`, policy);
 
-        // if (!user || !user.username || !user.password || !user.firstName || !user.lastName || !user.mobileNumber) {
-        //     return throwError('Invalid user data'); // You can handle this error as needed
-        // }
-
-        // const dataToEncryptForRegister = {
-        //     id: null,
-        //     firstName: encryptedFirstName,
-        //     lastName: encryptedLastName,
-        //     username: encryptedUsername,
-        //     mobileNumber: encryptedMobileNumber,
-        //     password: encryptedPassword,
-        //     token: null,
-        //     role: 'lead'
-        // };
-        // console.log('Encrypted data sent to server: ', dataToEncryptForRegister);
-
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
-        
     }
 
-    
+
 
 }

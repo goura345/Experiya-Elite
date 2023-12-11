@@ -26698,8 +26698,9 @@ h2.title {
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  /* width: 12px; */
+  width: 3px;
+  /* height: 12px; */
 }
 
 ::-webkit-scrollbar-button {

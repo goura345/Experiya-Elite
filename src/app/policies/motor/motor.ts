@@ -56,37 +56,37 @@ export class MotorComponent {
     this.id = this.route.snapshot.params['id'];
 
     // form with validation rules
-    this.form = this.formBuilder.group({      
+    this.form = this.formBuilder.group({
       policy_no: ['', Validators.required],
       proposal_no: ['', Validators.required],
       customer_name: ['', Validators.required],
-      insurance_company: ['', Validators.required],
-      sp_name: ['', Validators.required],
-      sp_brokercode: ['', Validators.required],
-      product_name: ['', Validators.required],
+      insurance_company: [null, Validators.required],
+      sp_name: [null, Validators.required],
+      sp_brokercode: [null, Validators.required],
+      product_name: [null, Validators.required],
       registration_no: ['', Validators.required],
-      rto_state: ['', Validators.required],
+      rto_state: [null, Validators.required],
       rto_city: ['', Validators.required],
-      vehicle_makeby: ['', Validators.required],
-      vehicle_model: ['', Validators.required],
-      vehicle_catagory: ['TWO WHEELER BIKE', Validators.required],
-      vehicle_fuel_type: ['', Validators.required],
-      mfg_year: ['', Validators.required],
-      addon: ['', Validators.required],
-      ncb: ['', Validators.required],
-      cubic_capacity: ['', Validators.required],
-      gvw: ['', Validators.required],
-      seating_capacity: ['', Validators.required],
-      coverage_type: ['', Validators.required],
-      policy_type: ['', Validators.required],
-      cpa: ['', Validators.required],
+      vehicle_makeby: [null, Validators.required],
+      vehicle_model: [null, Validators.required],
+      vehicle_catagory: [null, Validators.required],
+      vehicle_fuel_type: [null, Validators.required],
+      mfg_year: [null, Validators.required],
+      addon: [null, Validators.required],
+      ncb: [null, Validators.required],
+      cubic_capacity: [null, Validators.required],
+      gvw: [null, Validators.required],
+      seating_capacity: [null, Validators.required],
+      coverage_type: [null, Validators.required],
+      policy_type: [null, Validators.required],
+      cpa: [null, Validators.required],
       risk_start_date: ['', Validators.required],
       risk_end_date: ['', Validators.required],
       issue_date: ['', Validators.required],
       insured_age: ['', Validators.required],
-      policy_term: ['', Validators.required],
+      policy_term: [null, Validators.required],
       bqp: ['', Validators.required],
-      pos: ['', Validators.required],
+      pos: [null, Validators.required],
       employee: ['', Validators.required],
       OD_premium: ['', Validators.required],
       TP_terrorism: ['', Validators.required],
@@ -117,7 +117,7 @@ export class MotorComponent {
 
     });
 
-    this.title = 'Add Policy';   
+    this.title = 'Add Policy';
     if (this.id) {
       // edit mode
       this.title = 'Edit Policy';
@@ -130,33 +130,36 @@ export class MotorComponent {
           this.loading = false;
         });
     }
-// return
+    // return
     this.insurerService.getAll()
-            .pipe(first())
-            .subscribe((data: any) => {
-                console.log(data);
-                this.insurers = data
+      .pipe(first())
+      .subscribe((data: any) => {
+        console.log(data);
+        this.insurers = data
 
-            }, (error => {
-                console.log(error);
-            }),
-                () => {
-                    this.loading = false;
-                })
+      }, (error => {
+        console.log(error);
+      }),
+        () => {
+          this.loading = false;
+        })
 
 
   }
 
   onSubmit() {
+   
+    console.log(this.form);
+    // return
     this.submitted = true;
 
     // reset alerts on submit
     this.alertService.clear();
 
     // stop here if form is invalid
-    if (this.form.invalid) {
-      return;
-    }
+    // if (this.form.invalid) {
+    //   return;
+    // }
 
     this.submitting = true;
     this.saveUser()
