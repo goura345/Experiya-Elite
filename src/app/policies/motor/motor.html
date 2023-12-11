@@ -629,16 +629,16 @@
                                             <div class="row mb-2">
                                                 <label class="col-lg-5" for="od">OD Premium <abbr title=""
                                                         class="text-danger">*</abbr></label>
-                                                <input id="od" name="od" type="text" oninput="calculateValue()" value=""
-                                                    class="form-control col-lg-6 " maxlength="10" required
+                                                <input id="od" name="od" type="text" (input)="calculatePremiumValues()"
+                                                    value="" class="form-control col-lg-6 " maxlength="10" required
                                                     formControlName="OD_premium">
                                             </div>
                                             <div class="row mb-2">
                                                 <label class="col-lg-5" for="tp">TP/Terrorism<abbr title=""
                                                         class="text-danger">*</abbr></label>
                                                 <input id="tpt" name="tpt" type="text" value=""
-                                                    class="form-control col-lg-6 " maxlength=" 10" required
-                                                    formControlName="TP_terrorism">
+                                                    (input)="calculatePremiumValues()" class="form-control col-lg-6 "
+                                                    maxlength=" 10" required formControlName="TP_terrorism">
 
                                             </div>
                                             <div class="row mb-2">
@@ -656,13 +656,16 @@
                                                     formControlName="gst_amount">
                                             </div>
 
-                                            <div class="row mb-2" id="gsttDiv" hidden>
+                                            @if (showGCV) {
+                                            <div class="row mb-2" id="gsttDiv">
                                                 <label class="col-lg-5" for="gstt">GST 12%<abbr title=""
                                                         class="text-danger">*</abbr></label><input type="text" value=""
                                                     class="form-control col-lg-6 bg-light" name="gstt" id="gstt"
                                                     maxlength="10" readonly tabindex="-1"
                                                     formControlName="gst_gcv_amount">
                                             </div>
+                                            }
+
                                             <div class="row mb-2">
                                                 <label class="col-lg-5">Total=(Net+GST) </label><input type="text"
                                                     name="total" value="" class="form-control  col-lg-6 bg-light"

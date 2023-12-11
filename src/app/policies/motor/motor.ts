@@ -148,7 +148,7 @@ export class MotorComponent {
   }
 
   onSubmit() {
-   
+
     console.log(this.form);
     // return
     this.submitted = true;
@@ -181,6 +181,56 @@ export class MotorComponent {
     return this.id
       ? this.policyService.update(this.id!, this.form.value)
       : this.policyService.register(this.form.value);
+  }
+
+  showGCV = false
+
+  calculatePremiumValues() {
+
+    try {
+
+      let od = this.form.controls['OD_premium'].value
+      let tp = this.form.controls['TP_terrorism'].value
+
+
+      let net = Number(od) + Number(tp)
+      this.form.controls['net'].patchValue(net)
+    
+      // calculating amount with gst
+      let vcategory = this.form.controls['vehicle_catagory'].value
+
+      console.log(vcategory);
+
+      if (vcategory === null || vcategory === undefined) {
+        console.log('Vehicle category not provided!');
+        return
+      }
+
+      if (vcategory === "GCV-PUBLIC CARRIER OTHER THAN 3 W" || vcategory === "3 WHEELER GCV-PUBLIC CARRIER" || vcategory === "E CART - GCV") {
+        this.form.controls['gst_amount'].patchValue(Number(od * 18 / 100).toFixed(2))
+        this.form.controls['gst_gcv_amount'].patchValue(Number(tp * 12 / 100).toFixed(2))
+        this.showGCV = true
+      } else {
+        this.form.controls['gst_amount'].patchValue(Number(net * 18 / 100).toFixed(2))
+        this.showGCV = false
+        this.form.controls['gst_gcv_amount'].patchValue(null)
+
+      }
+
+      // total amount 
+      let n = Number(this.form.controls['net'].value);
+      let g = Number(this.form.controls['gst_amount'].value);
+      let gg = Number(this.form.controls['gst_gcv_amount'].value);
+      let total = Number(n + g + gg).toFixed(2)
+      console.log(total);
+      this.form.controls['total'].patchValue(total)
+
+    } catch (error) {
+      console.log(error);
+    }
+
+
+
   }
 
 }
