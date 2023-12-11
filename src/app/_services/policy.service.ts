@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Policy } from '@app/_models';
+import { Observable } from 'rxjs';
 
 
 @Injectable({ providedIn: 'root' })
@@ -27,6 +28,16 @@ export class PolicyService {
 
     delete(id: string) {
         return this.http.delete<Policy>(`${environment.apiUrl}/policies/${id}`);
+    }
+
+    fetchMakesData() {       
+        const dataUrl = `/assets/vehiclesData/makes.txt`;       
+        return this.http.get(dataUrl, {responseType: 'json'});
+    }
+
+    fetchModelsData() {       
+        const dataUrl = `/assets/vehiclesData/models.txt`;       
+        return this.http.get(dataUrl, {responseType: 'json'});
     }
 
 }

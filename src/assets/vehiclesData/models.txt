@@ -1,0 +1,1431 @@
+[{
+  "model": "10.95"
+},
+{
+  "model": "1614"
+},
+{
+  "model": "2518"
+},
+{
+  "model": "3718"
+},
+{
+  "model": "4923"
+},
+{
+  "model": "(6X2)3300/CAB"
+},
+{
+  "model": "(6X2)CT 1613 CH (115) BS - II"
+},
+{
+  "model": "(6X4)2516/2 AL FBT"
+},
+{
+  "model": "(6X4)2516/2 CH W/O TG"
+},
+{
+  "model": "(6X4)2518/ MT ROCK BODY"
+},
+{
+  "model": "(6X4)4500/DSD 12 T"
+},
+{
+  "model": "(6X4)4900/FSD 20T"
+},
+{
+  "model": "(6X4)MINING TPR FET"
+},
+{
+  "model": "10 59 E (XP)"
+},
+{
+  "model": "10 59 EHSD CNG RHD"
+},
+{
+  "model": "10.75 E"
+},
+{
+  "model": "10.75 H"
+},
+{
+  "model": "10.75 H Skyline School Bus"
+},
+{
+  "model": "10.75E F/L CWC HBBS3"
+},
+{
+  "model": "10.80 E"
+},
+{
+  "model": "10.80 XP"
+},
+{
+  "model": "10.9 L Starline School Bus"
+},
+{
+  "model": "10.90 L Starline"
+},
+{
+  "model": "14XW"
+},
+{
+  "model": "2815/ZT54ES-SUPREME"
+},
+{
+  "model": "3718 IL"
+},
+{
+  "model": "3723 R"
+},
+{
+  "model": "424 B2"
+},
+{
+  "model": "575 DI"
+},
+{
+  "model": "575 DI XP PLUS"
+},
+{
+  "model": "6055 F2"
+},
+{
+  "model": "ACCENT"
+},
+{
+  "model": "ACCESS"
+},
+{
+  "model": "ACE"
+},
+{
+  "model": "ACE GOLD"
+},
+{
+  "model": "ACE GOLD PLUS"
+},
+{
+  "model": "ACE HT"
+},
+{
+  "model": "ACE XL"
+},
+{
+  "model": "ACHIEVER"
+},
+{
+  "model": "ACTIVA"
+},
+{
+  "model": "ACTIVA 125"
+},
+{
+  "model": "ACTIVA I"
+},
+{
+  "model": "AL 3718"
+},
+{
+  "model": "AL 5525"
+},
+{
+  "model": "AL U 3518"
+},
+{
+  "model": "ALCAZAR"
+},
+{
+  "model": "ALFA"
+},
+{
+  "model": "ALFA LC PULS"
+},
+{
+  "model": "ALTO"
+},
+{
+  "model": "ALTO 800"
+},
+{
+  "model": "ALTO K10B"
+},
+{
+  "model": "ALTROZ"
+},
+{
+  "model": "AMAZE"
+},
+{
+  "model": "AMEO"
+},
+{
+  "model": "APACHE"
+},
+{
+  "model": "APE"
+},
+{
+  "model": "APE AUTO"
+},
+{
+  "model": "APE DELIVERY VAN1 0 TON - EURO - II"
+},
+{
+  "model": "AURA"
+},
+{
+  "model": "AUTO RICKSAW"
+},
+{
+  "model": "AVENGER"
+},
+{
+  "model": "AVENIS"
+},
+{
+  "model": "AVEO UVA"
+},
+{
+  "model": "AVIATOR"
+},
+{
+  "model": "BALENO"
+},
+{
+  "model": "BALENO NEW"
+},
+{
+  "model": "BAXY EXPRESS G"
+},
+{
+  "model": "BEAT"
+},
+{
+  "model": "BEETLE"
+},
+{
+  "model": "BOLERO"
+},
+{
+  "model": "BOLERO CAMPER"
+},
+{
+  "model": "BOLERO MAXI TRUCK"
+},
+{
+  "model": "BOLERO PICK UP"
+},
+{
+  "model": "BULLET"
+},
+{
+  "model": "CARENS"
+},
+{
+  "model": "CARNIVAL"
+},
+{
+  "model": "CB SHINE"
+},
+{
+  "model": "CBZ"
+},
+{
+  "model": "CD 110 DREAM"
+},
+{
+  "model": "CD DELUXE"
+},
+{
+  "model": "CELERIO"
+},
+{
+  "model": "CIAZ"
+},
+{
+  "model": "CITY"
+},
+{
+  "model": "CITY ZX"
+},
+{
+  "model": "CLASSIC"
+},
+{
+  "model": "CRETA"
+},
+{
+  "model": "CRUZE"
+},
+{
+  "model": "CRUZIO"
+},
+{
+  "model": "CT 100"
+},
+{
+  "model": "CT 110"
+},
+{
+  "model": "CT 125 X"
+},
+{
+  "model": "CT 125X"
+},
+{
+  "model": "DESTINI 125"
+},
+{
+  "model": "DISCOVER"
+},
+{
+  "model": "DISCOVER 110"
+},
+{
+  "model": "DISCOVER 125"
+},
+{
+  "model": "DREAM NEO"
+},
+{
+  "model": "DREAM YUGA"
+},
+{
+  "model": "DUET"
+},
+{
+  "model": "DUSTER"
+},
+{
+  "model": "DZIRE"
+},
+{
+  "model": "E VICTORY"
+},
+{
+  "model": "ECOSPORT"
+},
+{
+  "model": "EECO"
+},
+{
+  "model": "EECO CARGO"
+},
+{
+  "model": "EICHER Pro 2114 XP"
+},
+{
+  "model": "EICHER Pro 5016"
+},
+{
+  "model": "ENDEAVOUR"
+},
+{
+  "model": "ERTIGA"
+},
+{
+  "model": "ESTILO 1.0 NEW"
+},
+{
+  "model": "ETIOS"
+},
+{
+  "model": "ETIOS LIVA"
+},
+{
+  "model": "EXPRESS"
+},
+{
+  "model": "FIGO"
+},
+{
+  "model": "FLUIDIC VERNA"
+},
+{
+  "model": "FURIO 14"
+},
+{
+  "model": "FZS"
+},
+{
+  "model": "GIO Compact Cab"
+},
+{
+  "model": "GLAMOUR"
+},
+{
+  "model": "GLAMOUR FI"
+},
+{
+  "model": "GLANZA"
+},
+{
+  "model": "GLE"
+},
+{
+  "model": "GRAND i10"
+},
+{
+  "model": "GRAND i10 NIOS"
+},
+{
+  "model": "HAYATE"
+},
+{
+  "model": "HF 100"
+},
+{
+  "model": "HF DELUXE"
+},
+{
+  "model": "HF DELUXE i3s"
+},
+{
+  "model": "HONDA"
+},
+{
+  "model": "i 10"
+},
+{
+  "model": "i10"
+},
+{
+  "model": "i20"
+},
+{
+  "model": "i20 ACTIVE"
+},
+{
+  "model": "IGNIS"
+},
+{
+  "model": "INDIGO"
+},
+{
+  "model": "INNOVA"
+},
+{
+  "model": "INNOVA CRYSTA"
+},
+{
+  "model": "INTRA V30"
+},
+{
+  "model": "JEETO"
+},
+{
+  "model": "JUPITER"
+},
+{
+  "model": "KUV100"
+},
+{
+  "model": "KWID"
+},
+{
+  "model": "LIVO"
+},
+{
+  "model": "LP 1112"
+},
+{
+  "model": "LP 410"
+},
+{
+  "model": "LP 709"
+},
+{
+  "model": "LP 709 EX"
+},
+{
+  "model": "LPK 2518"
+},
+{
+  "model": "LPO 1512"
+},
+{
+  "model": "LPS 4018"
+},
+{
+  "model": "MAESTRO"
+},
+{
+  "model": "MAXIMA"
+},
+{
+  "model": "MAXIMA C"
+},
+{
+  "model": "MAXIMA Z"
+},
+{
+  "model": "MiTR"
+},
+{
+  "model": "NEW CITY"
+},
+{
+  "model": "NEXON"
+},
+{
+  "model": "NTORQ"
+},
+{
+  "model": "OCTAVIA"
+},
+{
+  "model": "OMNI"
+},
+{
+  "model": "PASSION PRO"
+},
+{
+  "model": "PASSION XTEC"
+},
+{
+  "model": "PLATINA"
+},
+{
+  "model": "PLATINA 110"
+},
+{
+  "model": "PLEASURE"
+},
+{
+  "model": "POLO"
+},
+{
+  "model": "PULSAR"
+},
+{
+  "model": "PULSAR 135 DTSI"
+},
+{
+  "model": "PULSAR 150"
+},
+{
+  "model": "PULSAR 150 DTSI"
+},
+{
+  "model": "PULSAR 200 DTSI"
+},
+{
+  "model": "PULSAR N 160"
+},
+{
+  "model": "PULSAR N160"
+},
+{
+  "model": "PULSAR NS"
+},
+{
+  "model": "RADEON"
+},
+{
+  "model": "RAIDER"
+},
+{
+  "model": "RAPID"
+},
+{
+  "model": "RE 145"
+},
+{
+  "model": "RE COMPACT"
+},
+{
+  "model": "RE MAXIMA CNG"
+},
+{
+  "model": "RITZ"
+},
+{
+  "model": "RONIN"
+},
+{
+  "model": "S7"
+},
+{
+  "model": "SAFARI DICOR"
+},
+{
+  "model": "SANTA FE"
+},
+{
+  "model": "SANTRO"
+},
+{
+  "model": "SANTRO XING"
+},
+{
+  "model": "SCOOTY"
+},
+{
+  "model": "SCORPIO"
+},
+{
+  "model": "SELTOS"
+},
+{
+  "model": "SHINE"
+},
+{
+  "model": "SIGNA 5523"
+},
+{
+  "model": "SONALIKA 35"
+},
+{
+  "model": "SONET"
+},
+{
+  "model": "SP 125"
+},
+{
+  "model": "SPARK"
+},
+{
+  "model": "SPLENDOR ISMART"
+},
+{
+  "model": "SPLENDOR PLUS"
+},
+{
+  "model": "SPLENDOR PLUS I3s"
+},
+{
+  "model": "SPLENDOR PRO"
+},
+{
+  "model": "SPORT"
+},
+{
+  "model": "STAR CITY"
+},
+{
+  "model": "Starbus"
+},
+{
+  "model": "Super Carry"
+},
+{
+  "model": "SUPER SPLENDOR"
+},
+{
+  "model": "SUPREME"
+},
+{
+  "model": "SUPRO MINITRUCK"
+},
+{
+  "model": "SUZUKI UZ 125"
+},
+{
+  "model": "SWIFT"
+},
+{
+  "model": "SWIFT DZIRE"
+},
+{
+  "model": "SWIFT DZIRE KB"
+},
+{
+  "model": "SWIFT KB"
+},
+{
+  "model": "TERRACAN"
+},
+{
+  "model": "THAR"
+},
+{
+  "model": "TIAGO"
+},
+{
+  "model": "TIGOR"
+},
+{
+  "model": "TOURISTER 25 BSIII"
+},
+{
+  "model": "TRAVELLER"
+},
+{
+  "model": "TRAVELLER 3700"
+},
+{
+  "model": "TRAVELLER 4020"
+},
+{
+  "model": "TRAVELLER RANGET1 DV 3050 WB"
+},
+{
+  "model": "TRIBER"
+},
+{
+  "model": "TRUCKSCLA 25 280 BS III 9S (6X4)"
+},
+{
+  "model": "TRUCKSLPT 2518"
+},
+{
+  "model": "TRUCKSLPT 2518 GVW 35200"
+},
+{
+  "model": "TUSKAR WITH AIR COMPESSOR"
+},
+{
+  "model": "TUV300"
+},
+{
+  "model": "UA 5525/34 TT"
+},
+{
+  "model": "UZ"
+},
+{
+  "model": "V 15"
+},
+{
+  "model": "V15"
+},
+{
+  "model": "VENUE"
+},
+{
+  "model": "VERNA"
+},
+{
+  "model": "VITARA BREZZA"
+},
+{
+  "model": "WAGON R"
+},
+{
+  "model": "WEGO"
+},
+{
+  "model": "WINGER"
+},
+{
+  "model": "WR - V"
+},
+{
+  "model": "XCENT"
+},
+{
+  "model": "XL 100"
+},
+{
+  "model": "XL6"
+},
+{
+  "model": "XOOM"
+},
+{
+  "model": "XTREME"
+},
+{
+  "model": "XTREME 160 R"
+},
+{
+  "model": "XUV 500"
+},
+{
+  "model": "XYLO"
+},
+{
+  "model": "Z 800"
+},
+{
+  "model": "ZEN"
+},
+{
+  "model": "SUPERB"
+},
+{
+  "model": "REO"
+},
+{
+  "model": "REO RE"
+},
+{
+  "model": "3DX PLUS"
+},
+{
+  "model": "ECO SMART SS"
+},
+{
+  "model": "YARIS"
+},
+{
+  "model": "EON"
+},
+{
+  "model": "1512 G LPT"
+},
+{
+  "model": "CLASSIC 350"
+},
+{
+  "model": "350"
+},
+{
+  "model": "SIGNA 5530"
+},
+{
+  "model": "COMPASS 2.0 (O) LONGITUDE"
+},
+{
+  "model": "LPT 3118"
+},
+{
+  "model": "10.59XP E"
+},
+{
+  "model": "SFC407EX"
+},
+{
+  "model": "FORTUNER 2.8"
+},
+{
+  "model": "GUSTO"
+},
+{
+  "model": "10.75"
+},
+{
+  "model": "EICHER 10.75"
+},
+{
+  "model": "EICHER PRO"
+},
+{
+  "model": "PRO 2049"
+},
+{
+  "model": "SIGNA"
+},
+{
+  "model": "SIGNA 2823"
+},
+{
+  "model": "TRAX CRUISER"
+},
+{
+  "model": "CRUISER"
+},
+{
+  "model": "SIGNA 5525"
+},
+{
+  "model": "35.31"
+},
+{
+  "model": "3DX 4WD"
+},
+{
+  "model": "VIKRAM"
+},
+{
+  "model": "VIKRAM 450"
+},
+{
+  "model": "GYPSY KING"
+},
+{
+  "model": "LPT 400"
+},
+{
+  "model": "LPT 407"
+},
+{
+  "model": "S PRESSO"
+},
+{
+  "model": "740 DI"
+},
+{
+  "model": "VICTORY PLUS"
+},
+{
+  "model": "HECTOR"
+},
+{
+  "model": "CRUX"
+},
+{
+  "model": "S-CROSS"
+},
+{
+  "model": "KING ZS 4S CNG"
+},
+{
+  "model": "test-model"
+},
+{
+  "model": "120K2 MOTOR GRADER"
+},
+{
+  "model": "HMM 311"
+},
+{
+  "model": "X3"
+},
+{
+  "model": "X1"
+},
+{
+  "model": "NEW HOLLAND 3630 SUPER"
+},
+{
+  "model": "XUV 700"
+},
+{
+  "model": "ALTO K10"
+},
+{
+  "model": "VICTORY BHIM PLUS"
+},
+{
+  "model": "WT 50"
+},
+{
+  "model": "LPT 1212"
+},
+{
+  "model": "DOST PLUS"
+},
+{
+  "model": "DOST"
+},
+{
+  "model": "VICTORY VIKRANT"
+},
+{
+  "model": "4240 LSD 17F"
+},
+{
+  "model": "VESPA LX 125"
+},
+{
+  "model": "INTRA V10"
+},
+{
+  "model": "EICHER Pro 1059 XP"
+},
+{
+  "model": "AMBASSADOR CLASSIC"
+},
+{
+  "model": "ATHER 450X PRO"
+},
+{
+  "model": "ATHER 450X"
+},
+{
+  "model": "EIC 241"
+},
+{
+  "model": "YZF R15"
+},
+{
+  "model": "FASCINO"
+},
+{
+  "model": "LPT 1618"
+},
+{
+  "model": "EURO 50 POWERTRAC"
+},
+{
+  "model": "SWARAJ 717"
+},
+{
+  "model": "KUSHAQ"
+},
+{
+  "model": "5525"
+},
+{
+  "model": "SX4"
+},
+{
+  "model": "KTM"
+},
+{
+  "model": "URBAN CRUISER"
+},
+{
+  "model": "FORTUNER"
+},
+{
+  "model": "MF 245 DI"
+},
+{
+  "model": "VICTOR"
+},
+{
+  "model": "THUNDERBIRD-350"
+},
+{
+  "model": "LPT 1109"
+},
+{
+  "model": "PULSAR 125"
+},
+{
+  "model": "CBF STUNNER"
+},
+{
+  "model": "3118"
+},
+{
+  "model": "DURO"
+},
+{
+  "model": "MOBILIO"
+},
+{
+  "model": "BRIO"
+},
+{
+  "model": "CB TWISTER"
+},
+{
+  "model": "PARTNER XES"
+},
+{
+  "model": "STREET 750"
+},
+{
+  "model": "GIXXER"
+},
+{
+  "model": "FLAME 125"
+},
+{
+  "model": "2516 XL"
+},
+{
+  "model": "CAT 424 BACKHOE"
+},
+{
+  "model": "ATUL GEM PAXX"
+},
+{
+  "model": "DEFENDER"
+},
+{
+  "model": "CROSSZETA"
+},
+{
+  "model": "FORTUNER 3.0"
+},
+{
+  "model": "VENTO 1.5"
+},
+{
+  "model": "ELANTRA "
+},
+{
+  "model": "RADEO"
+},
+{
+  "model": "DZIRE TOUR S"
+},
+{
+  "model": "I20 SPORTZ"
+},
+{
+  "model": "S1 AIR"
+},
+{
+  "model": "LPT 1918"
+},
+{
+  "model": "PRO 2095"
+},
+{
+  "model": "DOMINAR"
+},
+{
+  "model": "I10 MAGNA"
+},
+{
+  "model": "RE CNG 4S"
+},
+{
+  "model": "BMT PLUS "
+},
+{
+  "model": "AMBULANCE EECO"
+},
+{
+  "model": "RAJDOOT 350"
+},
+{
+  "model": "10.59 E"
+},
+{
+  "model": "ECOSPORT 1.5"
+},
+{
+  "model": "GRAND I10 SPORTZ"
+},
+{
+  "model": "COMPASS SPORT 1.2"
+},
+{
+  "model": "1512 LPT"
+},
+{
+  "model": "LPT 2518"
+},
+{
+  "model": "SELTOS G"
+},
+{
+  "model": "BULLET 350"
+},
+{
+  "model": "PRO 2059 XP"
+},
+{
+  "model": "RAY Z"
+},
+{
+  "model": "WV 26"
+},
+{
+  "model": "5 SERIES 530I M"
+},
+{
+  "model": "A STAR"
+},
+{
+  "model": "MICRA MC XLD O"
+},
+{
+  "model": "METEOR 350"
+},
+{
+  "model": "ETIOSG"
+},
+{
+  "model": "FREEDOM 110"
+},
+{
+  "model": "FAZER"
+},
+{
+  "model": "COROLLA  ALTIS"
+},
+{
+  "model": "5210"
+},
+{
+  "model": "SCV 100"
+},
+{
+  "model": "LAURA"
+},
+{
+  "model": "NANDI SUPER"
+},
+{
+  "model": "RE COMPACT PLUS"
+},
+{
+  "model": "VULCAN S"
+},
+{
+  "model": "TOURISTER COSMO"
+},
+{
+  "model": "HIROI"
+},
+{
+  "model": "JEETO S6 11"
+},
+{
+  "model": "CIVIC V MT"
+},
+{
+  "model": "BOLERO NEO"
+},
+{
+  "model": "1818"
+},
+{
+  "model": "X1 SDRIVE"
+},
+{
+  "model": "LPT 2818"
+},
+{
+  "model": "PULSAR 125 DTSI"
+},
+{
+  "model": "PULSAR RS"
+},
+{
+  "model": "424 B JCB"
+},
+{
+  "model": "HEXA XM 4X2"
+},
+{
+  "model": "FIGO ASPIRE"
+},
+{
+  "model": "I10 SPORTZ"
+},
+{
+  "model": "MU 7"
+},
+{
+  "model": "ACCESS 125 "
+},
+{
+  "model": "CYGNUS ALPHA"
+},
+{
+  "model": "KING ZX FI "
+},
+{
+  "model": "CENTURO"
+},
+{
+  "model": "RIDGE"
+},
+{
+  "model": "5528"
+},
+{
+  "model": "SPLENDOR DRUM"
+},
+{
+  "model": "DISCOVER 150S"
+},
+{
+  "model": "I10 SPORTZ 1.2"
+},
+{
+  "model": "BALENO SIGMA"
+},
+{
+  "model": "PRAISE PRO"
+},
+{
+  "model": "BOL MAXX CITY"
+},
+{
+  "model": "CIAZ SIGMA"
+},
+{
+  "model": "SPLENDOR NXG"
+},
+{
+  "model": "XUV 300"
+},
+{
+  "model": "IGNITOR"
+},
+{
+  "model": "LETS"
+},
+{
+  "model": "PULSAR NS 125"
+},
+{
+  "model": "XENON XT"
+},
+{
+  "model": "NEW SANTRO SPORTZ"
+},
+{
+  "model": "3DX EXCAVATOR"
+},
+{
+  "model": "NANO"
+},
+{
+  "model": "KING ZD 225LC FI"
+},
+{
+  "model": "KING ZS PLUS"
+},
+{
+  "model": "NEXON XZ"
+},
+{
+  "model": "GLOSTER 2.0"
+},
+{
+  "model": "OPTIMA HS500"
+},
+{
+  "model": "ACE EX"
+},
+{
+  "model": "REVOTRON"
+},
+{
+  "model": "KARGO KING PICK UP"
+},
+{
+  "model": "TATA PUNCH"
+},
+{
+  "model": "PULSAR N 150"
+},
+{
+  "model": "450S LR"
+},
+{
+  "model": "JAZZ"
+},
+{
+  "model": "11.14 HSD"
+},
+{
+  "model": "BLAZO MTB"
+},
+{
+  "model": "RAPID ELEGANCE"
+},
+{
+  "model": "EON SPORTZ"
+},
+{
+  "model": "SPLENDOR"
+},
+{
+  "model": "ALBO"
+},
+{
+  "model": "ALBA"
+},
+{
+  "model": "KING 4S"
+},
+{
+  "model": "PULSAR N 250"
+},
+{
+  "model": "NEW SWIFT"
+},
+{
+  "model": "MINI COOPER"
+},
+{
+  "model": "TRUCK PRO 6028 M"
+},
+{
+  "model": "APE CITY"
+},
+{
+  "model": "ALFA DX"
+},
+{
+  "model": "EECO TOUR V"
+},
+{
+  "model": "30.25 XP"
+},
+{
+  "model": "GEMINI GX 4S"
+},
+{
+  "model": "TRUCKS PRO 2114XP L"
+},
+{
+  "model": "SCORPIO S5"
+},
+{
+  "model": "E RICK 207"
+},
+{
+  "model": "XCENT E PLUS"
+},
+{
+  "model": "AUDI A6"
+},
+{
+  "model": "A4"
+},
+{
+  "model": "HERO DUET 110 LX"
+},
+{
+  "model": "G CLASS G AMG LINE"
+},
+{
+  "model": "FARMTRAC 60"
+},
+{
+  "model": "CIVIC"
+},
+{
+  "model": "PULSAR RS 200"
+},
+{
+  "model": "EXTER"
+},
+{
+  "model": "ASTOR 1.3"
+},
+{
+  "model": "MAXXIMO"
+},
+{
+  "model": "BALENO DELTA"
+},
+{
+  "model": "HARRIER XZ"
+},
+{
+  "model": "3 SERIES"
+},
+{
+  "model": "MAGNUS"
+},
+{
+  "model": "GLA 200"
+},
+{
+  "model": "BOLERO MAXX PICK UP"
+},
+{
+  "model": "JUPITER ZX"
+},
+{
+  "model": "AVIATOR DELUXE"
+},
+{
+  "model": "GEM 3P"
+},
+{
+  "model": "DREAM 110"
+},
+{
+  "model": "DI 35"
+},
+{
+  "model": "BANDIT"
+},
+{
+  "model": "FZ-X"
+},
+{
+  "model": "APE XTRA"
+},
+{
+  "model": "NEW ERTIGA"
+},
+{
+  "model": "IQUBE ELECTRIC"
+}]

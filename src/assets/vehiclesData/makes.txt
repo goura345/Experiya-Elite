@@ -1,0 +1,273 @@
+[{
+  "make": "3S INDUSTRIES"
+},
+{
+  "make": "A. V. AUTOMOTIVES PVT LTD"
+},
+{
+  "make": "A1 HEAVY EQUIPMENTS DEVELOPER"
+},
+{
+  "make": "AADHYA ENTERPRISES"
+},
+{
+  "make": "ACE"
+},
+{
+  "make": "ADITYA SAI INDUSTRIES"
+},
+{
+  "make": "ALPHA TECHNICAL"
+},
+{
+  "make": "AMBIKA INDUSTRIES"
+},
+{
+  "make": "AMERICAN LAFRANCE"
+},
+{
+  "make": "ASHOK LEYLAND"
+},
+{
+  "make": "BAJAJ"
+},
+{
+  "make": "BAJAJ AUTO"
+},
+{
+  "make": "BAJAJ TEMPO"
+},
+{
+  "make": "BHARAT BENZ"
+},
+{
+  "make": "CATERPILLAR"
+},
+{
+  "make": "CHEVROLET"
+},
+{
+  "make": "CONTINENTAL ENGINES LTD"
+},
+{
+  "make": "EICHER MOTORS"
+},
+{
+  "make": "EUREKA FORBES"
+},
+{
+  "make": "EVBHARAT RANGE PVT LTD"
+},
+{
+  "make": "EVEREST AUTO INDUSTRIES"
+},
+{
+  "make": "FORCE"
+},
+{
+  "make": "FORD"
+},
+{
+  "make": "GENERAL MOTORS"
+},
+{
+  "make": "HERO HONDA"
+},
+{
+  "make": "HERO MOTOCORP"
+},
+{
+  "make": "HESTER"
+},
+{
+  "make": "HI TECH ENDUSTRISE"
+},
+{
+  "make": "HONDA"
+},
+{
+  "make": "HYUNDAI"
+},
+{
+  "make": "INTERNATIONAL"
+},
+{
+  "make": "KAWASAKI"
+},
+{
+  "make": "KIA"
+},
+{
+  "make": "KINETIC"
+},
+{
+  "make": "M/S J"
+},
+{
+  "make": "MAHINDRA"
+},
+{
+  "make": "MAHINDRA AND MAHINDRA"
+},
+{
+  "make": "MARUTI"
+},
+{
+  "make": "MARUTI SUZUKI"
+},
+{
+  "make": "MERCEDES-BENZ"
+},
+{
+  "make": "PIAGGIO"
+},
+{
+  "make": "RENAULT"
+},
+{
+  "make": "ROYAL ENFIELD"
+},
+{
+  "make": "SKODA"
+},
+{
+  "make": "SML ISUZU"
+},
+{
+  "make": "SUZUKI"
+},
+{
+  "make": "TATA"
+},
+{
+  "make": "TATA MOTORS LTD"
+},
+{
+  "make": "TOYOTA"
+},
+{
+  "make": "TOYOTA KIRLOSKAR"
+},
+{
+  "make": "TVS"
+},
+{
+  "make": "VICTORY"
+},
+{
+  "make": "VOLKSWAGEN"
+},
+{
+  "make": "YAMAHA"
+},
+{
+  "make": "KURUKSHETRA"
+},
+{
+  "make": "JCB INDIA LIMITED"
+},
+{
+  "make": "ECO SMART VEHICLES PVT LTD"
+},
+{
+  "make": "JEEP"
+},
+{
+  "make": "VE COMMERCIAL VEHICLES LT"
+},
+{
+  "make": "SCOOTERS INDIA LTD"
+},
+{
+  "make": "SONALIKA"
+},
+{
+  "make": "MORRIS GARAGES"
+},
+{
+  "make": "BMW"
+},
+{
+  "make": "WIRTGEN"
+},
+{
+  "make": "CNH"
+},
+{
+  "make": "VESPA"
+},
+{
+  "make": "HINDUSTAN MOTORS"
+},
+{
+  "make": "ATHER"
+},
+{
+  "make": "ESCORTS LIMITED"
+},
+{
+  "make": "HARLEY DAVIDSON"
+},
+{
+  "make": "TAFE LIMITED"
+},
+{
+  "make": "ATUL AUTO LTD"
+},
+{
+  "make": "LAND ROVER"
+},
+{
+  "make": "OLA"
+},
+{
+  "make": "MARUTI UDYOG LTD"
+},
+{
+  "make": "ISUZU"
+},
+{
+  "make": "HONDA MOTORCYCLE & SCOOTER INDIA PVT LTD"
+},
+{
+  "make": "NISSAN MOTOR INDIA PVT"
+},
+{
+  "make": "LML"
+},
+{
+  "make": "JOHN DEERE INDIA PVT LTD"
+},
+{
+  "make": "SCODA"
+},
+{
+  "make": "KRANTI AUTOMOBILES LTD"
+},
+{
+  "make": "KAWASAKI MOTORS PVT LTD"
+},
+{
+  "make": "TUCSON"
+},
+{
+  "make": "OKINAWA SCOOTERS"
+},
+{
+  "make": "HERO ELECTRIC"
+},
+{
+  "make": "TATA & TIAGO"
+},
+{
+  "make": "MINI"
+},
+{
+  "make": "AVON"
+},
+{
+  "make": "AUDI AG"
+},
+{
+  "make": "AMPERE"
+}]

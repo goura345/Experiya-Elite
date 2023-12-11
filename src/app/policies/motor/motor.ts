@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService, AlertService, InsurerService, PolicyService, ProductService } from '@app/_services';
-import { first } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
@@ -42,6 +42,9 @@ export class MotorComponent {
 
   insurers = []
   selectedInsurer = null
+
+  makes$!: any;
+  models$!: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -144,6 +147,8 @@ export class MotorComponent {
           this.loading = false;
         })
 
+    this.policyService.fetchMakesData().subscribe((data: any) => this.makes$ = data);
+    this.policyService.fetchModelsData().subscribe((data: any) => this.models$ = data);
 
   }
 
@@ -183,7 +188,7 @@ export class MotorComponent {
       : this.policyService.register(this.form.value);
   }
 
-  showGCV = false
+  showGCV = false // used to control gst 12% control field`s visibility
 
   calculatePremiumValues() {
 
@@ -195,7 +200,7 @@ export class MotorComponent {
 
       let net = Number(od) + Number(tp)
       this.form.controls['net'].patchValue(net)
-    
+
       // calculating amount with gst
       let vcategory = this.form.controls['vehicle_catagory'].value
 

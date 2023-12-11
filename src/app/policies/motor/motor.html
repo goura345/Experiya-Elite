@@ -190,8 +190,8 @@
                                                                 class="text-danger">*</abbr></label>
                                                         <ng-select class="custom text-uppercase mt-1"
                                                             formControlName="vehicle_makeby" placeholder="Select Make">
-                                                            @for (category of vehicleCategories; track $index) {
-                                                            <ng-option value="{{category}}"> {{ category }}</ng-option>
+                                                            @for (item of makes$; track $index) {
+                                                            <ng-option value="{{item.make}}"> {{ item.make }}</ng-option>
                                                             }
                                                         </ng-select>
                                                     </div>
@@ -203,8 +203,8 @@
                                                         <ng-select class="custom text-uppercase mt-1"
                                                             formControlName="vehicle_model" placeholder="Select Model">
                                                             <!-- <ng-option value=""> SELECT MODEL</ng-option> -->
-                                                            @for (category of vehicleCategories; track $index) {
-                                                            <ng-option value="{{category}}"> {{ category }}</ng-option>
+                                                            @for (item of models$; track $index) {
+                                                            <ng-option value="{{item.model}}"> {{ item.model }}</ng-option>
                                                             }
                                                         </ng-select>
                                                     </div>
