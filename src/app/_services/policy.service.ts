@@ -30,14 +30,18 @@ export class PolicyService {
         return this.http.delete<Policy>(`${environment.apiUrl}/policies/${id}`);
     }
 
-    fetchMakesData() {       
-        const dataUrl = `/assets/vehiclesData/makes.txt`;       
-        return this.http.get(dataUrl, {responseType: 'json'});
+    fetchMakesData() {
+        const dataUrl = `/assets/vehiclesData/makes.txt`;
+        return this.http.get(dataUrl, { responseType: 'json' });
     }
 
-    fetchModelsData() {       
-        const dataUrl = `/assets/vehiclesData/models.txt`;       
-        return this.http.get(dataUrl, {responseType: 'json'});
+    fetchModelsData() {
+        const dataUrl = `/assets/vehiclesData/models.txt`;
+        return this.http.get(dataUrl, { responseType: 'json' });
+    }
+
+    uploadFiles(files: any) {
+        return this.http.post<any>(`${environment.apiUrl}/policies/uploadFiles`, files);
     }
 
 }

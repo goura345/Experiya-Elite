@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService, AlertService, InsurerService, PolicyService, ProductService } from '@app/_services';
 import { Observable, first } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-edit-policy',
@@ -52,7 +53,7 @@ export class MotorComponent {
     private router: Router,
     private policyService: PolicyService,
     private insurerService: InsurerService,
-    private alertService: AlertService
+    private alertService: AlertService, private httpClient: HttpClient
   ) { }
 
   ngOnInit() {
@@ -106,7 +107,7 @@ export class MotorComponent {
       self_od_amount: ['', Validators.required],
       self_tp_reward: ['', Validators.required],
       self_tp_amount: ['', Validators.required],
-      proposal: ['', Validators.required],
+      proposal: [null, Validators.required],
       mandate: ['', Validators.required],
       policy: ['', Validators.required],
       previous_policy: ['', Validators.required],
@@ -152,21 +153,143 @@ export class MotorComponent {
 
   }
 
+  proposal: File | null = null
+  mandate: File | null = null
+  policy: File | null = null
+  prevPolicy: File | null = null
+  pan: File | null = null
+  aadhar: File | null = null
+  RC: File | null = null
+  inspection: File | null = null
+
+
+  onFileChange(event: any) {
+
+    console.log(event);
+    console.log(event.target.name);
+
+    let name = event.target.name
+
+    if (name === 'proposal') {
+      console.log('proposal is found');
+      this.proposal = event.target.files[0]
+    }
+    else if (name === 'mandate') {
+      console.log('mandate is found');
+      this.mandate = event.target.files[0]
+
+    }
+    else if (name === 'policy') {
+      console.log('policy is found');
+      this.policy = event.target.files[0]
+
+    }
+    else if (name === 'previous_policy') {
+      console.log('previous_policy is found');
+      this.prevPolicy = event.target.files[0]
+
+    }
+    else if (name === 'pan_card') {
+      console.log('pan_card is found');
+      this.pan = event.target.files[0]
+
+    }
+    else if (name === 'aadhar_card') {
+      console.log('aadhar_card is found');
+      this.aadhar = event.target.files[0]
+
+    }
+    else if (name === 'vehicle_rc') {
+      console.log('vehicle_rc is found');
+      this.RC = event.target.files[0]
+
+    }
+
+    else if (name === 'inspection_report') {
+      console.log('inspection_report is found');
+      this.inspection = event.target.files[0]
+    }
+
+
+    return
+    // this.httpClient.post('http://localhost:4000/upload', formData).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
+
+  }
+
   onSubmit() {
 
-    console.log(this.form);
-    // return
     this.submitted = true;
 
     // reset alerts on submit
     this.alertService.clear();
 
     // stop here if form is invalid
-    // if (this.form.invalid) {
-    //   return;
-    // }
+    if (this.form.invalid) {
+      // return;
+    }
+
+    let formData = new FormData();
+    let filesArray = []
+    if (this.proposal)
+      filesArray.push(this.proposal)
+    if (this.mandate)
+      filesArray.push(this.mandate)
+    if (this.policy)
+      filesArray.push(this.policy)
+    if (this.prevPolicy)
+      filesArray.push(this.prevPolicy)
+    if (this.pan)
+      filesArray.push(this.pan)
+    if (this.aadhar)
+      filesArray.push(this.aadhar)
+    if (this.RC)
+      filesArray.push(this.RC)
+    if (this.inspection)
+      filesArray.push(this.inspection)
+
+    for (let i = 0; i < filesArray.length; i++) {
+      formData.append('files', filesArray[i], Date.now().toString() + '-' + filesArray[i].name);
+    }
 
     this.submitting = true;
+
+    console.log('Uploading Docs...');
+
+    this.policyService.uploadFiles(formData).subscribe(
+      (data) => {
+        console.log(data);
+        if (data.message === "Successfully uploaded!") {
+
+          alert('yes')
+          return
+          this.saveUser()
+            .pipe(first())
+            .subscribe({
+              next: () => {
+                this.alertService.success('Policy saved', true);
+                this.router.navigateByUrl('/policies');
+              },
+              error: error => {
+                this.alertService.error(error);
+                this.submitting = false;
+              }
+            })
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+
+    return
     this.saveUser()
       .pipe(first())
       .subscribe({
