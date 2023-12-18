@@ -26761,3 +26761,7 @@ h2.title {
 
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+.invalid{
+  border-color: red;
+}

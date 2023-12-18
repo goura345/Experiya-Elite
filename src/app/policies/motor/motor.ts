@@ -22,30 +22,41 @@ export class MotorComponent {
   loading = false;
   submitting = false;
   submitted = false;
-
   vehicleCategories = [
-    "TWO WHEELER",
-    "TWO WHEELER BIKE",
-    "TWO WHEELER SCOOTER",
-    "TWO WHEELER COMMERCIAL",
-    "PRIVATE CAR",
-    "GCV-PUBLIC CARRIER OTHER THAN 3 W",
-    "3 WHEELER PCV",
-    "3 WHEELER GCV-PUBLIC CARRIER",
-    "TAXI 4 WHEELER",
-    "BUS AND OTHERS",
-    "MISC-D SPECIAL VEHICLE",
-    "SCHOOL BUS-SCHOOL NAME",
-    "SCHOOL BUS-INDIVIDUAL NAME",
-    "TRADE RISK",
-    "E CART - GCV"
+    VehicleCategories.TWO_WHEELER_BIKE,
+    VehicleCategories.TWO_WHEELER_SCOOTER,
+    VehicleCategories.TWO_WHEELER_COMMERCIAL,
+    VehicleCategories.PRIVATE_CAR,
+    VehicleCategories.GCV_PUBLIC_CARRIER_OTHER_THAN_3W,
+    VehicleCategories.THREE_WHEELER_PCV,
+    VehicleCategories.THREE_WHEELER_GCV_PUBLIC_CARRIER,
+    VehicleCategories.TAXI_4_WHEELER,
+    VehicleCategories.BUS_AND_OTHERS,
+    VehicleCategories.MISC_D_SPECIAL_VEHICLE,
+    VehicleCategories.SCHOOL_BUS_SCHOOL_NAME,
+    VehicleCategories.SCHOOL_BUS_INDIVIDUAL_NAME,
+    VehicleCategories.TRADE_RISK,
+    VehicleCategories.E_CART_GCV
   ]
-
   insurers = []
   selectedInsurer = null
-
   makes$!: any;
   models$!: any;
+  showGCV = false
+  cubicCapacities: any[] = []
+  coverageTypes: any[] = []
+  showSeatingCapacity = false
+  gvw: any[] = []
+
+  proposal: File | null = null
+  mandate: File | null = null
+  policy: File | null = null
+  previous_policy: File | null = null
+  pan_card: File | null = null
+  aadhar_card: File | null = null
+  vehicle_rc: File | null = null
+  inspection_report: File | null = null
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,16 +72,16 @@ export class MotorComponent {
 
     // form with validation rules
     this.form = this.formBuilder.group({
-      policy_no: ['', Validators.required],
-      proposal_no: ['', Validators.required],
-      customer_name: ['', Validators.required],
+      policy_no: [null, Validators.required],
+      proposal_no: [null, Validators.required],
+      customer_name: [null, Validators.required],
       insurance_company: [null, Validators.required],
       sp_name: [null, Validators.required],
       sp_brokercode: [null, Validators.required],
-      product_name: [null, Validators.required],
-      registration_no: ['', Validators.required],
+      product_name: [null],
+      registration_no: [null, Validators.required],
       rto_state: [null, Validators.required],
-      rto_city: ['', Validators.required],
+      rto_city: [null, Validators.required],
       vehicle_makeby: [null, Validators.required],
       vehicle_model: [null, Validators.required],
       vehicle_catagory: [null, Validators.required],
@@ -78,47 +89,45 @@ export class MotorComponent {
       mfg_year: [null, Validators.required],
       addon: [null, Validators.required],
       ncb: [null, Validators.required],
-      cubic_capacity: [null, Validators.required],
-      gvw: [null, Validators.required],
-      seating_capacity: [null, Validators.required],
-      coverage_type: [null, Validators.required],
+      cubic_capacity: [null],
+      gvw: [null],
+      seating_capacity: [null],
+      coverage_type: [null],
       policy_type: [null, Validators.required],
       cpa: [null, Validators.required],
-      risk_start_date: ['', Validators.required],
-      risk_end_date: ['', Validators.required],
-      issue_date: ['', Validators.required],
-      insured_age: ['', Validators.required],
+      risk_start_date: [null, Validators.required],
+      risk_end_date: [null, Validators.required],
+      issue_date: [null, Validators.required],
+      insured_age: [null, Validators.required],
       policy_term: [null, Validators.required],
-      bqp: ['', Validators.required],
+      bqp: [null, Validators.required],
       pos: [null, Validators.required],
-      employee: ['', Validators.required],
-      OD_premium: ['', Validators.required],
-      TP_terrorism: ['', Validators.required],
-      net: ['', Validators.required],
-      gst_amount: ['', Validators.required],
-      gst_gcv_amount: ['', Validators.required],
-      total: ['', Validators.required],
-      payment_mode: ['', Validators.required],
-      agent_od_reward: ['', Validators.required],
-      agent_od_amount: ['', Validators.required],
-      agent_tp_reward: ['', Validators.required],
-      agent_tp_amount: ['', Validators.required],
-      self_od_reward: ['', Validators.required],
-      self_od_amount: ['', Validators.required],
-      self_tp_reward: ['', Validators.required],
-      self_tp_amount: ['', Validators.required],
-      proposal: [null, Validators.required],
-      mandate: ['', Validators.required],
-      policy: ['', Validators.required],
-      previous_policy: ['', Validators.required],
-      pan_card: ['', Validators.required],
-      aadhar_card: ['', Validators.required],
-      vehicle_rc: ['', Validators.required],
-      inspection_report: ['', Validators.required],
-      remark: ['', Validators.required],
-      status: ['', Validators.required]
-
-
+      employee: [null, Validators.required],
+      OD_premium: [null, Validators.required],
+      TP_terrorism: [null, Validators.required],
+      net: [null, Validators.required],
+      gst_amount: [null, Validators.required],
+      gst_gcv_amount: [null],
+      total: [null, Validators.required],
+      payment_mode: [null, Validators.required],
+      agent_od_reward: [null],
+      agent_od_amount: [null],
+      agent_tp_reward: [null],
+      agent_tp_amount: [null],
+      self_od_reward: [null],
+      self_od_amount: [null],
+      self_tp_reward: [null],
+      self_tp_amount: [null],
+      proposal: [null],
+      mandate: [null],
+      policy: [null],
+      previous_policy: [null],
+      pan_card: [null],
+      aadhar_card: [null],
+      vehicle_rc: [null],
+      inspection_report: [null],
+      remark: [null],
+      status: ['Active']
     });
 
     this.title = 'Add Policy';
@@ -153,88 +162,303 @@ export class MotorComponent {
 
   }
 
-  proposal: File | null = null
-  mandate: File | null = null
-  policy: File | null = null
-  prevPolicy: File | null = null
-  pan: File | null = null
-  aadhar: File | null = null
-  RC: File | null = null
-  inspection: File | null = null
+  getRandomFile(event: any) {
 
+    let propNo = this.form.controls['proposal_no'].value
+    let fname = event.target.files[0].name.split('.')[0]
+    let ext = event.target.files[0].name.split('.')[1]
+    let fileName = propNo + '-' + fname + '-' + Date.now().toString() + "." + ext
+    console.log('filename: ', fileName);
+    return new File([event.target.files[0]!], fileName, { type: event.target.files[0].type });
+  }
 
   onFileChange(event: any) {
-
-    console.log(event);
-    console.log(event.target.name);
 
     let name = event.target.name
 
     if (name === 'proposal') {
-      console.log('proposal is found');
-      this.proposal = event.target.files[0]
+      console.log('proposal field assigned!');
+      this.proposal = this.getRandomFile(event)
+      this.form.controls['proposal'].patchValue(this.proposal.name)
     }
     else if (name === 'mandate') {
-      console.log('mandate is found');
-      this.mandate = event.target.files[0]
-
+      console.log('mandate field assigned!');
+      this.mandate = this.getRandomFile(event)
+      this.form.controls['mandate'].patchValue(this.mandate.name)
     }
     else if (name === 'policy') {
-      console.log('policy is found');
-      this.policy = event.target.files[0]
+      console.log('policy field assigned!');
+      this.policy = this.getRandomFile(event)
+      this.form.controls['policy'].patchValue(this.policy.name)
 
     }
     else if (name === 'previous_policy') {
-      console.log('previous_policy is found');
-      this.prevPolicy = event.target.files[0]
-
+      console.log('previous_policy field assigned!');
+      this.previous_policy = this.getRandomFile(event)
+      this.form.controls['previous_policy'].patchValue(this.previous_policy.name)
     }
     else if (name === 'pan_card') {
-      console.log('pan_card is found');
-      this.pan = event.target.files[0]
-
+      console.log('pan_card field assigned!');
+      this.pan_card = this.getRandomFile(event)
+      this.form.controls['pan_card'].patchValue(this.pan_card.name)
     }
     else if (name === 'aadhar_card') {
-      console.log('aadhar_card is found');
-      this.aadhar = event.target.files[0]
-
+      console.log('aadhar_card field assigned!');
+      this.aadhar_card = this.getRandomFile(event)
+      this.form.controls['aadhar_card'].patchValue(this.aadhar_card.name)
     }
     else if (name === 'vehicle_rc') {
-      console.log('vehicle_rc is found');
-      this.RC = event.target.files[0]
-
+      console.log('vehicle_rc field assigned!');
+      this.vehicle_rc = this.getRandomFile(event)
+      this.form.controls['vehicle_rc'].patchValue(this.vehicle_rc.name)
     }
-
     else if (name === 'inspection_report') {
-      console.log('inspection_report is found');
-      this.inspection = event.target.files[0]
+      console.log('inspection_report field assigned!');
+      this.inspection_report = this.getRandomFile(event)
+      this.form.controls['inspection_report'].patchValue(this.inspection_report.name)
+    }
+  }
+
+  calculatePremiumValues() {
+
+    try {
+
+      let od = this.form.controls['OD_premium'].value
+      let tp = this.form.controls['TP_terrorism'].value
+
+      let net = Number(od) + Number(tp)
+      this.form.controls['net'].patchValue(net)
+
+      // calculating amount with gst
+      let category = this.form.controls['vehicle_catagory'].value
+
+      // console.log(category);
+
+      if (category === null || category === undefined) {
+        console.log('Vehicle category not provided!');
+        return
+      }
+
+      if (category === "GCV-PUBLIC CARRIER OTHER THAN 3 W" || category === "3 WHEELER GCV-PUBLIC CARRIER" || category === "E CART - GCV") {
+        this.form.controls['gst_amount'].patchValue(Number(od * 18 / 100).toFixed(2))
+        this.form.controls['gst_gcv_amount'].patchValue(Number(tp * 12 / 100).toFixed(2))
+        this.showGCV = true
+      } else {
+        this.form.controls['gst_amount'].patchValue(Number(net * 18 / 100).toFixed(2))
+        this.showGCV = false
+        this.form.controls['gst_gcv_amount'].patchValue(null)
+      }
+
+      // total amount 
+      let n = Number(this.form.controls['net'].value);
+      let g = Number(this.form.controls['gst_amount'].value);
+      let gg = Number(this.form.controls['gst_gcv_amount'].value);
+      let total = Number(n + g + gg).toFixed(2)
+      // console.log(total);
+      this.form.controls['total'].patchValue(total)
+
+    } catch (error) {
+      console.log(error);
     }
 
 
-    return
-    // this.httpClient.post('http://localhost:4000/upload', formData).subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
 
+  }
+
+
+  addValuesAndValidators() {
+
+    // This method adds dynamic options and validators based on vehicle category
+    //  This method also calls to calculatePremiumValues() to update premium details values
+
+    this.form.controls['cubic_capacity'].clearValidators()
+    this.form.controls['coverage_type'].clearValidators()
+    this.form.controls['seating_capacity'].clearValidators()
+    this.form.controls['gvw'].clearValidators()
+
+    this.cubicCapacities = []
+    this.coverageTypes = []
+    this.showSeatingCapacity = false
+    this.gvw = []
+    this.showGCV = false
+
+    let vCategory = this.form.controls['vehicle_catagory'].value
+
+    if (vCategory === VehicleCategories.TWO_WHEELER_SCOOTER || vCategory === VehicleCategories.TWO_WHEELER_BIKE) {
+      // adding cubic capacities   
+      this.cubicCapacities.push('75CC-150CC')
+      this.cubicCapacities.push('150CC-350CC')
+      this.cubicCapacities.push('ABOVE 350CC')
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('1+4 YEAR PACKAGE')
+      this.coverageTypes.push('5 YEAR TP')
+      this.coverageTypes.push('TP ONLY')
+      this.coverageTypes.push('OD ONLY')
+      // apply validators
+      this.applyValidators('cubic_capacity')
+      this.applyValidators('coverage_type')
+
+    }
+    else if (vCategory === VehicleCategories.TWO_WHEELER_COMMERCIAL) {
+      // adding cubic capacities   
+      this.cubicCapacities.push('75CC-150CC')
+      this.cubicCapacities.push('150CC-350CC')
+      this.cubicCapacities.push('ABOVE 350CC')
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('1+4 YEAR PACKAGE')
+      this.coverageTypes.push('5 YEAR TP')
+      this.coverageTypes.push('TP ONLY')
+      this.coverageTypes.push('OD ONLY')
+      // showing seating capacity
+      this.showSeatingCapacity = true
+      // apply validators
+      this.applyValidators('cubic_capacity')
+      this.applyValidators('coverage_type')
+
+    }
+    else if (vCategory === VehicleCategories.PRIVATE_CAR || vCategory === VehicleCategories.TRADE_RISK) {
+      // adding cubic capacities   
+      this.cubicCapacities.push('BELOW 1000CC')
+      this.cubicCapacities.push('1000CC-1500CC')
+      this.cubicCapacities.push('ABOVE 1500CC')
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('1+2 YEAR PACKAGE')
+      this.coverageTypes.push('3 YEAR TP')
+      this.coverageTypes.push('TP ONLY')
+      this.coverageTypes.push('OD ONLY')
+      // apply validators
+      this.applyValidators('cubic_capacity')
+      this.applyValidators('coverage_type')
+    }
+    else if (vCategory === VehicleCategories.GCV_PUBLIC_CARRIER_OTHER_THAN_3W || vCategory === VehicleCategories.E_CART_GCV) {
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('TP ONLY')
+      // showing gvw`s options
+      this.showGCV = true
+      // apply validators
+      this.applyValidators('coverage_type')
+      this.applyValidators('gvw')
+    }
+    else if (vCategory === VehicleCategories.THREE_WHEELER_PCV) {
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('TP ONLY')
+      // showing seating capacity
+      this.showSeatingCapacity = true
+      // apply validators
+      this.applyValidators('coverage_type')
+      this.applyValidators('seating_capacity')
+    }
+    else if (vCategory === VehicleCategories.THREE_WHEELER_GCV_PUBLIC_CARRIER) {
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('TP ONLY')
+      // showing seating capacity
+      this.showSeatingCapacity = true
+      // showing gvw
+      this.showGCV = true
+      // apply validators
+      this.applyValidators('coverage_type')
+      this.applyValidators('seating_capacity')
+      this.applyValidators('gvw')
+    }
+    else if (vCategory === VehicleCategories.TAXI_4_WHEELER) {
+      // adding cubic capacities   
+      this.cubicCapacities.push('BELOW 1000CC')
+      this.cubicCapacities.push('1000CC-1500CC')
+      this.cubicCapacities.push('ABOVE 1500CC')
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('1+2 YEAR PACKAGE')
+      this.coverageTypes.push('3 YEAR TP')
+      this.coverageTypes.push('TP ONLY')
+      this.coverageTypes.push('OD ONLY')
+      // showing seating capacity
+      this.showSeatingCapacity = true
+      // apply validators
+      this.applyValidators('cubic_capacity')
+      this.applyValidators('coverage_type')
+      this.applyValidators('seating_capacity')
+    }
+    else if (vCategory === VehicleCategories.BUS_AND_OTHERS) {
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('TP ONLY')
+      // showing seating capacity
+      this.showSeatingCapacity = true
+      // apply validators   
+      this.applyValidators('coverage_type')
+      this.applyValidators('seating_capacity')
+    }
+    else if (vCategory === VehicleCategories.MISC_D_SPECIAL_VEHICLE) {
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('1+2 YEAR PACKAGE')
+      this.coverageTypes.push('3 YEAR TP')
+      this.coverageTypes.push('TP ONLY')
+      this.coverageTypes.push('OD ONLY')
+      // showing seating capacity
+      this.showSeatingCapacity = true
+      // apply validators   
+      this.applyValidators('coverage_type')
+      this.applyValidators('seating_capacity')
+    }
+    else if (vCategory === VehicleCategories.SCHOOL_BUS_SCHOOL_NAME) {
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('1+2 YEAR PACKAGE')
+      this.coverageTypes.push('3 YEAR TP')
+      this.coverageTypes.push('TP ONLY')
+      this.coverageTypes.push('OD ONLY')
+      // showing seating capacity
+      this.showSeatingCapacity = true
+      // apply validators   
+      this.applyValidators('coverage_type')
+      this.applyValidators('seating_capacity')
+    }
+    else if (vCategory === VehicleCategories.SCHOOL_BUS_INDIVIDUAL_NAME) {
+      // adding coverage types   
+      this.coverageTypes.push('1 YEAR PACKAGE')
+      this.coverageTypes.push('1+2 YEAR PACKAGE')
+      this.coverageTypes.push('3 YEAR TP')
+      this.coverageTypes.push('TP ONLY')
+      this.coverageTypes.push('OD ONLY')
+      // showing seating capacity
+      this.showSeatingCapacity = true
+      // apply validators   
+      this.applyValidators('coverage_type')
+      this.applyValidators('seating_capacity')
+    }
+
+    this.calculatePremiumValues()
+
+  }
+
+  applyValidators(fieldName: any) {
+    this.form.get(fieldName)?.setValidators([Validators.required]);
+    this.form.get(fieldName)?.updateValueAndValidity();
   }
 
   onSubmit() {
 
     this.submitted = true;
 
-    // reset alerts on submit
     this.alertService.clear();
 
     // stop here if form is invalid
     if (this.form.invalid) {
-      // return;
+      console.log(this.form.value);
+      console.log('Invalid form');
+      return;
     }
 
+    console.log(this.form.value);
+
+    return
     let formData = new FormData();
     let filesArray = []
     if (this.proposal)
@@ -243,16 +467,16 @@ export class MotorComponent {
       filesArray.push(this.mandate)
     if (this.policy)
       filesArray.push(this.policy)
-    if (this.prevPolicy)
-      filesArray.push(this.prevPolicy)
-    if (this.pan)
-      filesArray.push(this.pan)
-    if (this.aadhar)
-      filesArray.push(this.aadhar)
-    if (this.RC)
-      filesArray.push(this.RC)
-    if (this.inspection)
-      filesArray.push(this.inspection)
+    if (this.previous_policy)
+      filesArray.push(this.previous_policy)
+    if (this.pan_card)
+      filesArray.push(this.pan_card)
+    if (this.aadhar_card)
+      filesArray.push(this.aadhar_card)
+    if (this.vehicle_rc)
+      filesArray.push(this.vehicle_rc)
+    if (this.inspection_report)
+      filesArray.push(this.inspection_report)
 
     for (let i = 0; i < filesArray.length; i++) {
       formData.append('files', filesArray[i], Date.now().toString() + '-' + filesArray[i].name);
@@ -263,16 +487,20 @@ export class MotorComponent {
     console.log('Uploading Docs...');
 
     this.policyService.uploadFiles(formData).subscribe(
+
       (data) => {
+
         console.log(data);
         if (data.message === "Successfully uploaded!") {
 
-          alert('yes')
-          return
-          this.saveUser()
+          // return
+          console.log('Saving Policy...');
+
+          this.savePolicy()
             .pipe(first())
             .subscribe({
               next: () => {
+                console.log('Policy Saved!');
                 this.alertService.success('Policy saved', true);
                 this.router.navigateByUrl('/policies');
               },
@@ -287,78 +515,32 @@ export class MotorComponent {
         console.log(error);
       }
     );
-
-
-    return
-    this.saveUser()
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          this.alertService.success('Policy saved', true);
-          this.router.navigateByUrl('/policies');
-        },
-        error: error => {
-          this.alertService.error(error);
-          this.submitting = false;
-        }
-      })
   }
 
-  private saveUser() {
+  savePolicy() {
     // create or update policy based on id param
     return this.id
       ? this.policyService.update(this.id!, this.form.value)
       : this.policyService.register(this.form.value);
   }
 
-  showGCV = false // used to control gst 12% control field`s visibility
-
-  calculatePremiumValues() {
-
-    try {
-
-      let od = this.form.controls['OD_premium'].value
-      let tp = this.form.controls['TP_terrorism'].value
-
-
-      let net = Number(od) + Number(tp)
-      this.form.controls['net'].patchValue(net)
-
-      // calculating amount with gst
-      let vcategory = this.form.controls['vehicle_catagory'].value
-
-      console.log(vcategory);
-
-      if (vcategory === null || vcategory === undefined) {
-        console.log('Vehicle category not provided!');
-        return
-      }
-
-      if (vcategory === "GCV-PUBLIC CARRIER OTHER THAN 3 W" || vcategory === "3 WHEELER GCV-PUBLIC CARRIER" || vcategory === "E CART - GCV") {
-        this.form.controls['gst_amount'].patchValue(Number(od * 18 / 100).toFixed(2))
-        this.form.controls['gst_gcv_amount'].patchValue(Number(tp * 12 / 100).toFixed(2))
-        this.showGCV = true
-      } else {
-        this.form.controls['gst_amount'].patchValue(Number(net * 18 / 100).toFixed(2))
-        this.showGCV = false
-        this.form.controls['gst_gcv_amount'].patchValue(null)
-
-      }
-
-      // total amount 
-      let n = Number(this.form.controls['net'].value);
-      let g = Number(this.form.controls['gst_amount'].value);
-      let gg = Number(this.form.controls['gst_gcv_amount'].value);
-      let total = Number(n + g + gg).toFixed(2)
-      console.log(total);
-      this.form.controls['total'].patchValue(total)
-
-    } catch (error) {
-      console.log(error);
-    }
-
-
-
-  }
-
 }
+
+enum VehicleCategories {
+  TWO_WHEELER_BIKE = 'TWO WHEELER BIKE',
+  TWO_WHEELER_SCOOTER = 'TWO WHEELER SCOOTER',
+  TWO_WHEELER_COMMERCIAL = 'TWO WHEELER COMMERCIAL',
+  PRIVATE_CAR = 'PRIVATE CAR',
+  GCV_PUBLIC_CARRIER_OTHER_THAN_3W = 'GCV-PUBLIC CARRIER OTHER THAN 3 W',
+  THREE_WHEELER_PCV = '3 WHEELER PCV',
+  THREE_WHEELER_GCV_PUBLIC_CARRIER = '3 WHEELER GCV-PUBLIC CARRIER',
+  TAXI_4_WHEELER = 'TAXI 4 WHEELER',
+  BUS_AND_OTHERS = 'BUS AND OTHERS',
+  MISC_D_SPECIAL_VEHICLE = 'MISC-D SPECIAL VEHICLE',
+  SCHOOL_BUS_SCHOOL_NAME = 'SCHOOL BUS-SCHOOL NAME',
+  SCHOOL_BUS_INDIVIDUAL_NAME = 'SCHOOL BUS-INDIVIDUAL NAME',
+  TRADE_RISK = 'TRADE RISK',
+  E_CART_GCV = 'E CART - GCV'
+}
+
+

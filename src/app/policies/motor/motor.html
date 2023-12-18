@@ -29,6 +29,13 @@
                     </div>
                 </header>
 
+                <style>
+                    .invalid {
+                        /* background: red; */
+                        border: 1px solid red;
+                    }
+                </style>
+
                 <div class="page-section">
                     <div class="section-block">
 
@@ -42,93 +49,85 @@
                                                 <legend>Policy Details</legend>
                                                 <div class="form-row">
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="">Vehicle Catagory<b
-                                                                style="color: red;">*</b></label>
-                                                        <ng-select class="custom text-uppercase mt-1"
+                                                        <label>Vehicle Catagory<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase "
                                                             formControlName="vehicle_catagory"
-                                                            placeholder="Select Category">
+                                                            placeholder="Select Category"
+                                                            [ngClass]="{'invalid': submitted && form.controls['vehicle_catagory'].errors}"
+                                                            (change)="addValuesAndValidators()">
                                                             <ng-option *ngFor="let category of vehicleCategories"
                                                                 [value]="category">{{ category }}</ng-option>
                                                         </ng-select>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="proposal_no">Proposal No. <abbr title=""
-                                                                class="text-danger">*</abbr></label><input type="text"
-                                                            class="form-control" style="text-transform: uppercase;"
-                                                            placeholder="proposal no." formControlName="proposal_no">
+                                                        <label>Proposal No.<b style="color: red;">*</b></label>
+                                                        <input type="text" class="form-control"
+                                                            style="text-transform: uppercase;"
+                                                            placeholder="proposal no." formControlName="proposal_no"
+                                                            [ngClass]="{'invalid': submitted && form.controls['proposal_no'].errors}">
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="policy_no">Policy No. <abbr title=""
-                                                                class="text-danger">*</abbr></label><input type="text"
-                                                            value="" class="form-control" name="policy_no"
-                                                            id="policy_no" style="text-transform: uppercase;"
-                                                            formControlName="policy_no" placeholder="policy no.">
+                                                        <label>Policy No.<b style="color: red;">*</b></label>
+                                                        <input type="text" class="form-control"
+                                                            style="text-transform: uppercase;"
+                                                            formControlName="policy_no" placeholder="policy no."
+                                                            [ngClass]="{'invalid': submitted && form.controls['policy_no'].errors}">
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="customer_name">Insured Name <abbr title=""
-                                                                class="text-danger">*</abbr></label><input type="text"
-                                                            value="" class="form-control" id="customer_name"
-                                                            name="customer_name" style="text-transform: uppercase;"
-                                                            formControlName="customer_name" placeholder="insured name">
+                                                        <label>Insured Name<b style="color: red;">*</b></label>
+                                                        <input type="text" class="form-control"
+                                                            style="text-transform: uppercase;"
+                                                            formControlName="customer_name" placeholder="insured name"
+                                                            [ngClass]="{'invalid': submitted && form.controls['customer_name'].errors}">
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="">Insurer Name<b style="color: red;">*</b></label>
-                                                        <!-- <ng-select [items]="insurers" bindLabel="comp_name"
-                                                            placeholder="SELECT INSURER" bindValue="id"
-                                                            [(ngModel)]="selectedInsurer" formControlName="insurance_company"
-                                                            [ngModelOptions]="{standalone: true}">
-                                                        </ng-select> -->
-
+                                                        <label>Insurer Name<b style="color: red;">*</b></label>
                                                         <ng-select [items]="insurers" bindLabel="comp_name"
                                                             placeholder="SELECT INSURER" bindValue="comp_name"
-                                                            formControlName="insurance_company">
+                                                            formControlName="insurance_company"
+                                                            [ngClass]="{'invalid': submitted && form.controls['insurance_company'].errors}">
                                                         </ng-select>
 
 
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-
-                                                        <label for="">Serving Office <b
-                                                                style="color: red;">*</b></label>
-                                                        <ng-select class="custom text-uppercase mt-1"
-                                                            formControlName="sp_name" placeholder="Select Branch">
+                                                        <label>Serving Office<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase" formControlName="sp_name"
+                                                            placeholder="Select Branch"
+                                                            [ngClass]="{'invalid': submitted && form.controls['sp_name'].errors}">
                                                             <ng-option value="ROHTAK">ROHTAK</ng-option>
                                                             <ng-option value="DELHI">DELHI</ng-option>
                                                         </ng-select>
 
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Office Code <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select class="custom text-uppercase mt-1"
-                                                            formControlName="sp_brokercode" placeholder="Select Code">
+                                                        <label>Office Code<b style="color: red;">*</b> </label>
+                                                        <ng-select class="text-uppercase "
+                                                            formControlName="sp_brokercode" placeholder="Select Code"
+                                                            [ngClass]="{'invalid': submitted && form.controls['sp_brokercode'].errors}">
                                                             <ng-option value="124001"> 124001</ng-option>
                                                             <ng-option value="110001"> 1100001</ng-option>
                                                         </ng-select>
 
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="registration_no">Registration No. <abbr title=""
-                                                                class="text-danger">*</abbr></label>
+                                                        <label for="registration_no">Registration No.<b
+                                                                style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Minimum 8 Characters"
-                                                                style="text-transform: uppercase;"
-                                                                formControlName="registration_no">
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text" id="demo"
-                                                                    placeholder="xxxx"></span>
-                                                            </div>
+                                                            <input type="text" class="form-control text-uppercase"
+                                                                placeholder="Registration No."
+                                                                formControlName="registration_no"
+                                                                [ngClass]="{'invalid': submitted && form.controls['registration_no'].errors}">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label>RTO State<abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select class="custom text-uppercase mt-1"
-                                                            formControlName="rto_state" placeholder="Select State">
+                                                        <label>RTO State<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase" formControlName="rto_state"
+                                                            placeholder="Select State"
+                                                            [ngClass]="{'invalid': submitted && form.controls['rto_state'].errors}">
                                                             <!-- <option value="">-- Select State --</option> -->
                                                             <ng-option value="Andama And Nicobar Island">Andama And
                                                                 Nicobar
@@ -177,47 +176,45 @@
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="rto_city">RTO City <abbr title=""
-                                                                class="text-danger">*</abbr></label><input type="text"
-                                                            class="form-control" id="rto_city"
-                                                            style="text-transform: uppercase;"
-                                                            formControlName="rto_city" placeholder="RTO City">
+                                                        <label>RTO City<b style="color: red;">*</b></label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="rto_city" placeholder="RTO City"
+                                                            [ngClass]="{'invalid': submitted && form.controls['rto_city'].errors}">
                                                     </div>
 
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Vehicle Make <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select class="custom text-uppercase mt-1"
-                                                            formControlName="vehicle_makeby" placeholder="Select Make">
+                                                        <label>Vehicle Make<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase"
+                                                            formControlName="vehicle_makeby" placeholder="Select Make"
+                                                            [ngClass]="{'invalid': submitted && form.controls['vehicle_makeby'].errors}">
                                                             @for (item of makes$; track $index) {
-                                                            <ng-option value="{{item.make}}"> {{ item.make }}</ng-option>
+                                                            <ng-option value="{{item.make}}"> {{ item.make
+                                                                }}</ng-option>
                                                             }
                                                         </ng-select>
                                                     </div>
 
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Vehicle Model <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select class="custom text-uppercase mt-1"
-                                                            formControlName="vehicle_model" placeholder="Select Model">
-                                                            <!-- <ng-option value=""> SELECT MODEL</ng-option> -->
+                                                        <label>Vehicle Model<b style="color: red;">*</b></label>
+                                                        <ng-select class="custom text-uppercase"
+                                                            formControlName="vehicle_model" placeholder="Select Model"
+                                                            [ngClass]="{'invalid': submitted && form.controls['vehicle_model'].errors}">
                                                             @for (item of models$; track $index) {
-                                                            <ng-option value="{{item.model}}"> {{ item.model }}</ng-option>
+                                                            <ng-option value="{{item.model}}"> {{ item.model
+                                                                }}</ng-option>
                                                             }
                                                         </ng-select>
                                                     </div>
 
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Vehicle Fuel Type <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select id="vehicle_fuel_type" name="vehicle_fuel_type"
-                                                            class="custom text-uppercase mt-1"
+                                                        <label>Vehicle Fuel Type<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase "
                                                             formControlName="vehicle_fuel_type"
-                                                            placeholder="Select Fuel Type">
-                                                            <!-- <option value="">-- Select Fuel Type --</option> -->
+                                                            placeholder="Select Fuel Type"
+                                                            [ngClass]="{'invalid': submitted && form.controls['vehicle_fuel_type'].errors}">
                                                             <ng-option value="PETROL">PETROL</ng-option>
                                                             <ng-option value="DIESEL">DIESEL</ng-option>
                                                             <ng-option value="CNG">CNG</ng-option>
@@ -225,12 +222,10 @@
                                                         </ng-select>
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="mfg_year">Manufacture Year <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select id="mfg_year" name="mfg_year"
-                                                            class="custom text-uppercase mt-1"
-                                                            formControlName="mfg_year" placeholder="Select Year">
-                                                            <!-- <option value="">-- Select Year --</option> -->
+                                                        <label>Manufacture Year<b style="color: red;">*</b></label>
+                                                        <ng-select class="custom text-uppercase"
+                                                            formControlName="mfg_year" placeholder="Select Year"
+                                                            [ngClass]="{'invalid': submitted && form.controls['mfg_year'].errors}">
                                                             <ng-option value="2025">2025</ng-option>
                                                             <ng-option value="2024">2024</ng-option>
                                                             <ng-option value="2023">2023</ng-option>
@@ -259,55 +254,51 @@
                                                         </ng-select>
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Addon <abbr title="" class="text-danger">*</abbr></label>
-                                                        <ng-select id="addon" name="addon"
-                                                            class="custom text-uppercase mt-1"
-                                                            placeholder="Select Addon" formControlName="addon">
+                                                        <label>Addon<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " placeholder="Select Addon"
+                                                            formControlName="addon"
+                                                            [ngClass]="{'invalid': submitted && form.controls['addon'].errors}">
                                                             <!-- <ng-option value="" hidden>-- Select Addon --</ng-option> -->
                                                             <ng-option value="YES">YES</ng-option>
                                                             <ng-option value="NO">NO</ng-option>
                                                         </ng-select>
                                                     </div>
                                                     <div class="col-md-3 mb-4">
-                                                        <label>NCB <abbr title="" class="text-danger">*</abbr></label>
-                                                        <ng-select id="ncb" name="ncb"
-                                                            class="custom text-uppercase mt-1" formControlName="ncb"
-                                                            placeholder="Select NCB">
-                                                            <!-- <option value="" hidden>-- Select NCB --</option> -->
+                                                        <label>NCB<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " formControlName="ncb"
+                                                            placeholder="Select NCB"
+                                                            [ngClass]="{'invalid': submitted && form.controls['ncb'].errors}">
                                                             <ng-option value="YES">YES</ng-option>
                                                             <ng-option value="NO">NO</ng-option>
                                                         </ng-select>
                                                     </div>
-                                                    <div class="col-md-3 mb-4" id="cubic_div">
-                                                        <label>Cubic Capacity<abbr class="text-danger">*</abbr></label>
-                                                        <ng-select id="cubic_capacity" name="cubic_capacity"
-                                                            class="custom text-uppercase mt-1"
+
+                                                    <div class="col-md-3 mb-4" [hidden]="cubicCapacities.length === 0">
+                                                        <label>Cubic Capacity<b style="color: red;">*</b></label>
+                                                        <ng-select class=" text-uppercase " [items]="cubicCapacities"
                                                             formControlName="cubic_capacity"
-                                                            placeholder="Select Capcity">
-
+                                                            placeholder="Select Capacity"
+                                                            [ngClass]="{'invalid': submitted && form.controls['cubic_capacity'].errors}">
                                                         </ng-select>
                                                     </div>
 
-                                                    <div class="col-md-3 mb-4" id="coverage_div">
-                                                        <label>Coverage Type <abbr class="text-danger">*</abbr></label>
-                                                        <ng-select id="coverage_type" name="coverage_type"
-                                                            class="custom text-uppercase mt-1"
+                                                    <div class="col-md-3 mb-4" [hidden]="coverageTypes.length === 0">
+                                                        <label>Coverage Type<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase "
+                                                        [items]="coverageTypes"
                                                             formControlName="coverage_type"
-                                                            placeholder="Select Coverage">
-                                                            <!-- <option value="" hidden>-- Select Coverage --</option> -->
+                                                            placeholder="Select Coverage"
+                                                            [ngClass]="{'invalid': submitted && form.controls['coverage_type'].errors}">
 
                                                         </ng-select>
                                                     </div>
 
-                                                    <div class="col-md-3 mb-4" id="seating_div">
-                                                        <label>Seating Capacity<abbr
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select id="seating_capacity" name="seating_capacity"
-                                                            type="input" class="custom text-uppercase mt-1"
+                                                    <div class="col-md-3 mb-4" [hidden]="!showSeatingCapacity">
+                                                        <label>Seating Capacity<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase "
                                                             formControlName="seating_capacity"
-                                                            placeholder="Select Seating">
-                                                            <!-- <ng-option value="">-- Select seating --</ng-option> -->
-
+                                                            placeholder="Select Seating"
+                                                            [ngClass]="{'invalid': submitted && form.controls['seating_capacity'].errors}">
                                                             <ng-option value="BELOW 5">BELOW 5</ng-option>
                                                             <ng-option value="5-7">5-7</ng-option>
                                                             <ng-option value="7-12">7-12</ng-option>
@@ -315,7 +306,6 @@
                                                             <ng-option value="ABOVE 18">ABOVE 18</ng-option>
                                                         </ng-select>
                                                     </div>
-
 
                                                     <!-- <div class="col-md-3 mb-4" id="seating_capacityDiv1" hidden>
                                                         <label for="seating_capacity1">Seating Capacity <abbr
@@ -325,12 +315,11 @@
                                                             maxlength="2" formControlName="registration_no">
                                                     </div> -->
 
-                                                    <div class="col-md-3 mb-4" id="gvw_div">
-                                                        <label>GVW<abbr class="text-danger">*</abbr></label>
-                                                        <ng-select id="gvw" name="gvw"
-                                                            class="custom text-uppercase mt-1" formControlName="gvw"
-                                                            placeholder="Select GVW">
-                                                            <!-- <option value=""> -- Select GVW -- </option> -->
+                                                    <div class="col-md-3 mb-4" [hidden]="!showGCV">
+                                                        <label>GVW<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " formControlName="gvw"
+                                                            placeholder="Select GVW"
+                                                            [ngClass]="{'invalid': submitted && form.controls['gvw'].errors}">
                                                             <ng-option value="BELOW 2000">BELOW 2000</ng-option>
                                                             <ng-option value="2000-2500">2000-2500</ng-option>
                                                             <ng-option value="2500-3500">2500-3500</ng-option>
@@ -345,13 +334,10 @@
 
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Policy Type <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select id="policy_type" name="policy_type"
-                                                            class="custom text-uppercase mt-1"
-                                                            formControlName="policy_type"
-                                                            placeholder="Select Policy Type">
-                                                            <!-- <option value="">-- Select Policy Type --</option> -->
+                                                        <label>Policy Type<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " formControlName="policy_type"
+                                                            placeholder="Select Policy Type"
+                                                            [ngClass]="{'invalid': submitted && form.controls['policy_type'].errors}">
                                                             <ng-option value="FRESH">FRESH</ng-option>
                                                             <ng-option value="RENEWAL">RENEWAL</ng-option>
                                                             <ng-option value="ROLLOVER">ROLLOVER</ng-option>
@@ -361,79 +347,73 @@
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label>CPA <abbr title="" class="text-danger">*</abbr></label>
-                                                        <ng-select id="cpa" name="cpa"
-                                                            class="custom text-uppercase mt-1" formControlName="cpa"
-                                                            placeholder="Select CPA">
-                                                            <!-- <ng-option value="">-- Select CPA --</ng-option> -->
+                                                        <label>CPA<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " formControlName="cpa"
+                                                            placeholder="Select CPA"
+                                                            [ngClass]="{'invalid': submitted && form.controls['cpa'].errors}">
                                                             <ng-option value="YES">YES</ng-option>
                                                             <ng-option value="NO">NO</ng-option>
                                                         </ng-select>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="flatpickr-wrap">Risk Start Date <abbr title=""
-                                                                class="text-danger">*</abbr></label>
+                                                        <label>Risk Start Date<b style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt flatpickr"
                                                             data-toggle="risk_flatpickr" data-wrap="true"
                                                             data-alt-input="true" data-alt-format="F j, Y"
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input id="risk_start_date" name="risk_start_date"
-                                                                type="date" class="form-control flatpickr-input"
-                                                                placeholder="Choose date..." value="" required
-                                                                data-input="" formControlName="risk_start_date">
+                                                            <input type="date" class="form-control flatpickr-input"
+                                                                placeholder="Choose date..."
+                                                                formControlName="risk_start_date"
+                                                                [ngClass]="{'invalid': submitted && form.controls['risk_start_date'].errors}">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="flatpickr-wrap">Risk End Date <abbr title="Required"
-                                                                class="text-danger">*</abbr></label>
+                                                        <label>Risk End Date<b style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt flatpickr"
                                                             data-toggle="risk_flatpickr" data-wrap="true"
                                                             data-alt-input="true" data-alt-format="F j, Y"
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input id="risk_end_date" name="risk_end_date" type="date"
-                                                                class="form-control flatpickr-input"
-                                                                placeholder="Choose date..." value="" name="" required
-                                                                data-input="" formControlName="risk_end_date">
+                                                            <input type="date" class="form-control flatpickr-input"
+                                                                placeholder="Choose date..."
+                                                                formControlName="risk_end_date"
+                                                                [ngClass]="{'invalid': submitted && form.controls['risk_end_date'].errors}">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="flatpickr-wrap">Issued Date <abbr title=""
-                                                                class="text-danger">*</abbr></label>
+                                                        <label>Issued Date<b style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt flatpickr"
                                                             data-toggle="issue_flatpickr" data-wrap="true"
                                                             data-alt-input="true" ata-alt-format="F j, Y"
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input id="issue_date" name="issue_date" type="date"
+                                                            <input type="date"
                                                                 class="form-control flatpickr-input black-out"
-                                                                placeholder="Choose date..." value="" required
-                                                                data-input="" formControlName="issue_date">
+                                                                placeholder="Choose date..."
+                                                                formControlName="issue_date"
+                                                                [ngClass]="{'invalid': submitted && form.controls['issue_date'].errors}">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="insured_age">Insured Age <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <input id="insured_age" name="insured_age" type="text" value="0"
-                                                            class="form-control" formControlName="insured_age"
-                                                            placeholder="Insured Age">
+                                                        <label>Insured Age<b style="color: red;">*</b></label>
+                                                        <input type="text" class="form-control"
+                                                            formControlName="insured_age" placeholder="Insured Age"
+                                                            [ngClass]="{'invalid': submitted && form.controls['insured_age'].errors}">
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Policy Term <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <ng-select id="policy_term" name="policy_term"
-                                                            class="custom text-uppercase mt-1"
-                                                            formControlName="policy_term" placeholder="Select Term">
-                                                            <!-- <option value="">-- Select Term --</option> -->
+                                                        <label>Policy Term<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " formControlName="policy_term"
+                                                            placeholder="Select Term"
+                                                            [ngClass]="{'invalid': submitted && form.controls['policy_term'].errors}">
                                                             <ng-option value="1">1</ng-option>
                                                             <ng-option value="2">2</ng-option>
                                                             <ng-option value="3">3</ng-option>
@@ -442,28 +422,27 @@
                                                         </ng-select>
                                                     </div>
 
-                                                    <div class="col-md-3 mb-4" hidden>
-                                                        <label for="posname">POS Name <abbr title=""
-                                                                class="text-danger">*</abbr></label>
+                                                    <!-- <div class="col-md-3 mb-4" hidden>
+                                                        <label for="posname">POS Name<b
+                                                                style="color: red;">*</b></label>
                                                         <input id="posname" name="posname" type="text"
                                                             class="form-control" formControlName="pos"
                                                             placeholder="Select POsP">
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="col-md-3 mb-4"
                                                         onkeypress="document.getElementById('pos').click();">
-                                                        <label for="pos">POS <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <input id="pos" name="pos" type="text" value=""
-                                                            data-toggle="modal" data-target="#mdlPOS"
-                                                            class="form-control" style="text-transform: uppercase;"
-                                                            formControlName="pos" placeholder="Select POSP">
+                                                        <label>POS<b style="color: red;">*</b></label>
+                                                        <input type="text" data-toggle="modal" data-target="#mdlPOS"
+                                                            class="form-control text-uppercase " formControlName="pos"
+                                                            placeholder="Select POSP"
+                                                            [ngClass]="{'invalid': submitted && form.controls['pos'].errors}">
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label>BQP <abbr title="" class="text-danger">*</abbr></label>
-                                                        <select id="bqp" name="bqp" class="custom-select"
-                                                            formControlName="bqp">
+                                                        <label>BQP<b style="color: red;">*</b></label>
+                                                        <select class="custom-select" formControlName="bqp"
+                                                            [ngClass]="{'invalid': submitted && form.controls['bqp'].errors}">
                                                             <option value="">-- Select BQP --</option>
                                                             <option value="SATVEER SINGH"> SATVEER SINGH </option>
 
@@ -471,12 +450,11 @@
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
-                                                        <label for="employee">Employee <abbr title=""
-                                                                class="text-danger">*</abbr></label>
-                                                        <input id="employee" name="employee" type="text" value=""
-                                                            class="form-control"
+                                                        <label>Employee<b style="color: red;">*</b></label>
+                                                        <input type="text" class="form-control"
                                                             style="text-transform: uppercase;  background-color: lightgray;"
-                                                            formControlName="employee">
+                                                            formControlName="employee"
+                                                            [ngClass]="{'invalid': submitted && form.controls['employee'].errors}">
                                                     </div>
 
 
@@ -485,11 +463,8 @@
                                                                 </strong>File)</small> </label>
                                                         <div class="custom-file">
                                                             <input type="file" name="proposal" accept=".pdf,image/"
-                                                                id="proposal" class="custom-file-input" 
-                                                                
-                                                                formControlName="proposal"
-                                                                (change)="onFileChange($event)"
-                                                                >
+                                                                id="proposal" class="custom-file-input"
+                                                                (change)="onFileChange($event)">
                                                             <label id="lbl_proposal" name="lbl_proposal"
                                                                 class="custom-file-label" for="proposal">Choose
                                                                 file</label>
@@ -505,7 +480,7 @@
                                                         <div class="custom-file">
                                                             <input type="file" name="mandate" accept=".pdf,image/"
                                                                 id="mandate" class="custom-file-input"
-                                                                (change)="onFileChange($event)" >
+                                                                (change)="onFileChange($event)">
                                                             <label id="lbl_mandate" name="lbl_mandate"
                                                                 class="custom-file-label" for="mandate">Choose
                                                                 file</label>
@@ -518,8 +493,8 @@
                                                                 </strong>File)</small> </label>
                                                         <div class="custom-file">
                                                             <input type="file" name="policy" accept=".pdf,image/"
-                                                                id="policy" class="custom-file-input" 
-                                                                (change)="onFileChange($event)"  >
+                                                                id="policy" class="custom-file-input"
+                                                                (change)="onFileChange($event)">
                                                             <label id="lbl_policy" name="lbl_policy"
                                                                 class="custom-file-label" for="policy">Choose
                                                                 file</label>
@@ -534,7 +509,7 @@
                                                             <input type="file" name="previous_policy"
                                                                 accept=".pdf,image/" id="previous_policy"
                                                                 class="custom-file-input"
-                                                                (change)="onFileChange($event)" >
+                                                                (change)="onFileChange($event)">
                                                             <label id="lbl_previous_policy" name="lbl_previous_policy"
                                                                 class="custom-file-label" for="previous_policy">Choose
                                                                 file</label>
@@ -550,7 +525,7 @@
                                                         <div class="custom-file">
                                                             <input type="file" name="pan_card" accept=".pdf,image/"
                                                                 id="pan_card" class="custom-file-input"
-                                                                (change)="onFileChange($event)" >
+                                                                (change)="onFileChange($event)">
                                                             <label id="lbl_pan_card" name="lbl_pan_card"
                                                                 class="custom-file-label" for="pan_card">Choose
                                                                 file</label>
@@ -566,7 +541,7 @@
                                                         <div class="custom-file">
                                                             <input type="file" name="aadhar_card" accept=".pdf,image/"
                                                                 id="aadhar_card" class="custom-file-input"
-                                                                (change)="onFileChange($event)" >
+                                                                (change)="onFileChange($event)">
                                                             <label id="lbl_aadhar_card" name="lbl_aadhar_card"
                                                                 class="custom-file-label" for="aadhar_card">Choose
                                                                 file</label>
@@ -582,7 +557,7 @@
                                                         <div class="custom-file">
                                                             <input type="file" name="vehicle_rc" accept=".pdf,image/"
                                                                 id="vehicle_rc" class="custom-file-input"
-                                                                (change)="onFileChange($event)" >
+                                                                (change)="onFileChange($event)">
                                                             <label id="lbl_vehicle_rc" name="lbl_vehicle_rc"
                                                                 class="custom-file-label" for="vehicle_rc">Choose
                                                                 file</label>
@@ -599,7 +574,7 @@
                                                             <input type="file" name="inspection_report"
                                                                 accept=".pdf,image/" id="inspection_report"
                                                                 class="custom-file-input"
-                                                                (change)="onFileChange($event)" >
+                                                                (change)="onFileChange($event)">
                                                             <label id="lbl_inspection_report"
                                                                 name="lbl_inspection_report" class="custom-file-label"
                                                                 for="inspection_report">Choose
@@ -638,57 +613,55 @@
                                             <h4 class="card-title mb-3"> Premium Details </h4>
                                             <!-- grid row -->
                                             <div class="row mb-2">
-                                                <label class="col-lg-5" for="od">OD Premium <abbr title=""
-                                                        class="text-danger">*</abbr></label>
-                                                <input id="od" name="od" type="text" (input)="calculatePremiumValues()"
-                                                    value="" class="form-control col-lg-6 " maxlength="10" required
-                                                    formControlName="OD_premium">
+                                                <label class="col-lg-5">OD Premium<b style="color: red;">*</b></label>
+                                                <input type="text" (input)="calculatePremiumValues()"
+                                                    class="form-control col-lg-6 " formControlName="OD_premium"
+                                                    [ngClass]="{'invalid': submitted && form.controls['OD_premium'].errors}">
                                             </div>
                                             <div class="row mb-2">
-                                                <label class="col-lg-5" for="tp">TP/Terrorism<abbr title=""
-                                                        class="text-danger">*</abbr></label>
-                                                <input id="tpt" name="tpt" type="text" value=""
-                                                    (input)="calculatePremiumValues()" class="form-control col-lg-6 "
-                                                    maxlength=" 10" required formControlName="TP_terrorism">
+                                                <label class="col-lg-5">TP/Terrorism<b style="color: red;">*</b></label>
+                                                <input type="text" (input)="calculatePremiumValues()"
+                                                    class="form-control col-lg-6 " formControlName="TP_terrorism"
+                                                    [ngClass]="{'invalid': submitted && form.controls['TP_terrorism'].errors}">
 
                                             </div>
                                             <div class="row mb-2">
-                                                <label class="col-lg-5">Net Premium</label><input type="text" name="net"
-                                                    value="" class="form-control col-lg-6  bg-light" id="net"
-                                                    maxlength="10" readonly="" required tabindex="-1"
-                                                    formControlName="net">
+                                                <label class="col-lg-5">Net Premium<b style="color: red;">*</b></label>
+                                                <input type="text" class="form-control col-lg-6  bg-light" readonly=""
+                                                    tabindex="-1" formControlName="net"
+                                                    [ngClass]="{'invalid': submitted && form.controls['net'].errors}">
                                             </div>
 
                                             <div class="row mb-2">
-                                                <label class="col-lg-5" for="gst">GST 18%<abbr title=""
-                                                        class="text-danger">*</abbr></label><input type="text" value=""
-                                                    class="form-control col-lg-6 bg-light" name="gst" id="gst"
-                                                    maxlength="10" required readonly tabindex="-1"
-                                                    formControlName="gst_amount">
+                                                <label class="col-lg-5">GST 18%<b style="color: red;">*</b></label>
+                                                <input type="text" class="form-control col-lg-6 bg-light" readonly
+                                                    tabindex="-1" formControlName="gst_amount"
+                                                    [ngClass]="{'invalid': submitted && form.controls['gst_amount'].errors}">
                                             </div>
 
                                             @if (showGCV) {
                                             <div class="row mb-2" id="gsttDiv">
-                                                <label class="col-lg-5" for="gstt">GST 12%<abbr title=""
-                                                        class="text-danger">*</abbr></label><input type="text" value=""
-                                                    class="form-control col-lg-6 bg-light" name="gstt" id="gstt"
-                                                    maxlength="10" readonly tabindex="-1"
-                                                    formControlName="gst_gcv_amount">
+                                                <label class="col-lg-5">GST 12%<b style="color: red;">*</b></label>
+                                                <input type="text" class="form-control col-lg-6 bg-light" readonly
+                                                    tabindex="-1" formControlName="gst_gcv_amount"
+                                                    [ngClass]="{'invalid': submitted && form.controls['gst_gcv_amount'].errors}">
                                             </div>
                                             }
 
                                             <div class="row mb-2">
-                                                <label class="col-lg-5">Total=(Net+GST) </label><input type="text"
-                                                    name="total" value="" class="form-control  col-lg-6 bg-light"
-                                                    id="totalnet" readonly="" maxlength="10" required tabindex="-1"
-                                                    formControlName="total">
+                                                <label class="col-lg-5">Total=(Net+GST)<b
+                                                        style="color: red;">*</b></label>
+                                                <input type="text" class="form-control  col-lg-6 bg-light" readonly=""
+                                                    tabindex="-1" formControlName="total"
+                                                    [ngClass]="{'invalid': submitted && form.controls['total'].errors}">
                                             </div>
 
 
                                             <div class="row mb-2">
-                                                <label class="col-lg-5 pr-0 ">Payment <br> Mode</label>
-                                                <select id="payment_mode" class="custom-select col-lg-6" required
-                                                    formControlName="payment_mode">
+                                                <label class="col-lg-5 pr-0 ">Payment <br> Mode<b
+                                                        style="color: red;">*</b></label>
+                                                <select class="custom-select col-lg-6" formControlName="payment_mode"
+                                                    [ngClass]="{'invalid': submitted && form.controls['payment_mode'].errors}">
                                                     <option value=""> -- Select Payment Mode -- </option>
                                                     <option value="ONLINE" selected>ONLINE</option>
                                                     <option value="CHEQUE"> CHEQUE</option>
@@ -720,7 +693,7 @@
                                                             class="text-danger">*</abbr></label>
                                                     <select name="posps" class="custom-select select2 " id="posps"
                                                         onclick="addPos()" onchange="get_POS_from_Modal()"
-                                                        aria-hidden="true" required>
+                                                        aria-hidden="true">
                                                     </select>
                                                 </div>
 
