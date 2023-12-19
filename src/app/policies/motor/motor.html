@@ -49,7 +49,7 @@
                                                 <legend>Policy Details</legend>
                                                 <div class="form-row">
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Vehicle Catagory<b style="color: red;">*</b></label>
+                                                        <label>Vehicle Category<b style="color: red;">*</b></label>
                                                         <ng-select class="text-uppercase "
                                                             formControlName="vehicle_catagory"
                                                             placeholder="Select Category"
@@ -284,8 +284,7 @@
 
                                                     <div class="col-md-3 mb-4" [hidden]="coverageTypes.length === 0">
                                                         <label>Coverage Type<b style="color: red;">*</b></label>
-                                                        <ng-select class="text-uppercase "
-                                                        [items]="coverageTypes"
+                                                        <ng-select class="text-uppercase " [items]="coverageTypes"
                                                             formControlName="coverage_type"
                                                             placeholder="Select Coverage"
                                                             [ngClass]="{'invalid': submitted && form.controls['coverage_type'].errors}">
@@ -422,22 +421,17 @@
                                                         </ng-select>
                                                     </div>
 
-                                                    <!-- <div class="col-md-3 mb-4" hidden>
-                                                        <label for="posname">POS Name<b
-                                                                style="color: red;">*</b></label>
-                                                        <input id="posname" name="posname" type="text"
-                                                            class="form-control" formControlName="pos"
-                                                            placeholder="Select POsP">
-                                                    </div> -->
-
-                                                    <div class="col-md-3 mb-4"
-                                                        onkeypress="document.getElementById('pos').click();">
-                                                        <label>POS<b style="color: red;">*</b></label>
-                                                        <input type="text" data-toggle="modal" data-target="#mdlPOS"
+                                                    <div class="col-md-3 mb-4">
+                                                        <label>POSP<b style="color: red;">*</b></label>
+                                                        <input type="text" data-bs-toggle="modal"
+                                                            data-bs-target="#modalPOSP"
                                                             class="form-control text-uppercase " formControlName="pos"
-                                                            placeholder="Select POSP"
+                                                            placeholder="Select POSP" readonly
                                                             [ngClass]="{'invalid': submitted && form.controls['pos'].errors}">
+
                                                     </div>
+
+
 
                                                     <div class="col-md-3 mb-4">
                                                         <label>BQP<b style="color: red;">*</b></label>
@@ -678,58 +672,6 @@
 
                             </div>
 
-                            <!-- POSP modal dialog -->
-                            <div class="modal fade" id="mdlPOS">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title"> POSP </h5>
-                                        </div>
-                                        <div class="modal-body ">
-                                            <div class="form-row">
-
-                                                <div class="col-md-12 mb-4">
-                                                    <label>SELECT POSP <abbr title=""
-                                                            class="text-danger">*</abbr></label>
-                                                    <select name="posps" class="custom-select select2 " id="posps"
-                                                        onclick="addPos()" onchange="get_POS_from_Modal()"
-                                                        aria-hidden="true">
-                                                    </select>
-                                                </div>
-
-
-                                                <!-- <div class="col-md-12 col-sm-12 mb-2">
-                                          <select id="agents" class="custom-select " tabindex="-1" onclick="addPos()"
-                                             aria-hidden="true" onchange="get_POS_from_Modal()">
-        
-        
-                                          </select>
-                                       </div> -->
-
-
-                                                <div class="col-md-12 col-sm-12">
-                                                    <input id="inp_agent" type="text" value="" class="form-control"
-                                                        name="inp_agent" disabled style="text-transform: uppercase;"
-                                                        title="POS should be automatically fetched">
-                                                </div>
-                                            </div>
-
-                                            <button class="mt-4 btn btn-primary" style="margin-bottom: -60px;"
-                                                onclick="add_new_agent()">Add New
-                                                POS</button>
-
-                                            <div class="modal-footer">
-                                                <button id="btnExit" type="button" class="btn btn-secondary w-100p"
-                                                    data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
                             <hr>
                             <!-- submit data -->
                             <div class="form-row">
@@ -748,13 +690,13 @@
                                                 Payout
                                                 after the Policy saved</p>
                                             <div class="text-center">
-
-                                                <a>
-                                                    <button id="btnGenerate_Policy" name="btnGenerate_Policy"
-                                                        style="background-color: #FFFFFF; color: #346CB0; font-weight: bold;"
-                                                        type="submit" class="btn w-100p">GENERATE
-                                                    </button>
-                                                </a>
+                                                <button
+                                                    style="background-color: #FFFFFF; color: #346CB0; font-weight: bold;"
+                                                    type="submit" class="btn w-100p">
+                                                    <span *ngIf="submitting"
+                                                        class="spinner-border spinner-border-sm me-1"></span>
+                                                    GENERATE
+                                                </button>
 
                                             </div>
                                         </div>
@@ -770,6 +712,39 @@
 
                 </div>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalPOSP" tabindex="-1" aria-labelledby="modalPOSPLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalPOSPLabel">
+                    Select POSP </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <span class="mb-1">POSP<b style="color: red;">*</b></span>
+                    <ng-select class=" text-uppercase " placeholder="Select POSP" [(ngModel)]="selectedPOSP"  >
+
+                        @for (agent of agents; track $index) {
+                        @if (agent.status === 'Active') {
+                        <ng-option [value]="agent.posp_code + '|' + agent.full_name">{{
+                            agent.posp_code}} | {{
+                            agent.full_name}}</ng-option>
+                        }
+                        }
+                    </ng-select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="setPOSP()" data-bs-dismiss="modal">Save
+                </button>
             </div>
         </div>
     </div>

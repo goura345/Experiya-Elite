@@ -82,7 +82,7 @@ export class AgentService {
     }
 
     getById(id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+        return this.http.get<User>(`${environment.apiUrl}/agents/${id}`);
     }
 
     update(id: string, params: any) {

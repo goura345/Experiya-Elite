@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService, AlertService, InsurerService, PolicyService, ProductService } from '@app/_services';
+import { AccountService, AgentService, AlertService, InsurerService, PolicyService, ProductService } from '@app/_services';
 import { Observable, first } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-add-edit-policy',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgSelectModule, FormsModule],
   templateUrl: './motor.html',
-
+  imports: [CommonModule, ReactiveFormsModule, NgSelectModule, FormsModule]
 })
 export class MotorComponent {
 
@@ -40,6 +40,7 @@ export class MotorComponent {
   ]
   insurers = []
   selectedInsurer = null
+  agents: any[] = []
   makes$!: any;
   models$!: any;
   showGCV = false
@@ -57,6 +58,7 @@ export class MotorComponent {
   vehicle_rc: File | null = null
   inspection_report: File | null = null
 
+  selectedPOSP: string | null = null
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,7 +66,7 @@ export class MotorComponent {
     private router: Router,
     private policyService: PolicyService,
     private insurerService: InsurerService,
-    private alertService: AlertService, private httpClient: HttpClient
+    private alertService: AlertService, private agentService: AgentService
   ) { }
 
   ngOnInit() {
@@ -78,7 +80,7 @@ export class MotorComponent {
       insurance_company: [null, Validators.required],
       sp_name: [null, Validators.required],
       sp_brokercode: [null, Validators.required],
-      product_name: [null],
+      product_name: ['MOTOR'],
       registration_no: [null, Validators.required],
       rto_state: [null, Validators.required],
       rto_city: [null, Validators.required],
@@ -101,6 +103,7 @@ export class MotorComponent {
       insured_age: [null, Validators.required],
       policy_term: [null, Validators.required],
       bqp: [null, Validators.required],
+      pos_name: [null, Validators.required],
       pos: [null, Validators.required],
       employee: [null, Validators.required],
       OD_premium: [null, Validators.required],
@@ -157,6 +160,20 @@ export class MotorComponent {
           this.loading = false;
         })
 
+    this.agentService.getAll()
+      .pipe(first())
+      .subscribe((data: any) => {
+        console.log(data);
+        this.agents = data
+
+      }, (error => {
+        console.log(error);
+      }),
+        () => {
+          this.loading = false;
+        })
+
+
     this.policyService.fetchMakesData().subscribe((data: any) => this.makes$ = data);
     this.policyService.fetchModelsData().subscribe((data: any) => this.models$ = data);
 
@@ -164,12 +181,12 @@ export class MotorComponent {
 
   getRandomFile(event: any) {
 
-    let propNo = this.form.controls['proposal_no'].value
-    let fname = event.target.files[0].name.split('.')[0]
+    // let propNo = this.form.controls['proposal_no'].value
+    let fileName = event.target.files[0].name.split('.')[0]
     let ext = event.target.files[0].name.split('.')[1]
-    let fileName = propNo + '-' + fname + '-' + Date.now().toString() + "." + ext
-    console.log('filename: ', fileName);
-    return new File([event.target.files[0]!], fileName, { type: event.target.files[0].type });
+    let newFileName =   fileName + '-' + Date.now().toString() + "." + ext
+    console.log('filename: ', newFileName);
+    return new File([event.target.files[0]!], newFileName, { type: event.target.files[0].type });
   }
 
   onFileChange(event: any) {
@@ -264,7 +281,6 @@ export class MotorComponent {
 
 
   }
-
 
   addValuesAndValidators() {
 
@@ -458,7 +474,6 @@ export class MotorComponent {
 
     console.log(this.form.value);
 
-    return
     let formData = new FormData();
     let filesArray = []
     if (this.proposal)
@@ -479,7 +494,7 @@ export class MotorComponent {
       filesArray.push(this.inspection_report)
 
     for (let i = 0; i < filesArray.length; i++) {
-      formData.append('files', filesArray[i], Date.now().toString() + '-' + filesArray[i].name);
+      formData.append('files', filesArray[i]);
     }
 
     this.submitting = true;
@@ -522,6 +537,15 @@ export class MotorComponent {
     return this.id
       ? this.policyService.update(this.id!, this.form.value)
       : this.policyService.register(this.form.value);
+  }
+
+  setPOSP() {
+    if (this.selectedPOSP !== null) {
+      this.form.controls['pos'].patchValue(this.selectedPOSP.split('|')[0])
+      this.form.controls['pos_name'].patchValue(this.selectedPOSP.split('|')[1])
+
+    }
+    console.log(this.form.value);
   }
 
 }
