@@ -66,10 +66,11 @@ export class MotorComponent {
     private router: Router,
     private policyService: PolicyService,
     private insurerService: InsurerService,
-    private alertService: AlertService, private agentService: AgentService
+    private alertService: AlertService, private agentService: AgentService, private accountService: AccountService
   ) { }
 
   ngOnInit() {
+   
     this.id = this.route.snapshot.params['id'];
 
     // form with validation rules
@@ -100,12 +101,12 @@ export class MotorComponent {
       risk_start_date: [null, Validators.required],
       risk_end_date: [null, Validators.required],
       issue_date: [null, Validators.required],
-      insured_age: [null, Validators.required],
+      insured_age: [null],
       policy_term: [null, Validators.required],
       bqp: [null, Validators.required],
       pos_name: [null, Validators.required],
       pos: [null, Validators.required],
-      employee: [null, Validators.required],
+      employee: [this.accountService.userValue?.loginId, Validators.required],
       OD_premium: [null, Validators.required],
       TP_terrorism: [null, Validators.required],
       net: [null, Validators.required],

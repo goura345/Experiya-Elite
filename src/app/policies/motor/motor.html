@@ -177,7 +177,7 @@
 
                                                     <div class="col-md-3 mb-4">
                                                         <label>RTO City<b style="color: red;">*</b></label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control text-uppercase"
                                                             formControlName="rto_city" placeholder="RTO City"
                                                             [ngClass]="{'invalid': submitted && form.controls['rto_city'].errors}">
                                                     </div>
@@ -403,9 +403,8 @@
 
                                                     <div class="col-md-3 mb-4">
                                                         <label>Insured Age<b style="color: red;">*</b></label>
-                                                        <input type="text" class="form-control"
-                                                            formControlName="insured_age" placeholder="Insured Age"
-                                                            [ngClass]="{'invalid': submitted && form.controls['insured_age'].errors}">
+                                                        <input type="text" class="form-control text-uppercase"
+                                                            formControlName="insured_age" placeholder="Insured Age">
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
@@ -431,8 +430,6 @@
 
                                                     </div>
 
-
-
                                                     <div class="col-md-3 mb-4">
                                                         <label>BQP<b style="color: red;">*</b></label>
                                                         <select class="custom-select" formControlName="bqp"
@@ -445,7 +442,7 @@
 
                                                     <div class="col-md-3 mb-4">
                                                         <label>Employee<b style="color: red;">*</b></label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control" readonly
                                                             style="text-transform: uppercase;  background-color: lightgray;"
                                                             formControlName="employee"
                                                             [ngClass]="{'invalid': submitted && form.controls['employee'].errors}">
@@ -729,7 +726,7 @@
             <div class="modal-body">
                 <div class="row">
                     <span class="mb-1">POSP<b style="color: red;">*</b></span>
-                    <ng-select class=" text-uppercase " placeholder="Select POSP" [(ngModel)]="selectedPOSP"  >
+                    <ng-select class=" text-uppercase " placeholder="Select POSP" [(ngModel)]="selectedPOSP">
 
                         @for (agent of agents; track $index) {
                         @if (agent.status === 'Active') {
@@ -741,10 +738,11 @@
                     </ng-select>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="setPOSP()" data-bs-dismiss="modal">Save
+            <div class="modal-footer mt-3">
+                <button type="button" class="btn btn-primary " (click)="setPOSP()" data-bs-dismiss="modal">Save
                 </button>
+                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+
             </div>
         </div>
     </div>

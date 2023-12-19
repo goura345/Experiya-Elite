@@ -1,16 +1,13 @@
 export class User {
     id?: string;
+    loginId?: string ;
     username?: string;
     password?: string;
     firstName?: string;
     lastName?: string;
     token?: string;
     mobileNumber?: string;
-    role?: string = 'admin';
-    status?: string = 'default';
-
-    login_id?: string;
-    profile_id_id?: string;
-    staffname?: string
-
+    profileImageUrl?: string
+    role?: string;
+    status?: string;
 }

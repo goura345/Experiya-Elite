@@ -47,11 +47,7 @@ export class AccountService {
         this.router.navigate(['/account/login']);
     }
 
-    register(user: User) {
-
-        user.mobileNumber = '7206408062'
-        user.status = 'default'
-        user.role = 'admin'
+    register(user: User) {    
 
         console.log(user, user.firstName);
         // const encryptedFirstName = encryptData(user.firstName);
