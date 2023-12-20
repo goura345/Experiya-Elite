@@ -78,8 +78,8 @@ export class AgentListComponent implements OnInit {
 
     constructor(private agentService: AgentService, private router: Router) { }
 
-    ngOnInit() {       
-     
+    ngOnInit() {
+
         this.agentService.getAll()
             .pipe(first())
             .subscribe((data: any) => {
@@ -112,20 +112,14 @@ export class AgentListComponent implements OnInit {
     }
 
     onEditDelete(event: any) {
-        return
-        console.log(event);
-        console.log(event.colDef.headerName);
-        console.log(event.data.mobileNumber);
 
-        let submission = this.agents.filter((item) => item.mobileNumber == event.data.mobileNumber)[0]
-        console.log(submission);
+        console.log(event);
 
         if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
-
+            console.log(event.data.id);
         }
 
         else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
-            this.deleteUser(event.data.mobileNumber)
 
         }
     }

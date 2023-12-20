@@ -472,15 +472,18 @@ export class MotorComponent {
     this.submitted = true;
     this.alertService.clear();
 
+     // update employee id with current employee id
+     this.form.controls['employee'].patchValue(this.accountService.userValue?.loginId)
+     console.log(this.form.value);
+
     // stop here if form is invalid
     if (this.form.invalid) {
       console.log(this.form.value);
       console.log('Invalid form');
       return;
-    }
+    }  
 
-    console.log(this.form.value);
-
+    // upload docs if any
     let formData = new FormData();
     let filesArray = []
     if (this.proposal)
@@ -504,10 +507,7 @@ export class MotorComponent {
       formData.append('files', filesArray[i]);
     }
 
-    this.submitting = true;
-
-    console.log(Object.entries(formData).length);
-
+    this.submitting = true; 
     if (Object.entries(formData).length > 0) {
       console.log('Uploading Docs...');
       this.policyService.uploadFiles(formData).subscribe(
@@ -569,6 +569,10 @@ export class MotorComponent {
 
     }
     console.log(this.form.value);
+  }
+
+  addDocs(){
+    
   }
 
 }
