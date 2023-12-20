@@ -88,8 +88,8 @@ export class EntrylistComponent {
   ];
   // Row Data: The data to be displayed.
   rowData: any[] = []
-  editIcon = '<a> <i class="bi bi-pencil"></i></a>';
-  deleteIcon = '<a class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
+  editIcon = '<a style="cursor: pointer;"> <i class="bi bi-pencil"></i></a>';
+  deleteIcon = '<a style="cursor: pointer;" class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
   gridOptions: any = {
     rowSelection: 'single',
     // alwaysShowHorizontalScroll: true,
@@ -128,16 +128,13 @@ export class EntrylistComponent {
   }
 
   onEditDelete(event: any) {
-    return
-    console.log(event);
-    console.log(event.colDef.headerName);
-    console.log(event.data.mobileNumber);
-
-    // let submission = this.policies.filter((item) => item.mobileNumber == event.data.mobileNumber)[0]
-    // console.log(submission);
+    
+    // console.log(event);
+    // console.log(event.colDef.headerName);
+    // console.log(event.data.id);  
 
     if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
-
+      this.router.navigateByUrl('/policies/motor/edit/' + event.data.id)
     }
 
     else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {

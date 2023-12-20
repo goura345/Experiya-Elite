@@ -30,6 +30,7 @@ export class Policy {
     insured_age = null;
     policy_term = null;
     bqp = null;
+    pos_name = null;
     pos = null;
     employee = null;
     OD_premium = null;

@@ -22,6 +22,11 @@ export class PolicyService {
         return this.http.get<Policy>(`${environment.apiUrl}/policies/${id}`);
     }
 
+    getByProposalNumber(proposal_no: string) {
+        console.log('prop from service ', proposal_no);
+        return this.http.get(`${environment.apiUrl}/policies/proposal_no/${proposal_no}`);
+    }
+
     update(id: string, params: any) {
         return this.http.put<Policy>(`${environment.apiUrl}/policies/${id}`, params);
     }

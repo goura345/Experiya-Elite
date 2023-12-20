@@ -19,10 +19,12 @@ export class MotorComponent {
   form!: FormGroup;
   id?: string;
   title!: string;
+  submitTitle!: string;
   loading = false;
   submitting = false;
   submitted = false;
   vehicleCategories = [
+    VehicleCategories.TWO_WHEELER,
     VehicleCategories.TWO_WHEELER_BIKE,
     VehicleCategories.TWO_WHEELER_SCOOTER,
     VehicleCategories.TWO_WHEELER_COMMERCIAL,
@@ -70,7 +72,7 @@ export class MotorComponent {
   ) { }
 
   ngOnInit() {
-   
+
     this.id = this.route.snapshot.params['id'];
 
     // form with validation rules
@@ -134,16 +136,21 @@ export class MotorComponent {
       status: ['Active']
     });
 
-    this.title = 'Add Policy';
+    this.title = 'Motor Policy';
+    this.submitTitle = 'SAVE POLICY'
+
     if (this.id) {
       // edit mode
-      this.title = 'Edit Policy';
+      this.title = 'Motor Policy';
+      this.submitTitle = 'UPDATE POLICY'
+      console.log('getting id: ', this.id);
       this.loading = true;
       this.policyService.getById(this.id)
         .pipe(first())
         .subscribe(x => {
-          this.form.patchValue(x);
           console.log(x);
+          this.form.patchValue(x);
+          this.addValuesAndValidators()
           this.loading = false;
         });
     }
@@ -151,7 +158,7 @@ export class MotorComponent {
     this.insurerService.getAll()
       .pipe(first())
       .subscribe((data: any) => {
-        console.log(data);
+        // console.log(data);
         this.insurers = data
 
       }, (error => {
@@ -164,7 +171,7 @@ export class MotorComponent {
     this.agentService.getAll()
       .pipe(first())
       .subscribe((data: any) => {
-        console.log(data);
+        // console.log(data);
         this.agents = data
 
       }, (error => {
@@ -185,7 +192,7 @@ export class MotorComponent {
     // let propNo = this.form.controls['proposal_no'].value
     let fileName = event.target.files[0].name.split('.')[0]
     let ext = event.target.files[0].name.split('.')[1]
-    let newFileName =   fileName + '-' + Date.now().toString() + "." + ext
+    let newFileName = fileName + '-' + Date.now().toString() + "." + ext
     console.log('filename: ', newFileName);
     return new File([event.target.files[0]!], newFileName, { type: event.target.files[0].type });
   }
@@ -301,7 +308,7 @@ export class MotorComponent {
 
     let vCategory = this.form.controls['vehicle_catagory'].value
 
-    if (vCategory === VehicleCategories.TWO_WHEELER_SCOOTER || vCategory === VehicleCategories.TWO_WHEELER_BIKE) {
+    if (vCategory === VehicleCategories.TWO_WHEELER || VehicleCategories.TWO_WHEELER_SCOOTER || vCategory === VehicleCategories.TWO_WHEELER_BIKE) {
       // adding cubic capacities   
       this.cubicCapacities.push('75CC-150CC')
       this.cubicCapacities.push('150CC-350CC')
@@ -463,7 +470,6 @@ export class MotorComponent {
   onSubmit() {
 
     this.submitted = true;
-
     this.alertService.clear();
 
     // stop here if form is invalid
@@ -500,37 +506,53 @@ export class MotorComponent {
 
     this.submitting = true;
 
-    console.log('Uploading Docs...');
+    console.log(Object.entries(formData).length);
 
-    this.policyService.uploadFiles(formData).subscribe(
-
-      (data) => {
-
-        console.log(data);
-        if (data.message === "Successfully uploaded!") {
-
-          // return
-          console.log('Saving Policy...');
-
-          this.savePolicy()
-            .pipe(first())
-            .subscribe({
-              next: () => {
-                console.log('Policy Saved!');
-                this.alertService.success('Policy saved', true);
-                this.router.navigateByUrl('/policies');
-              },
-              error: error => {
-                this.alertService.error(error);
-                this.submitting = false;
-              }
-            })
+    if (Object.entries(formData).length > 0) {
+      console.log('Uploading Docs...');
+      this.policyService.uploadFiles(formData).subscribe(
+        (data) => {
+          console.log(data);
+          if (data.message === "Successfully uploaded!") {
+            // return           
+            this.savePolicy()
+              .pipe(first())
+              .subscribe({
+                next: () => {
+                  console.log('Policy Saved!');
+                  this.alertService.success('Policy saved', true);
+                  this.router.navigateByUrl('/policies');
+                },
+                error: error => {
+                  this.alertService.error(error);
+                  this.submitting = false;
+                }
+              })
+          }
+        },
+        (error) => {
+          console.log(error);
         }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+      );
+
+    }
+    else {
+      console.log('Saving Policy...');
+      this.savePolicy()
+        .pipe(first())
+        .subscribe({
+          next: () => {
+            console.log('Policy Saved!');
+            this.alertService.success('Policy saved', true);
+            this.router.navigateByUrl('/policies');
+          },
+          error: error => {
+            this.alertService.error(error);
+            this.submitting = false;
+          }
+        })
+    }
+
   }
 
   savePolicy() {
@@ -552,6 +574,7 @@ export class MotorComponent {
 }
 
 enum VehicleCategories {
+  TWO_WHEELER = 'TWO WHEELER',
   TWO_WHEELER_BIKE = 'TWO WHEELER BIKE',
   TWO_WHEELER_SCOOTER = 'TWO WHEELER SCOOTER',
   TWO_WHEELER_COMMERCIAL = 'TWO WHEELER COMMERCIAL',

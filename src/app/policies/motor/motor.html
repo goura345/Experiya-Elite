@@ -20,7 +20,7 @@
                   </div> -->
                     <div class="row text-center text-sm-left">
                         <div class="col">
-                            <h1 id="policy_title" class="page-title"> Motor Policy
+                            <h1 id="policy_title" class="page-title"> {{ title }}
                                 <small class="text-muted"> All * marks Fields are
                                     mandatory.
                                 </small>
@@ -363,13 +363,13 @@
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input type="date" class="form-control flatpickr-input"
+                                                            <input type="date" class="form-control flatpickr-input" [title]="form.controls['risk_start_date'].value"
                                                                 placeholder="Choose date..."
                                                                 formControlName="risk_start_date"
                                                                 [ngClass]="{'invalid': submitted && form.controls['risk_start_date'].errors}">
                                                         </div>
                                                     </div>
-
+                                                 
                                                     <div class="col-md-3 mb-4">
                                                         <label>Risk End Date<b style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt flatpickr"
@@ -378,7 +378,7 @@
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input type="date" class="form-control flatpickr-input"
+                                                            <input type="date" class="form-control flatpickr-input" [title]="form.controls['risk_end_date'].value"
                                                                 placeholder="Choose date..."
                                                                 formControlName="risk_end_date"
                                                                 [ngClass]="{'invalid': submitted && form.controls['risk_end_date'].errors}">
@@ -394,7 +394,7 @@
                                                             data-date-format="Y-m-d">
 
                                                             <input type="date"
-                                                                class="form-control flatpickr-input black-out"
+                                                                class="form-control flatpickr-input black-out" [title]="form.controls['issue_date'].value"
                                                                 placeholder="Choose date..."
                                                                 formControlName="issue_date"
                                                                 [ngClass]="{'invalid': submitted && form.controls['issue_date'].errors}">
@@ -419,14 +419,14 @@
                                                             <ng-option value="5">5</ng-option>
                                                         </ng-select>
                                                     </div>
-
+                                                  
                                                     <div class="col-md-3 mb-4">
                                                         <label>POSP<b style="color: red;">*</b></label>
                                                         <input type="text" data-bs-toggle="modal"
                                                             data-bs-target="#modalPOSP"
                                                             class="form-control text-uppercase " formControlName="pos"
                                                             placeholder="Select POSP" readonly
-                                                            [ngClass]="{'invalid': submitted && form.controls['pos'].errors}">
+                                                            [ngClass]="{'invalid': submitted && (form.controls['pos'].errors || form.controls['pos_name'].errors )}">
 
                                                     </div>
 
@@ -460,9 +460,9 @@
                                                                 class="custom-file-label" for="proposal">Choose
                                                                 file</label>
                                                         </div>
-                                                        <a id="a_proposal" href="#">
-                                                        </a>
-
+                                                        <a
+                                                            style="text-decoration: underline; color: blue; cursor: pointer;">{{
+                                                            form.controls['proposal'].value }} </a>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
@@ -476,7 +476,10 @@
                                                                 class="custom-file-label" for="mandate">Choose
                                                                 file</label>
                                                         </div>
-                                                        <a id="a_mandate" href="#"> </a>
+                                                        <a
+                                                            style="text-decoration: underline; color: blue; cursor: pointer;">{{
+                                                            form.controls['mandate'].value }} </a>
+
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
@@ -490,7 +493,9 @@
                                                                 class="custom-file-label" for="policy">Choose
                                                                 file</label>
                                                         </div>
-                                                        <a id="a_policy" href="#"> </a>
+                                                        <a
+                                                            style="text-decoration: underline; color: blue; cursor: pointer;">{{
+                                                            form.controls['policy'].value }} </a>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
@@ -505,9 +510,9 @@
                                                                 class="custom-file-label" for="previous_policy">Choose
                                                                 file</label>
                                                         </div>
-                                                        <a id="a_previous_policy" href="#">
-                                                        </a>
-
+                                                        <a
+                                                            style="text-decoration: underline; color: blue; cursor: pointer;">{{
+                                                            form.controls['previous_policy'].value }} </a>
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
@@ -521,8 +526,9 @@
                                                                 class="custom-file-label" for="pan_card">Choose
                                                                 file</label>
                                                         </div>
-                                                        <a id="a_pan_card" href="#">
-                                                        </a>
+                                                        <a
+                                                            style="text-decoration: underline; color: blue; cursor: pointer;">{{
+                                                            form.controls['pan_card'].value }} </a>
 
                                                     </div>
 
@@ -537,8 +543,9 @@
                                                                 class="custom-file-label" for="aadhar_card">Choose
                                                                 file</label>
                                                         </div>
-                                                        <a id="a_aadhar_card" href="#">
-                                                        </a>
+                                                        <a
+                                                            style="text-decoration: underline; color: blue; cursor: pointer;">{{
+                                                            form.controls['aadhar_card'].value }} </a>
 
                                                     </div>
 
@@ -553,8 +560,9 @@
                                                                 class="custom-file-label" for="vehicle_rc">Choose
                                                                 file</label>
                                                         </div>
-                                                        <a id="a_vehicle_rc" href="#">
-                                                        </a>
+                                                        <a
+                                                            style="text-decoration: underline; color: blue; cursor: pointer;">{{
+                                                            form.controls['vehicle_rc'].value }} </a>
 
                                                     </div>
 
@@ -571,8 +579,9 @@
                                                                 for="inspection_report">Choose
                                                                 file</label>
                                                         </div>
-                                                        <a id="a_inspection_report" href="#">
-                                                        </a>
+                                                        <a
+                                                            style="text-decoration: underline; color: blue; cursor: pointer;">{{
+                                                            form.controls['inspection_report'].value }} </a>
 
                                                     </div>
 
@@ -692,7 +701,7 @@
                                                     type="submit" class="btn w-100p">
                                                     <span *ngIf="submitting"
                                                         class="spinner-border spinner-border-sm me-1"></span>
-                                                    GENERATE
+                                                    {{ submitTitle }}
                                                 </button>
 
                                             </div>
