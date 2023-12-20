@@ -482,35 +482,13 @@ export class MotorComponent {
       console.log('Invalid form');
       return;
     }  
-
-    // upload docs if any
-    let formData = new FormData();
-    let filesArray = []
-    if (this.proposal)
-      filesArray.push(this.proposal)
-    if (this.mandate)
-      filesArray.push(this.mandate)
-    if (this.policy)
-      filesArray.push(this.policy)
-    if (this.previous_policy)
-      filesArray.push(this.previous_policy)
-    if (this.pan_card)
-      filesArray.push(this.pan_card)
-    if (this.aadhar_card)
-      filesArray.push(this.aadhar_card)
-    if (this.vehicle_rc)
-      filesArray.push(this.vehicle_rc)
-    if (this.inspection_report)
-      filesArray.push(this.inspection_report)
-
-    for (let i = 0; i < filesArray.length; i++) {
-      formData.append('files', filesArray[i]);
-    }
+   
+    let frmData = this.getFormData()
 
     this.submitting = true; 
-    if (Object.entries(formData).length > 0) {
+    if (Object.entries(frmData).length > 0) {
       console.log('Uploading Docs...');
-      this.policyService.uploadFiles(formData).subscribe(
+      this.policyService.uploadFiles(frmData).subscribe(
         (data) => {
           console.log(data);
           if (data.message === "Successfully uploaded!") {
@@ -571,8 +549,34 @@ export class MotorComponent {
     console.log(this.form.value);
   }
 
-  addDocs(){
-    
+  getFormData(): FormData {
+
+    // upload docs if any
+    let formData = new FormData();
+    let filesArray = []
+    if (this.proposal)
+      filesArray.push(this.proposal)
+    if (this.mandate)
+      filesArray.push(this.mandate)
+    if (this.policy)
+      filesArray.push(this.policy)
+    if (this.previous_policy)
+      filesArray.push(this.previous_policy)
+    if (this.pan_card)
+      filesArray.push(this.pan_card)
+    if (this.aadhar_card)
+      filesArray.push(this.aadhar_card)
+    if (this.vehicle_rc)
+      filesArray.push(this.vehicle_rc)
+    if (this.inspection_report)
+      filesArray.push(this.inspection_report)
+
+    for (let i = 0; i < filesArray.length; i++) {
+      formData.append('files', filesArray[i]);
+    }
+
+    return formData
+
   }
 
 }

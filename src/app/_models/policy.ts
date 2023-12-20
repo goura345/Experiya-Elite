@@ -1,6 +1,4 @@
-export class Policy {
-    policyid = null;
-    profile_id_id = null;
+export class Policy {     
     policy_no = null;
     proposal_no = null;
     customer_name = null;

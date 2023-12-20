@@ -108,13 +108,14 @@ export class EntrylistComponent {
       // console.log(data);
       this.policies = data
       this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+      this.loading = false;
+
 
     }, (error => {
       console.log(error);
-    }),
-      () => {
-        this.loading = false;
-      })
+      this.loading = false;
+
+    }))
 
   }
 
@@ -128,18 +129,17 @@ export class EntrylistComponent {
   }
 
   onEditDelete(event: any) {
-    
-    // console.log(event);
-    // console.log(event.colDef.headerName);
-    // console.log(event.data.id);  
 
     if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
       this.router.navigateByUrl('/policies/motor/edit/' + event.data.id)
     }
-
-    else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
-      // this.deleteUser(event.data.mobileNumber)
-
+    else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {    
+      this.policyService.delete(event.data.id).subscribe((data)=> {
+        console.log(data);
+        this.ngOnInit()
+      }, (error) => {
+        console.log(error);
+      })
     }
   }
 
