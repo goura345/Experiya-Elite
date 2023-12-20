@@ -52,7 +52,6 @@ export class ProductListComponent implements OnInit {
 
     ngOnInit() {
 
-
         // return
         this.productService.getAll()
             .pipe(first())

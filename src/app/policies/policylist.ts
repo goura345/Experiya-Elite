@@ -131,15 +131,28 @@ export class EntrylistComponent {
   onEditDelete(event: any) {
 
     if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
-      this.router.navigateByUrl('/policies/motor/edit/' + event.data.id)
+
+      if (event.data.product_name === '' || event.data.product_name === 'MOTOR') {
+        console.log('motor policy detected');
+        this.router.navigateByUrl('/policies/motor/edit/' + event.data.id)
+      }
+      else {
+        console.log('non-motor policy detected');
+        this.router.navigateByUrl('/policies/non-motor/edit/' + event.data.id)
+      }
     }
-    else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {    
-      this.policyService.delete(event.data.id).subscribe((data)=> {
-        console.log(data);
-        this.ngOnInit()
-      }, (error) => {
-        console.log(error);
-      })
+    else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
+
+      if (confirm('Do you really want to delete this policy')) {
+        console.log('deleting policy:');
+        this.policyService.delete(event.data.id).subscribe((data) => {
+          console.log(data);
+          this.ngOnInit()
+        }, (error) => {
+          console.log(error);
+        })
+      }
+
     }
   }
 

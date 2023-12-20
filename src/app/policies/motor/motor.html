@@ -426,6 +426,7 @@
                                                             data-bs-target="#modalPOSP"
                                                             class="form-control text-uppercase " formControlName="pos"
                                                             placeholder="Select POSP" readonly
+                                                            [title]="form.controls['pos_name'].value ===null ? '' : form.controls['pos_name'].value"
                                                             [ngClass]="{'invalid': submitted && (form.controls['pos'].errors || form.controls['pos_name'].errors )}">
 
                                                     </div>

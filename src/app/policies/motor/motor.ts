@@ -140,8 +140,7 @@ export class MotorComponent {
     this.submitTitle = 'SAVE POLICY'
 
     if (this.id) {
-      // edit mode
-      this.title = 'Motor Policy';
+      // edit mode    
       this.submitTitle = 'UPDATE POLICY'
       console.log('getting id: ', this.id);
       this.loading = true;
@@ -154,7 +153,7 @@ export class MotorComponent {
           this.loading = false;
         });
     }
-    // return
+  
     this.insurerService.getAll()
       .pipe(first())
       .subscribe((data: any) => {
@@ -180,7 +179,6 @@ export class MotorComponent {
         () => {
           this.loading = false;
         })
-
 
     this.policyService.fetchMakesData().subscribe((data: any) => this.makes$ = data);
     this.policyService.fetchModelsData().subscribe((data: any) => this.models$ = data);
@@ -472,20 +470,20 @@ export class MotorComponent {
     this.submitted = true;
     this.alertService.clear();
 
-     // update employee id with current employee id
-     this.form.controls['employee'].patchValue(this.accountService.userValue?.loginId)
-     console.log(this.form.value);
+    // update employee id with current employee id
+    this.form.controls['employee'].patchValue(this.accountService.userValue?.loginId)
+    console.log(this.form.value);
 
     // stop here if form is invalid
     if (this.form.invalid) {
       console.log(this.form.value);
       console.log('Invalid form');
       return;
-    }  
-   
+    }
+
     let frmData = this.getFormData()
 
-    this.submitting = true; 
+    this.submitting = true;
     if (Object.entries(frmData).length > 0) {
       console.log('Uploading Docs...');
       this.policyService.uploadFiles(frmData).subscribe(
