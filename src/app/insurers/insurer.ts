@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AccountService, AlertService } from '@app/_services';
+import { AccountService, AlertService, InsurerService } from '@app/_services';
 
 @Component({
     templateUrl: 'insurer.html',
@@ -23,7 +23,7 @@ export class AddEditInsurerComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private accountService: AccountService,
+        private insurerService: InsurerService,
         private alertService: AlertService
     ) { }
 
@@ -32,11 +32,8 @@ export class AddEditInsurerComponent implements OnInit {
 
         // form with validation rules
         this.form = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
-            // password only required in add mode
-            password: ['', [Validators.minLength(6), ...(!this.id ? [Validators.required] : [])]]
+            comp_name: ['', Validators.required],           
+            status: ['', Validators.required],
         });
 
         this.title = 'Add User';
@@ -44,7 +41,7 @@ export class AddEditInsurerComponent implements OnInit {
             // edit mode
             this.title = 'Edit User';
             this.loading = true;
-            this.accountService.getById(this.id)
+            this.insurerService.getById(this.id)
                 .pipe(first())
                 .subscribe(x => {
                     this.form.patchValue(x);
@@ -68,12 +65,12 @@ export class AddEditInsurerComponent implements OnInit {
         }
 
         this.submitting = true;
-        this.saveUser()
+        this.saveInsurer()
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('User saved', true);
-                    this.router.navigateByUrl('/users');
+                    this.alertService.success('Insurer Saved', true);
+                    this.router.navigateByUrl('/insurers');
                 },
                 error: error => {
                     this.alertService.error(error);
@@ -82,10 +79,10 @@ export class AddEditInsurerComponent implements OnInit {
             })
     }
 
-    private saveUser() {
+    private saveInsurer() {
         // create or update user based on id param
         return this.id
-            ? this.accountService.update(this.id!, this.form.value)
-            : this.accountService.register(this.form.value);
+            ? this.insurerService.update(this.id!, this.form.value)
+            : this.insurerService.register(this.form.value);
     }
 }

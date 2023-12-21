@@ -1,25 +1,33 @@
 
-import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { InsurerService } from '@app/_services';
+import { AlertService, InsurerService } from '@app/_services';
 import { User } from '@app/_models';
 import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
     templateUrl: 'insurer-list.html',
     standalone: true,
-    imports: [RouterLink, NgFor, NgIf, AgGridModule]
+    imports: [RouterLink, NgFor, NgIf, AgGridModule, ReactiveFormsModule, CommonModule]
 })
 export class InsurerListComponent implements OnInit {
 
-    loading = true
     insurers!: any[]
     id = ''
+
+    form!: FormGroup;
+    title!: string;
+    submitTitle!: string;
+
+    loading = false;
+    submitting = false;
+    submitted = false;
 
     // Column Definitions: Defines & controls grid columns.
     colDefs: ColDef[] = [
@@ -48,10 +56,23 @@ export class InsurerListComponent implements OnInit {
         // rowData: this.rowData,
     };
 
+    @ViewChild('addBtn') addBtn: ElementRef | null = null
+    @ViewChild('closeBtn') closeBtn: ElementRef | null = null
 
-    constructor(private insurerService: InsurerService, private router: Router) { }
+    constructor(private insurerService: InsurerService, private router: Router, private formBuilder: FormBuilder,
+        private alertService: AlertService) { }
 
     ngOnInit() {
+
+        this.title = 'Insurer List';
+        this.submitTitle = 'SAVE INSURER'
+
+        // form with validation rules
+        this.form = this.formBuilder.group({
+            comp_name: ['', Validators.required],
+            status: ['', Validators.required],
+        });
+
         // return
         this.insurerService.getAll()
             .pipe(first())
@@ -84,16 +105,69 @@ export class InsurerListComponent implements OnInit {
     }
 
     onEditDelete(event: any) {
-     
-        console.log(event);       
-      
+
+        console.log(event);
+
         if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
             console.log('id: ', event.data.id);
+            // this.router.navigateByUrl('/insurers/edit/' + event.data.id)
+
+            this.addBtn?.nativeElement.click()
+            this.id = event.data.id
+            let insurer = this.insurers.find(item => item.id === this.id)
+            console.log(insurer);
+            this.form.patchValue(insurer)
         }
 
         else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
-           
+            if (confirm('Do you really want to delete this Insurer?')) {
+                console.log('deleting agent:');
+                this.insurerService.delete(event.data.id).subscribe((data) => {
+                    console.log(data);
+                    this.ngOnInit()
+                }, (error) => {
+                    console.log(error);
+                })
+            }
         }
+    }
+
+    onSubmit() {
+        this.submitted = true;
+
+        // reset alerts on submit
+        this.alertService.clear();
+
+        // stop here if form is invalid
+        if (this.form.invalid) {
+            console.log('invalid form');
+            return;
+        }
+
+        this.submitting = true;
+        this.saveInsurer()
+            .pipe(first())
+            .subscribe({
+                next: () => {
+                    // this.alertService.success('Insurer Saved', true);
+                    // this.router.navigateByUrl('/insurers');
+                    this.submitting = false;
+                    this.ngOnInit()
+                    this.closeBtn?.nativeElement.click()
+
+                },
+                error: error => {
+                    this.alertService.error(error);
+                    this.submitting = false;
+                }
+            })
+    }
+
+    saveInsurer() {
+        // create or update user based on id param
+        return this.id
+            ? this.insurerService.update(this.id!, this.form.value)
+            : this.insurerService.register(this.form.value);
     }
 
 }
