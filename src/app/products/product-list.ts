@@ -118,7 +118,7 @@ export class ProductListComponent implements OnInit {
         }
 
         else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
-            if (confirm('Do you really want to delete this Product?')) {
+            if (confirm(`Do you really want to delete the product: ${event.data.name}?`)) {
                 console.log('deleting product:');
                 this.productService.delete(event.data.id).subscribe((data) => {
                     console.log(data);

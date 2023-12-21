@@ -121,7 +121,7 @@ export class InsurerListComponent implements OnInit {
         }
 
         else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
-            if (confirm('Do you really want to delete this Insurer?')) {
+            if (confirm(`Do you really want to delete the insurer: ${event.data.comp_name}?`)) {
                 console.log('deleting agent:');
                 this.insurerService.delete(event.data.id).subscribe((data) => {
                     console.log(data);
