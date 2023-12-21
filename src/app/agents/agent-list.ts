@@ -122,6 +122,15 @@ export class AgentListComponent implements OnInit {
 
         else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
 
+            if (confirm('Do you really want to delete this POSP?')) {
+                console.log('deleting agent:');
+                this.agentService.delete(event.data.id).subscribe((data) => {
+                  console.log(data);
+                  this.ngOnInit()
+                }, (error) => {
+                  console.log(error);
+                })
+              }
         }
     }
 }

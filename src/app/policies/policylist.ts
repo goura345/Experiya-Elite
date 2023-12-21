@@ -151,8 +151,7 @@ export class EntrylistComponent {
         }, (error) => {
           console.log(error);
         })
-      }
-
+      }      
     }
   }
 
