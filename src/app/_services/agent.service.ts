@@ -43,38 +43,9 @@ export class AgentService {
         this.router.navigate(['/account/login']);
     }
 
-    register(user: User) {
+    register(user: User) {       
 
-        user.mobileNumber = '7206408062'
-        user.status = 'default'
-        user.role = 'admin'
-
-        console.log(user, user.firstName);
-        // const encryptedFirstName = encryptData(user.firstName);
-        // const encryptedLastName = encryptData(user.lastName);
-        // const encryptedUsername = encryptData(user.username);
-        // const encryptedPassword = encryptData(user.password);
-        // const encryptedMobileNumber = encryptData("86072968062");
-
-
-        // if (!user || !user.username || !user.password || !user.firstName || !user.lastName || !user.mobileNumber) {
-        //     return throwError('Invalid user data'); // You can handle this error as needed
-        // }
-
-        // const dataToEncryptForRegister = {
-        //     id: null,
-        //     firstName: encryptedFirstName,
-        //     lastName: encryptedLastName,
-        //     username: encryptedUsername,
-        //     mobileNumber: encryptedMobileNumber,
-        //     password: encryptedPassword,
-        //     token: null,
-        //     role: 'lead'
-        // };
-        // console.log('Encrypted data sent to server: ', dataToEncryptForRegister);
-
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
-
+        return this.http.post<Agent>(`${environment.apiUrl}/agents/register`, user);
     }
 
     getAll() {
@@ -82,23 +53,11 @@ export class AgentService {
     }
 
     getById(id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/agents/${id}`);
+        return this.http.get<Agent>(`${environment.apiUrl}/agents/${id}`);
     }
 
     update(id: string, params: any) {
-        return this.http.put(`${environment.apiUrl}/users/${id}`, params)
-            .pipe(map(x => {
-                // update stored user if the logged in user updated their own record
-                if (id == this.userValue?.id) {
-                    // update local storage
-                    const user = { ...this.userValue, ...params };
-                    localStorage.setItem('user', JSON.stringify(user));
-
-                    // publish updated user to subscribers
-                    this.userSubject.next(user);
-                }
-                return x;
-            }));
+        return this.http.put<Agent>(`${environment.apiUrl}/agents/${id}`, params);
     }
 
     delete(id: string) {
@@ -110,6 +69,10 @@ export class AgentService {
                 }
                 return x;
             }));
+    }
+
+    uploadFiles(files: any) {
+        return this.http.post<any>(`${environment.apiUrl}/policies/uploadFiles`, files);
     }
 
 }

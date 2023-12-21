@@ -153,7 +153,7 @@ export class MotorComponent {
           this.loading = false;
         });
     }
-  
+
     this.insurerService.getAll()
       .pipe(first())
       .subscribe((data: any) => {
@@ -483,9 +483,34 @@ export class MotorComponent {
 
     let frmData = this.getFormData()
 
+    // upload docs if any
+    let formData = new FormData();
+    let filesArray = []
+    if (this.proposal)
+      filesArray.push(this.proposal)
+    if (this.mandate)
+      filesArray.push(this.mandate)
+    if (this.policy)
+      filesArray.push(this.policy)
+    if (this.previous_policy)
+      filesArray.push(this.previous_policy)
+    if (this.pan_card)
+      filesArray.push(this.pan_card)
+    if (this.aadhar_card)
+      filesArray.push(this.aadhar_card)
+    if (this.vehicle_rc)
+      filesArray.push(this.vehicle_rc)
+    if (this.inspection_report)
+      filesArray.push(this.inspection_report)
+
+    for (let i = 0; i < filesArray.length; i++) {
+      formData.append('files', filesArray[i]);
+    }
+
     this.submitting = true;
-    if (Object.entries(frmData).length > 0) {
-      console.log('Uploading Docs...');
+
+    if (filesArray.length > 0) {
+      console.log('Saving docs...');
       this.policyService.uploadFiles(frmData).subscribe(
         (data) => {
           console.log(data);

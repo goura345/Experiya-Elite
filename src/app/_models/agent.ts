@@ -1,6 +1,5 @@
 export class Agent {
-    login_id?: string;
-    profile_id_id?: string;
+    login_id?: string;  
     posp_code?: string;
     registration_code?: string;
     full_name?: string;

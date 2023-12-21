@@ -156,4 +156,8 @@ export class EntrylistComponent {
     }
   }
 
+  navigateToMotorPolicy(){
+    this.router.navigateByUrl('/policies/motor/add')
+  }
+
 }

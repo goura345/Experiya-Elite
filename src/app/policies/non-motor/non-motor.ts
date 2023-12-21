@@ -40,8 +40,7 @@ export class NonMotorComponent {
   policy: File | null = null
   previous_policy: File | null = null
   pan_card: File | null = null
-  aadhar_card: File | null = null
-  vehicle_rc: File | null = null
+  aadhar_card: File | null = null 
   inspection_report: File | null = null
 
   selectedPOSP: string | null = null
@@ -277,9 +276,7 @@ export class NonMotorComponent {
     if (this.pan_card)
       filesArray.push(this.pan_card)
     if (this.aadhar_card)
-      filesArray.push(this.aadhar_card)
-    if (this.vehicle_rc)
-      filesArray.push(this.vehicle_rc)
+      filesArray.push(this.aadhar_card)    
     if (this.inspection_report)
       filesArray.push(this.inspection_report)
 
@@ -343,11 +340,6 @@ export class NonMotorComponent {
       console.log('aadhar_card field assigned!');
       this.aadhar_card = this.getRandomFile(event)
       this.form.controls['aadhar_card'].patchValue(this.aadhar_card.name)
-    }
-    else if (name === 'vehicle_rc') {
-      console.log('vehicle_rc field assigned!');
-      this.vehicle_rc = this.getRandomFile(event)
-      this.form.controls['vehicle_rc'].patchValue(this.vehicle_rc.name)
     }
     else if (name === 'inspection_report') {
       console.log('inspection_report field assigned!');
