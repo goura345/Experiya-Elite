@@ -1,6 +1,6 @@
 
-import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
@@ -8,17 +8,24 @@ import { AccountService, ProductService } from '@app/_services';
 import { User } from '@app/_models';
 import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
     templateUrl: 'product-list.html',
     standalone: true,
-    imports: [RouterLink, NgFor, NgIf, AgGridModule]
+    imports: [RouterLink, NgFor, NgIf, AgGridModule, ReactiveFormsModule, FormsModule, CommonModule]
 })
 export class ProductListComponent implements OnInit {
 
-    loading = true
     products!: any[]
     id = ''
+    form!: FormGroup;
+    title!: string;
+    submitTitle!: string;
+
+    loading = false;
+    submitting = false;
+    submitted = false;
 
     // Column Definitions: Defines & controls grid columns.
     colDefs: ColDef[] = [
@@ -47,10 +54,21 @@ export class ProductListComponent implements OnInit {
         // rowData: this.rowData,
     };
 
+    @ViewChild('addBtn') addBtn: ElementRef | null = null
+    @ViewChild('closeBtn') closeBtn: ElementRef | null = null
 
-    constructor(private productService: ProductService, private router: Router) { }
+    constructor(private productService: ProductService, private router: Router, private formBuilder: FormBuilder,) { }
 
     ngOnInit() {
+
+        this.title = 'Insurer List';
+        this.submitTitle = 'SAVE'
+
+        // form with validation rules
+        this.form = this.formBuilder.group({
+            name: ['', Validators.required],          
+            status: ['', Validators.required],
+        });
 
         // return
         this.productService.getAll()
@@ -84,16 +102,75 @@ export class ProductListComponent implements OnInit {
     }
 
     onEditDelete(event: any) {
-       
+
         console.log(event);
-             
+
         if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
             console.log('id: ', event.data.id);
+            // this.router.navigateByUrl('/insurers/edit/' + event.data.id)
+
+            this.addBtn?.nativeElement.click()
+            this.id = event.data.id
+            this.title = 'Update Product'
+            let product = this.products.find(item => item.id === this.id)
+            console.log(product);
+            this.form.patchValue(product)
         }
 
         else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
-           
+            if (confirm('Do you really want to delete this Product?')) {
+                console.log('deleting product:');
+                this.productService.delete(event.data.id).subscribe((data) => {
+                    console.log(data);
+                    this.ngOnInit()
+                }, (error) => {
+                    console.log(error);
+                })
+            }
         }
+    }
+
+
+    onSubmit() {
+
+        this.submitted = true;
+            
+        // stop here if form is invalid
+        if (this.form.invalid) {
+            console.log('invalid form');
+            return;
+        }
+
+        this.submitting = true;
+        this.saveProduct()
+            .pipe(first())
+            .subscribe({
+                next: () => {
+                    // this.alertService.success('Insurer Saved', true);
+                    // this.router.navigateByUrl('/insurers');
+                    this.submitting = false;
+                    this.ngOnInit()
+                    this.closeBtn?.nativeElement.click()
+                    this.form.reset()
+
+                },
+                error: error => {                 
+                    this.submitting = false;
+                }
+            })
+    }
+
+    saveProduct() {
+        // create or update user based on id param
+        return this.id
+            ? this.productService.update(this.id!, this.form.value)
+            : this.productService.register(this.form.value);
+    }
+
+    resetForm(){
+        this.form.reset()
+        this.id = ''
+        this.title = 'Add Product'
     }
 
 }

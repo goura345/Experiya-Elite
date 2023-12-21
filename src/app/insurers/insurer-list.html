@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col">
                             <h1 id="page_heading" class="page-title" style="display: inline-block;"> Insurer List </h1>
-                            <a #addBtn data-bs-toggle="modal" data-bs-target="#modalPOSP"
+                            <a #addBtn data-bs-toggle="modal" data-bs-target="#modalPOSP" (click)="resetForm()"
                                 class="btn btn-secondary btn-sm float-right mr-2"><i class="fa fa-plus"></i> Add
                                 New</a>
 
@@ -278,7 +278,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="modalPOSPLabel">
-                        Add Insurer </h1>
+                        {{ title }}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -304,7 +304,7 @@
                 <div class="modal-footer mt-3">
                     <button type="submit" class="btn btn-primary " >
                         <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
-                        {{ submitTitle }}
+                        {{ title }}
                     </button>
 
                     <!-- <button style="background-color: #FFFFFF; color: #346CB0; font-weight: bold;" type="submit"

@@ -1,6 +1,6 @@
-export class Product {
-    // profile_id_id?: string;  
+export class Product {   
     name?: string;   
-    created_at?: Date;
     status?: string;
+    created_by?: Date;
+    created_at?: Date;
 }

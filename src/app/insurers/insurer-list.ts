@@ -64,8 +64,8 @@ export class InsurerListComponent implements OnInit {
 
     ngOnInit() {
 
-        this.title = 'Insurer List';
-        this.submitTitle = 'SAVE INSURER'
+        this.title = 'Add Insurer';
+        this.submitTitle = 'SAVE'
 
         // form with validation rules
         this.form = this.formBuilder.group({
@@ -113,7 +113,8 @@ export class InsurerListComponent implements OnInit {
             // this.router.navigateByUrl('/insurers/edit/' + event.data.id)
 
             this.addBtn?.nativeElement.click()
-            this.id = event.data.id
+            this.id = event.data.id          
+            this.title = 'Update Insurer'
             let insurer = this.insurers.find(item => item.id === this.id)
             console.log(insurer);
             this.form.patchValue(insurer)
@@ -154,7 +155,7 @@ export class InsurerListComponent implements OnInit {
                     this.submitting = false;
                     this.ngOnInit()
                     this.closeBtn?.nativeElement.click()
-
+                    this.form.reset()
                 },
                 error: error => {
                     this.alertService.error(error);
@@ -168,6 +169,12 @@ export class InsurerListComponent implements OnInit {
         return this.id
             ? this.insurerService.update(this.id!, this.form.value)
             : this.insurerService.register(this.form.value);
+    }
+
+    resetForm(){
+        this.form.reset()
+        this.id = ''
+        this.title = 'Add Insurer'
     }
 
 }

@@ -7,8 +7,8 @@
                     <div class="row">
                         <div class="col">
                             <h1 id="page_heading" class="page-title" style="display: inline-block;"> Product List </h1>
-                            <a onclick="addNewSomething()" href="#" class="btn btn-secondary btn-sm float-right mr-2"><i
-                                    class="fa fa-plus"></i> Add
+                            <a #addBtn data-bs-toggle="modal" data-bs-target="#modalPOSP" (click)="resetForm()"
+                                class="btn btn-secondary btn-sm float-right mr-2"><i class="fa fa-plus"></i> Add
                                 New</a>
                         </div>
                     </div>
@@ -236,8 +236,8 @@
                                 <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
 
                                     <ag-grid-angular class="ag-theme-quartz" style="height: 350px;"
-                                    [columnDefs]="colDefs" [rowData]="rowData" (cellClicked)="onEditDelete($event)">
-                                </ag-grid-angular>   
+                                        [columnDefs]="colDefs" [rowData]="rowData" (cellClicked)="onEditDelete($event)">
+                                    </ag-grid-angular>
 
                                 </div>
 
@@ -262,6 +262,59 @@
             </div>
 
         </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalPOSP" tabindex="-1" aria-labelledby="modalPOSPLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalPOSPLabel">
+                       {{ title }} </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mx-1">
+                        <div>
+                            <label class="my-1">Product Name<b style="color: red;">*</b></label>
+                            <input type="text" class="form-control" style="text-transform: uppercase;"
+                                placeholder="product name" formControlName="name"
+                                [ngClass]="{'invalid': submitted && form.controls['name'].errors}">
+
+                            <label class="mt-2">Status<b style="color: red;">*</b></label>
+                            <select class="form-select  text-uppercase " placeholder="product status"
+                                formControlName="status"
+                                [ngClass]="{'invalid': submitted && form.controls['status'].errors}">
+                                <option [selected]="true">--SELECT STATUS--</option>
+                                <option value="Active">Active</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer mt-3">
+                    <button type="submit" class="btn btn-primary ">
+                        <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+                        {{ title }}
+                    </button>
+
+                    <!-- <button style="background-color: #FFFFFF; color: #346CB0; font-weight: bold;" type="submit"
+                    class="btn w-100p">
+                    <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+                    {{ submitTitle }}
+                </button> -->
+
+                    <button #closeBtn type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </form>
 
     </div>
 </div>
