@@ -35,9 +35,14 @@ export class AddEditComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             username: ['', Validators.required],
-            // password only required in add mode
-            password: ['', [Validators.minLength(6), ...(!this.id ? [Validators.required] : [])]]
+            password: ['', [Validators.minLength(6), ...(!this.id ? [Validators.required] : [])]],
+            mobileNumber: ['', Validators.required],
+            email: ['', Validators.required],
+            role: ['', Validators.required],
+            status: ['', Validators.required],
+            createdBy: [this.accountService.userValue?.loginId, Validators.required],
         });
+
 
         this.title = 'Add User';
         if (this.id) {
@@ -51,6 +56,8 @@ export class AddEditComponent implements OnInit {
                     this.loading = false;
                 });
         }
+
+
     }
 
     // convenience getter for easy access to form fields
@@ -66,8 +73,10 @@ export class AddEditComponent implements OnInit {
         if (this.form.invalid) {
             return;
         }
+        console.log(this.form);
 
         this.submitting = true;
+
         this.saveUser()
             .pipe(first())
             .subscribe({

@@ -7,6 +7,7 @@ export class User {
     lastName?: string;
     token?: string;
     mobileNumber?: string;
+    email?: string;
     profileImageUrl?: string
     role?: string;
     status?: string;

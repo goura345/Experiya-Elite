@@ -8,6 +8,7 @@ import { AccountService } from '@app/_services';
 import { User } from '@app/_models';
 import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class ListComponent implements OnInit {
         { headerName: "LAST NAME", field: 'lastName', sortable: true, filter: true },
         { headerName: "USER NAME", field: 'username', sortable: true, filter: true },
         { headerName: "MOBILE NUMBER", field: 'mobileNumber', sortable: true, filter: true },
+        { headerName: "EMAIL ID", field: 'email', sortable: true, filter: true },
         { headerName: "ROLE", field: 'role', sortable: true, filter: true },
         { headerName: "STATUS", field: 'status', sortable: true, filter: true },
         {
@@ -56,7 +58,6 @@ export class ListComponent implements OnInit {
     ngOnInit() {
 
         this.loading = true;
-
         this.accountService.getAll()
             .pipe(first())
             .subscribe((data: any) => {
@@ -80,23 +81,26 @@ export class ListComponent implements OnInit {
             .subscribe(() => this.users = this.users!.filter(x => x.id !== id));
     }
 
-    eventEmitted($event: { event: string; value: any }): void {
-        // this.clicked = JSON.stringify($event);    
-        console.log('$event', $event);
-        this.id = $event.value.row.id
-        this.router.navigateByUrl('users/edit/' + this.id)
-    }
-
     onEditDelete(event: any) {
 
         console.log(event);
 
         if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
             console.log('id: ', event.data.id);
+            this.router.navigateByUrl('/users/edit/' + event.data.id)
         }
 
         else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
-          
+            if (confirm(`Do you really want to delete User: ${event.data.username}`)) {
+                console.log('deleting user:');
+                this.accountService.delete(event.data.id).subscribe((data) => {
+                    console.log(data);
+                    this.ngOnInit()
+                }, (error) => {
+                    console.log(error);
+                })
+            }
         }
     }
+
 }

@@ -49,7 +49,7 @@ export class AccountService {
 
     register(user: User) {    
 
-        console.log(user, user.firstName);
+        // console.log(user);
         // const encryptedFirstName = encryptData(user.firstName);
         // const encryptedLastName = encryptData(user.lastName);
         // const encryptedUsername = encryptData(user.username);
@@ -73,7 +73,7 @@ export class AccountService {
         // };
         // console.log('Encrypted data sent to server: ', dataToEncryptForRegister);
 
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+        return this.http.post<User>(`${environment.apiUrl}/users/register`, user);
 
     }
 
@@ -86,7 +86,7 @@ export class AccountService {
     }
 
     update(id: string, params: any) {
-        return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+        return this.http.put<User>(`${environment.apiUrl}/users/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
                 if (id == this.userValue?.id) {
@@ -102,7 +102,7 @@ export class AccountService {
     }
 
     delete(id: string) {
-        return this.http.delete(`${environment.apiUrl}/users/${id}`)
+        return this.http.delete<User>(`${environment.apiUrl}/users/${id}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
                 if (id == this.userValue?.id) {
