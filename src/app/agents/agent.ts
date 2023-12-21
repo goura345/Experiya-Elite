@@ -88,7 +88,6 @@ export class AddEditAgentComponent implements OnInit {
                 .subscribe(x => {
                     console.log(x);
                     this.form.patchValue(x);
-
                     this.loading = false;
                 });
         }

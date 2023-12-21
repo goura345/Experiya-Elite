@@ -480,9 +480,7 @@ export class MotorComponent {
       console.log('Invalid form');
       return;
     }
-
-    let frmData = this.getFormData()
-
+   
     // upload docs if any
     let formData = new FormData();
     let filesArray = []
@@ -511,7 +509,7 @@ export class MotorComponent {
 
     if (filesArray.length > 0) {
       console.log('Saving docs...');
-      this.policyService.uploadFiles(frmData).subscribe(
+      this.policyService.uploadFiles(formData).subscribe(
         (data) => {
           console.log(data);
           if (data.message === "Successfully uploaded!") {
