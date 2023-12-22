@@ -1,6 +1,6 @@
-<div class="app-main " >
+<div class="app-main ">
 
-    <div class="wrapper ms-5" >
+    <div class="wrapper ms-5">
         <div class="page">
             <!-- .page-inner -->
             <div class="page-inner text-blue116">
@@ -21,47 +21,69 @@
                             <div class="col-lg-12">
                                 <div class="metric-row metric-flush">
                                     <!-- metric column -->
+
+                                    <div class="col">
+                                        <a routerLink="agents" class="metric metric-bordered align-items-center">
+                                            <h2 class="metric-label text-blue116">POSP </h2>
+                                            <p class="metric-value h3">
+                                                <sub><span class="icofont icofont-users-alt-1"></span></sub>
+                                                <span id="agentcount" class="value">{{ agents.length }}</span>
+                                            </p>
+                                        </a> <!-- /.metric -->
+                                    </div><!-- /metric column -->
+
                                     <div class="col">
                                         <!-- .metric -->
-                                        <a routerLink="users"
-                                            class="metric metric-bordered align-items-center">
+                                        <a routerLink="insurers" class="metric metric-bordered align-items-center">
+                                            <h2 class="metric-label text-blue116">Insurers </h2>
+                                            <p class="metric-value h3">
+                                                <sub><span class="icofont icofont-business-man"></span></sub>
+                                                <span id="spcount" class="value">{{ insurers.length }}</span>
+                                            </p>
+                                        </a> <!-- /.metric -->
+                                    </div><!-- /metric column -->
+
+                                    <div class="col">
+                                        <!-- .metric -->
+                                        <a routerLink="insurers" class="metric metric-bordered align-items-center">
+                                            <h2 class="metric-label text-blue116">Products </h2>
+                                            <p class="metric-value h3">
+                                                <sub><span class="icofont icofont-business-man"></span></sub>
+                                                <span id="spcount" class="value">{{ products.length }}</span>
+                                            </p>
+                                        </a> <!-- /.metric -->
+                                    </div><!-- /metric column -->
+
+
+                                    <div class="col">
+                                        <!-- .metric -->
+                                        <a routerLink="users" class="metric metric-bordered align-items-center">
                                             <h2 class="metric-label text-blue116">Staff </h2>
                                             <p class="metric-value h3">
                                                 <sub><span class="icofont icofont-users-alt-5"></span></sub>
                                                 <span id="staffcount" class="value">
-                                                    {{150}} </span>
+                                                    {{ users.length }} </span>
                                             </p>
                                         </a> <!-- /.metric -->
                                     </div><!-- /metric column -->
-                                    <div class="col">
-                                        <a routerLink="agents" class="metric metric-bordered align-items-center">
-                                            <h2 class="metric-label text-blue116">Agent </h2>
-                                            <p class="metric-value h3">
-                                                <sub><span class="icofont icofont-users-alt-1"></span></sub>
-                                                <span id="agentcount" class="value">{{200}}</span>
-                                            </p>
-                                        </a> <!-- /.metric -->
-                                    </div><!-- /metric column -->
+
                                     <div class="col">
                                         <!-- .metric -->
-                                        <a routerLink="insurers"
-                                            class="metric metric-bordered align-items-center">
-                                            <h2 class="metric-label text-blue116">Insurers </h2>
-                                            <p class="metric-value h3">
-                                                <sub><span class="icofont icofont-business-man"></span></sub>
-                                                <span id="spcount" class="value">{{450}}</span>
-                                            </p>
-                                        </a> <!-- /.metric -->
-                                    </div><!-- /metric column -->
-                                    <div class="col">
-                                        <!-- .metric -->
-                                        <a routerLink="policies"
-                                            class="metric metric-bordered align-items-center">
+                                        <a routerLink="policies" class="metric metric-bordered align-items-center">
                                             <h2 class="metric-label text-blue116">Total Policies </h2>
                                             <p class="metric-value h3">
                                                 <sub><span class="icofont icofont icofont-ebook"></span></sub>
                                                 <span id="policycount" class="value">
-                                                    {{220}} </span>
+
+                                                    @if (loading) {
+                                                    <span style="color: green; border-width: 2px;"
+                                                        class="  spinner-border spinner-border-sm me-1"></span>
+                                                    }
+
+                                                    @if (!loading) { 
+                                                        <span> {{ policies.length }} </span>
+                                                      }
+                                                     </span>
                                             </p>
                                         </a> <!-- /.metric -->
                                     </div><!-- /metric column -->

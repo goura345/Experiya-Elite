@@ -45,6 +45,10 @@ export class PolicyService {
         return this.http.get(dataUrl, { responseType: 'json' });
     }
 
+    testt() {
+        return this.http.get<any>(`${environment.apiUrl}/policies/test`);
+    }
+
     uploadFiles(files: any) {
         return this.http.post<any>(`${environment.apiUrl}/policies/uploadFiles`, files);
     }
