@@ -81,7 +81,7 @@ export class AddEditComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('User saved', true);
+                    // this.alertService.success('User saved', true);
                     this.router.navigateByUrl('/users');
                 },
                 error: error => {
@@ -97,4 +97,6 @@ export class AddEditComponent implements OnInit {
             ? this.accountService.update(this.id!, this.form.value)
             : this.accountService.register(this.form.value);
     }
+
+   
 }
