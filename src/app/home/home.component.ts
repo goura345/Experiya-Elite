@@ -6,6 +6,7 @@ import { BaseComponent } from "../base/base";
 import { RouterLink } from '@angular/router';
 import { concatMap, first, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 
@@ -23,7 +24,13 @@ export class HomeComponent {
     policies = []
     loading = false;
 
-    constructor(private accountService: AccountService,
+    totalStaff = 0
+    totalAgent = 0
+    totalInsurer= 0
+    totalProduct = 0
+    totalPolicy = 0
+
+    constructor(private accountService: AccountService, private http: HttpClient,
         private insurerService: InsurerService,
         private agentService: AgentService,
         private productService: ProductService,
@@ -32,6 +39,17 @@ export class HomeComponent {
     }
 
     ngOnInit() {
+       
+        this.http.get('http://localhost:4000/total-documents').subscribe((data: any) => {
+            console.log(data);
+            this.totalStaff = data.user
+            this.totalAgent = data.agent
+            this.totalInsurer = data.insurer
+            this.totalProduct = data.product
+            this.totalPolicy = data.policy
+        })
+
+        return
 
         // getting counts
         this.agentService.getAll()
