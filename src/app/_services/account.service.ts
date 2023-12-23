@@ -131,6 +131,10 @@ export class AccountService {
 
     }
 
+    totalDocument(){
+        return this.http.get(`${environment.apiUrl}/total-documents`);
+    }
+
 
 
 }

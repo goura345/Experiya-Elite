@@ -26,7 +26,7 @@ export class HomeComponent {
 
     totalStaff = 0
     totalAgent = 0
-    totalInsurer= 0
+    totalInsurer = 0
     totalProduct = 0
     totalPolicy = 0
 
@@ -39,8 +39,8 @@ export class HomeComponent {
     }
 
     ngOnInit() {
-       
-        this.http.get('http://localhost:4000/total-documents').subscribe((data: any) => {
+
+        this.accountService.totalDocument().subscribe((data: any) => {
             console.log(data);
             this.totalStaff = data.user
             this.totalAgent = data.agent
@@ -48,50 +48,6 @@ export class HomeComponent {
             this.totalProduct = data.product
             this.totalPolicy = data.policy
         })
-
-        return
-
-        // getting counts
-        this.agentService.getAll()
-            .pipe(first())
-            .subscribe((data: any) => {
-                // console.log(data);
-                this.agents = data
-            })
-
-        this.insurerService.getAll()
-            .pipe(first())
-            .subscribe((data: any) => {
-                // console.log(data);
-                this.insurers = data
-            })
-
-        this.productService.getAll()
-            .pipe(first())
-            .subscribe((data: any) => {
-                // console.log(data);
-                this.products = data
-            })
-
-        this.accountService.getAll()
-            .pipe(first())
-            .subscribe((data: any) => {
-                // console.log(data);
-                this.users = data
-
-            })
-
-        this.loading = true
-        this.policyService.getAll().subscribe((data: any) => {
-            // console.log(data);
-            this.policies = data
-            this.loading = false;
-
-        }, (error => {
-            console.log(error);
-            this.loading = false;
-
-        }))
 
     }
 }
