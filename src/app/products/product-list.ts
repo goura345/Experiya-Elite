@@ -61,6 +61,8 @@ export class ProductListComponent implements OnInit {
 
     ngOnInit() {
 
+        this.rowData = JSON.parse(localStorage.getItem('productRowData') || "[]")
+
         this.title = 'Insurer List';
         this.submitTitle = 'SAVE'
 
@@ -77,6 +79,7 @@ export class ProductListComponent implements OnInit {
                 console.log(data);
                 this.products = data
                 this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+                localStorage.setItem('productRowData', JSON.stringify(this.rowData))
 
             }, (error => {
                 console.log(error);

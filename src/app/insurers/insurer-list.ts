@@ -64,6 +64,8 @@ export class InsurerListComponent implements OnInit {
 
     ngOnInit() {
 
+        this.rowData = JSON.parse(localStorage.getItem('insurerRowData') || "[]")
+
         this.title = 'Add Insurer';
         this.submitTitle = 'SAVE'
 
@@ -80,6 +82,8 @@ export class InsurerListComponent implements OnInit {
                 console.log(data);
                 this.insurers = data
                 this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+                localStorage.setItem('insurerRowData', JSON.stringify(this.rowData))
+
 
             }, (error => {
                 console.log(error);

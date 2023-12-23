@@ -57,13 +57,16 @@ export class ListComponent implements OnInit {
 
     ngOnInit() {
 
-        this.loading = true;
+        this.rowData = JSON.parse(localStorage.getItem('userRowData') || "[]")
+
+        // this.loading = true;
         this.accountService.getAll()
             .pipe(first())
             .subscribe((data: any) => {
                 // console.log(data);
                 this.users = data
                 this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+                localStorage.setItem('userRowData', JSON.stringify(this.rowData))
 
             }, (error => {
                 console.log(error);

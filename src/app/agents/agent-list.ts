@@ -80,12 +80,17 @@ export class AgentListComponent implements OnInit {
 
     ngOnInit() {
 
+        this.rowData = JSON.parse(localStorage.getItem('agentRowData') || "[]")
+
+        // return
         this.agentService.getAll()
             .pipe(first())
             .subscribe((data: any) => {
                 // console.log(data);
                 this.agents = data
                 this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+
+                localStorage.setItem('agentRowData', JSON.stringify(this.rowData))
 
             }, (error => {
                 console.log(error);
@@ -125,12 +130,12 @@ export class AgentListComponent implements OnInit {
             if (confirm('Do you really want to delete this POSP?')) {
                 console.log('deleting agent:');
                 this.agentService.delete(event.data.id).subscribe((data) => {
-                  console.log(data);
-                  this.ngOnInit()
+                    console.log(data);
+                    this.ngOnInit()
                 }, (error) => {
-                  console.log(error);
+                    console.log(error);
                 })
-              }
+            }
         }
     }
 }

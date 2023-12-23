@@ -24,6 +24,13 @@ export class HomeComponent {
     policies = []
     loading = false;
 
+    countInfo = {
+        totalAgent: 0,
+        totalInsurer: 0,
+        totalProduct: 0,
+        totalUser: 0,
+        totalPolicy: 0
+    }
     totalStaff = 0
     totalAgent = 0
     totalInsurer = 0
@@ -40,14 +47,27 @@ export class HomeComponent {
 
     ngOnInit() {
 
+        this.countInfo = JSON.parse(localStorage.getItem('DashData') || '{}')
+         
+        // return
         this.accountService.totalDocument().subscribe((data: any) => {
             console.log(data);
-            this.totalStaff = data.user
-            this.totalAgent = data.agent
-            this.totalInsurer = data.insurer
-            this.totalProduct = data.product
-            this.totalPolicy = data.policy
+            // this.totalStaff = data.user
+            // this.totalAgent = data.agent
+            // this.totalInsurer = data.insurer
+            // this.totalProduct = data.product
+            // this.totalPolicy = data.policy
+
+            this.countInfo.totalAgent = data.agent
+            this.countInfo.totalInsurer = data.insurer
+            this.countInfo.totalProduct = data.product
+            this.countInfo.totalUser = data.user
+            this.countInfo.totalPolicy = data.policy
+
+            localStorage.setItem('DashData', JSON.stringify(this.countInfo))
+
         })
 
     }
 }
+

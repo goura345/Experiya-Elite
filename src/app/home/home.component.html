@@ -27,7 +27,7 @@
                                             <h2 class="metric-label text-blue116">POSP </h2>
                                             <p class="metric-value h3">
                                                 <sub><span class="icofont icofont-users-alt-1"></span></sub>
-                                                <span id="agentcount" class="value">{{ totalAgent }}</span>
+                                                <span id="agentcount" class="value">{{ countInfo.totalAgent }}</span>
                                             </p>
                                         </a> <!-- /.metric -->
                                     </div><!-- /metric column -->
@@ -38,7 +38,7 @@
                                             <h2 class="metric-label text-blue116">Insurers </h2>
                                             <p class="metric-value h3">
                                                 <sub><span class="icofont icofont-business-man"></span></sub>
-                                                <span id="spcount" class="value">{{ totalInsurer }}</span>
+                                                <span id="spcount" class="value">{{ countInfo.totalInsurer }}</span>
                                             </p>
                                         </a> <!-- /.metric -->
                                     </div><!-- /metric column -->
@@ -49,7 +49,7 @@
                                             <h2 class="metric-label text-blue116">Products </h2>
                                             <p class="metric-value h3">
                                                 <sub><span class="icofont icofont-business-man"></span></sub>
-                                                <span id="spcount" class="value">{{ totalProduct }}</span>
+                                                <span id="spcount" class="value">{{ countInfo.totalProduct }}</span>
                                             </p>
                                         </a> <!-- /.metric -->
                                     </div><!-- /metric column -->
@@ -62,7 +62,7 @@
                                             <p class="metric-value h3">
                                                 <sub><span class="icofont icofont-users-alt-5"></span></sub>
                                                 <span id="staffcount" class="value">
-                                                    {{totalStaff }} </span>
+                                                    {{ countInfo.totalUser }} </span>
                                             </p>
                                         </a> <!-- /.metric -->
                                     </div><!-- /metric column -->
@@ -74,7 +74,7 @@
                                             <p class="metric-value h3">
                                                 <sub><span class="icofont icofont icofont-ebook"></span></sub>
                                                 <span id="policycount" class="value">
-                                                    {{ totalPolicy }}
+                                                    {{ countInfo.totalPolicy }}
                                                 </span>
                                             </p>
                                         </a> <!-- /.metric -->

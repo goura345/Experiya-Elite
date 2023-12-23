@@ -18,7 +18,7 @@ import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 })
 export class EntrylistComponent {
 
-  loading = true
+  loading = false
   policies: Policy[] = []
   id = ''
 
@@ -102,14 +102,16 @@ export class EntrylistComponent {
 
   ngOnInit() {
 
+    this.rowData = JSON.parse(localStorage.getItem('policyRowData') || "[]")
+
     // return
-    this.loading = true
+    // this.loading = true
     this.policyService.getAll().subscribe((data: any) => {
       // console.log(data);
       this.policies = data
       this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+      localStorage.setItem('policyRowData', JSON.stringify(this.rowData))
       this.loading = false;
-
 
     }, (error => {
       console.log(error);
