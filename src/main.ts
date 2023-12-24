@@ -11,6 +11,9 @@ import { APP_ROUTES } from '@app/app.routes';
 import { environment } from '@environments/environment';
 import { enableProdMode } from '@angular/core';
 
+if (environment.production) {
+    enableProdMode();
+  }
 
 bootstrapApplication(AppComponent, {
     providers: [

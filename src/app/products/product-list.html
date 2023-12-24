@@ -235,8 +235,9 @@
                                 </div>
                                 <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
 
-                                    <ag-grid-angular class="ag-theme-quartz" style="height: 350px;"
-                                        [columnDefs]="colDefs" [rowData]="rowData" (cellClicked)="onEditDelete($event)">
+                                    <ag-grid-angular class="ag-theme-quartz ag-theme-balham " rowSelection="single"
+                                        style="height: 350px;" [columnDefs]="colDefs" [rowData]="rowData"
+                                        (cellClicked)="onEditDelete($event)">
                                     </ag-grid-angular>
 
                                 </div>
@@ -274,7 +275,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="modalPOSPLabel">
-                       {{ title }} </h1>
+                        {{ title }} </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

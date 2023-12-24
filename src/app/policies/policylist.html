@@ -237,9 +237,11 @@
                                     Loading...
                                     }
 
-                                    <ag-grid-angular class="ag-theme-quartz mt-1" style="height: 350px;"
-                                        [columnDefs]="colDefs" [rowData]="rowData" (cellClicked)="onEditDelete($event)">
+                                    <ag-grid-angular class="ag-theme-quartz ag-theme-balham mt-1" style="height: 350px;"
+                                        rowSelection="single" [columnDefs]="colDefs" [rowData]="rowData"
+                                        (cellClicked)="onEditDelete($event)">
                                     </ag-grid-angular>
+
 
                                 </div>
 

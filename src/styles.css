@@ -26766,3 +26766,14 @@ h2.title {
   border-color: red;
 }
 
+
+.ag-theme-balham .ag-row-selected {
+  background-color: #4abbff;
+  background-color: silver;
+ 
+}
+
+.ag-theme-balham .ag-ltr .ag-cell-focus {
+  /* border: 1px solid red; */
+  /* border: 15px solid silver; */
+}

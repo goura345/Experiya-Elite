@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AccountService, PolicyService } from '@app/_services';
+import { PolicyService } from '@app/_services';
 import { Policy } from '@app/_models';
-import { delay } from 'rxjs';
-import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
+
 import { Router } from '@angular/router';
-import { AgGridModule } from 'ag-grid-angular';
+import {  AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 
 @Component({
@@ -17,7 +16,7 @@ import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 
 })
 export class EntrylistComponent {
-
+ 
   loading = false
   policies: Policy[] = []
   id = ''
@@ -90,15 +89,8 @@ export class EntrylistComponent {
   rowData: any[] = []
   editIcon = '<a style="cursor: pointer;"> <i class="bi bi-pencil"></i></a>';
   deleteIcon = '<a style="cursor: pointer;" class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
-  gridOptions: any = {
-    rowSelection: 'single',
-    // alwaysShowHorizontalScroll: true,
-    // alwaysShowVerticalScroll: true,
-    // columnDefs: this.columnDefs,
-    // rowData: this.rowData,
-  };
 
-  constructor(private policyService: PolicyService, private router: Router) { }
+  constructor(private policyService: PolicyService, private router: Router) {  }
 
   ngOnInit() {
 
@@ -120,17 +112,9 @@ export class EntrylistComponent {
     }))
 
   }
-
-  eventEmitted($event: { event: string; value: any }): void {
-    // this.clicked = JSON.stringify($event);    
-    console.log('$event', $event);
-    this.id = $event.value.row.id
-
-    this.router.navigateByUrl('policies/edit/' + this.id)
-
-  }
-
+ 
   onEditDelete(event: any) {
+    console.log(event);
 
     if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {
 
@@ -153,12 +137,16 @@ export class EntrylistComponent {
         }, (error) => {
           console.log(error);
         })
-      }      
+      }
     }
   }
 
-  navigateToMotorPolicy(){
+  navigateToMotorPolicy() {
     this.router.navigateByUrl('/policies/motor/add')
   }
+
+
+
+
 
 }
