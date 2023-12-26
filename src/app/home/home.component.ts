@@ -7,12 +7,12 @@ import { RouterLink } from '@angular/router';
 import { concatMap, first, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { AlertComponent } from "../_components/alert.component";
 
 @Component({
-
     templateUrl: 'home.component.html',
     standalone: true,
-    imports: [BaseComponent, RouterLink, CommonModule]
+    imports: [BaseComponent, RouterLink, CommonModule, AlertComponent]
 })
 export class HomeComponent {
     user: User | null;

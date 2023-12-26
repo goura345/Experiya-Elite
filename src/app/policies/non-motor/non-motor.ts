@@ -41,7 +41,7 @@ export class NonMotorComponent {
   policy: File | null = null
   previous_policy: File | null = null
   pan_card: File | null = null
-  aadhar_card: File | null = null 
+  aadhar_card: File | null = null
   inspection_report: File | null = null
 
   selectedPOSP: string | null = null
@@ -58,7 +58,7 @@ export class NonMotorComponent {
   ) { }
 
   ngOnInit() {
-   
+
     this.id = this.route.snapshot.params['id'];
 
     // form with validation rules
@@ -220,11 +220,12 @@ export class NonMotorComponent {
               .subscribe({
                 next: () => {
                   console.log('Policy Saved!');
-                  this.alertService.success('Policy saved', true);
+                  // this.alertService.success('Policy saved', true);
                   this.router.navigateByUrl('/policies');
                 },
                 error: error => {
-                  this.alertService.error(error);
+                  // this.alertService.error(error);
+                  alert(error)
                   this.submitting = false;
                 }
               })
@@ -243,11 +244,12 @@ export class NonMotorComponent {
         .subscribe({
           next: () => {
             console.log('Policy Saved!');
-            this.alertService.success('Policy saved', true);
+            // this.alertService.success('Policy saved', true);
             this.router.navigateByUrl('/policies');
           },
           error: error => {
-            this.alertService.error(error);
+            // this.alertService.error(error);
+            alert(error)
             this.submitting = false;
           }
         })
@@ -278,7 +280,7 @@ export class NonMotorComponent {
     if (this.pan_card)
       filesArray.push(this.pan_card)
     if (this.aadhar_card)
-      filesArray.push(this.aadhar_card)    
+      filesArray.push(this.aadhar_card)
     if (this.inspection_report)
       filesArray.push(this.inspection_report)
 
@@ -360,6 +362,6 @@ export class NonMotorComponent {
     return new File([event.target.files[0]!], newFileName, { type: event.target.files[0].type });
   }
 
- 
-  
+
+
 }

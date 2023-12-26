@@ -9,15 +9,15 @@ import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 import flatpickr from "flatpickr";
 import { FormsModule } from '@angular/forms';
 import * as moment from 'moment';
+import { AlertComponent } from "../_components/alert.component";
 
 
 @Component({
-  selector: 'app-entrylist',
-  standalone: true,
-  imports: [CommonModule, FormsModule,
-    AgGridModule],
-  templateUrl: './policylist.html',
-
+    selector: 'app-entrylist',
+    standalone: true,
+    templateUrl: './policylist.html',
+    imports: [CommonModule, FormsModule,
+        AgGridModule, AlertComponent]
 })
 export class EntrylistComponent {
 

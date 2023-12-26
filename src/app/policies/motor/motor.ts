@@ -519,11 +519,12 @@ export class MotorComponent {
               .subscribe({
                 next: () => {
                   console.log('Policy Saved!');
-                  this.alertService.success('Policy saved', true);
+                  // this.alertService.success('Policy saved', true);
                   this.router.navigateByUrl('/policies');
                 },
                 error: error => {
-                  this.alertService.error(error);
+                  // this.alertService.error(error);
+                  alert(error);
                   this.submitting = false;
                 }
               })
@@ -531,6 +532,7 @@ export class MotorComponent {
         },
         (error) => {
           console.log(error);
+          alert(error)
         }
       );
 
@@ -542,11 +544,12 @@ export class MotorComponent {
         .subscribe({
           next: () => {
             console.log('Policy Saved!');
-            this.alertService.success('Policy saved', true);
+            // this.alertService.success('Policy saved', true);
             this.router.navigateByUrl('/policies');
           },
           error: error => {
-            this.alertService.error(error);
+            // this.alertService.error(error);
+            alert(error)
             this.submitting = false;
           }
         })
