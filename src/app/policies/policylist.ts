@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PolicyService } from '@app/_services';
 import { Policy } from '@app/_models';
@@ -8,6 +8,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 import flatpickr from "flatpickr";
 import { FormsModule } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-entrylist',
@@ -95,23 +96,23 @@ export class EntrylistComponent {
   frmDateFlatpickr: any;
   toDateFlatpickr: any;
   period = 'today'
-  frmDate: any
-  toDate: any
-
+  frmDate: Date = new Date()
+  toDate: Date = new Date()
+  currentDate: string = '';
   constructor(private policyService: PolicyService, private router: Router) { }
 
   ngOnInit() {
-
+   
     this.frmDateFlatpickr = flatpickr("#frmDate", {
       // enableTime: true,
-      dateFormat: "Y-m-d",
+      // dateFormat: "Y-m-d",
       // defaultDate: new Date(),
       onChange: this.onFrmDateChange.bind(this) // Bind the callback to the component instance
     });
     this.toDateFlatpickr = flatpickr("#toDate", {
       // enableTime: true,
       // defaultDate: new Date(),
-      dateFormat: "Y-m-d",
+      // dateFormat: "Y-m-d",
       onChange: this.onToDateChange.bind(this)
     });
 
@@ -168,7 +169,7 @@ export class EntrylistComponent {
 
   ngOnDestroy() {
     if (this.frmDateFlatpickr) {
-      this.frmDateFlatpickr.destroy();    
+      this.frmDateFlatpickr.destroy();
     }
 
     if (this.toDateFlatpickr) {
@@ -178,7 +179,68 @@ export class EntrylistComponent {
 
   onPeriodChange() {
 
-    if (this.period !== 'custom') {
+    if (this.period === 'today') {
+      this.frmDateFlatpickr.setDate(new Date());
+      this.toDateFlatpickr.setDate(new Date());
+    }
+    else if (this.period === 'yesterday') {
+      let today = new Date();
+      let yesterday = new Date(today);
+      yesterday.setDate(today.getDate() - 1);
+      this.frmDateFlatpickr.setDate(yesterday);
+      this.toDateFlatpickr.setDate(today);
+
+    }
+    else if (this.period === 'this_month') {
+      // calculate date for this month
+      let date = new Date();
+      let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+      let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      console.log("First day = " + firstDay);
+      console.log("Last day = " + lastDay);
+      this.frmDateFlatpickr.setDate(firstDay);
+      this.toDateFlatpickr.setDate(lastDay);
+    }
+    else if (this.period === 'last_month') {
+      // calculate date for last month
+
+      let date = new Date();
+      let firstDayOfLastMonth = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+      let lastDayOfLastMonth = new Date(date.getFullYear(), date.getMonth(), 0);
+
+      console.log("First day of the last month = " + firstDayOfLastMonth);
+      console.log("Last day of the last month = " + lastDayOfLastMonth);
+      this.frmDateFlatpickr.setDate(firstDayOfLastMonth);
+      this.toDateFlatpickr.setDate(lastDayOfLastMonth);
+
+    }
+    else if (this.period === 'this_year') {
+      // calculate date for this year
+
+      let date = new Date();
+      let firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+      let lastDayOfYear = new Date(date.getFullYear(), 11, 31);
+
+      console.log("First day of the year = " + firstDayOfYear);
+      console.log("Last day of the year = " + lastDayOfYear);
+
+      this.frmDateFlatpickr.setDate(firstDayOfYear);
+      this.toDateFlatpickr.setDate(lastDayOfYear);
+    }
+    else if (this.period === 'last_year') {
+      // calculate date for last year
+
+      let date = new Date();
+      let firstDayOfLastYear = new Date(date.getFullYear() - 1, 0, 1);
+      let lastDayOfLastYear = new Date(date.getFullYear() - 1, 11, 31);
+
+      console.log("First day of the last year = " + firstDayOfLastYear);
+      console.log("Last day of the last year = " + lastDayOfLastYear);
+      this.frmDateFlatpickr.setDate(firstDayOfLastYear);
+      this.toDateFlatpickr.setDate(lastDayOfLastYear);
+
+    }
+    else if (this.period === 'custom') {
       this.frmDateFlatpickr.setDate(null);
       this.toDateFlatpickr.setDate(null);
     }
@@ -187,15 +249,45 @@ export class EntrylistComponent {
 
   onFrmDateChange(selectedDates: any, dateStr: any, instance: any) {
 
-    console.log('From Date:', dateStr);
-    this.frmDate = dateStr
+    // console.log('From Date:', dateStr);
+    // this.frmDate = dateStr
+    // console.log(this.frmDateFlatpickr.now);
 
   }
 
   onToDateChange(selectedDates: any, dateStr: any, instance: any) {
 
-    console.log('To Date:', dateStr);
-    this.toDate = dateStr
+    // console.log('To Date:', dateStr);
+
+
+  }
+
+  onFilterPolicy() {
+
+    this.frmDate = this.frmDateFlatpickr.selectedDates[0]
+    this.toDate = this.toDateFlatpickr.selectedDates[0]
+
+    console.log(this.frmDate);
+
+    // Create a Moment.js object from the given date
+    let momentFrmDate = moment(this.frmDate);   
+    let formattedFrmDate = momentFrmDate.format('YYYY-MM-DD HH:mm:ss');
+    console.log('Formatted Date:', formattedFrmDate);
+    let momentToDate = moment(this.toDate);   
+    let formattedToDate = momentToDate.format('YYYY-MM-DD HH:mm:ss');
+    console.log('Formatted Date:', formattedToDate);
+
+    // return
+
+    this.policyService.getFromRange(formattedFrmDate, formattedToDate).subscribe(
+      (data) => {
+        console.log(data);
+
+        this.policies = data
+        this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
+
+      }
+    )
 
   }
 

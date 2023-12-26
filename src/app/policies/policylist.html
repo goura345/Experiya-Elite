@@ -13,6 +13,7 @@
                     </div>
                 </header>
 
+              
                 <!-- .card -->
                 <div class="card card-fluid">
                     <!-- .card-header -->
@@ -34,7 +35,7 @@
 
                                 <div class="col-md-2 col-sm-12">
                                     <div class="form-group">
-                                        <input type="text" id="frmDate" name="frmDate" data-alt-format="Y-m-d"
+                                        <input type="text" id="frmDate" name="frmDate" data-alt-format="Y-m-d" 
                                             data-date-format="d/m/Y" data-toggle="flatpickr" placeholder="DD-MM-YYYY"
                                             class="form-control flatpickr-input" [disabled]="period !== 'custom'"
                                             readonly="readonly">
@@ -42,7 +43,7 @@
                                 </div>
                                 <div class="col-md-2 col-sm-12">
                                     <div class="form-group">
-                                        <input type="text" id="toDate" name="toDate" data-alt-format="Y-m-d"
+                                        <input type="text" id="toDate" name="toDate" data-alt-format="Y-m-d" 
                                             data-date-format="d/m/Y" data-toggle="flatpickr" placeholder="DD-MM-YYYY"
                                             class="form-control datepicker flatpickr-input"
                                             [disabled]="period !== 'custom'" readonly="readonly">
@@ -52,7 +53,7 @@
 
                                 <div class="col-md-6 ">
                                     <div class="form-group">
-                                        <button onclick="entry_filter()" type="button" id="filterlist"
+                                        <button  type="button" id="filterlist" (click)="onFilterPolicy()"
                                             class="btn btn-secondary " title="Filter"><i class="fa fa-search"
                                                 aria-hidden="true"></i> </button>
 
