@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PolicyService, InsurerService, AlertService, AgentService, AccountService, ProductService } from '@app/_services';
 import { first } from 'rxjs';
 import { NgSelectModule } from '@ng-select/ng-select';
+import flatpickr from 'flatpickr';
 
 @Component({
   selector: 'app-non-motor',
@@ -45,6 +46,7 @@ export class NonMotorComponent {
 
   selectedPOSP: string | null = null
 
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -56,7 +58,7 @@ export class NonMotorComponent {
   ) { }
 
   ngOnInit() {
-
+   
     this.id = this.route.snapshot.params['id'];
 
     // form with validation rules
@@ -358,5 +360,6 @@ export class NonMotorComponent {
     return new File([event.target.files[0]!], newFileName, { type: event.target.files[0].type });
   }
 
-
+ 
+  
 }

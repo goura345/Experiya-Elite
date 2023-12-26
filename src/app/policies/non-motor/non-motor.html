@@ -59,6 +59,19 @@
                                                     </div>
 
                                                     <div class="col-md-3 mb-4">
+                                                        <label>Policy Type<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " formControlName="policy_type"
+                                                            placeholder="Select Policy"
+                                                            [ngClass]="{'invalid': submitted && form.controls['policy_type'].errors}">
+                                                            <ng-option value="FRESH">FRESH</ng-option>
+                                                            <ng-option value="RENEWAL">RENEWAL</ng-option>
+                                                            <ng-option value="OWNRENEWAL">OWN RENEWAL</ng-option>
+                                                            <ng-option value="ROLLOVER">ROLLOVER</ng-option>
+                                                            <ng-option value="ENDORSEMENT">ENDORSEMENT</ng-option>
+                                                        </ng-select>
+                                                    </div>
+
+                                                    <div class="col-md-3 mb-4">
                                                         <label>Proposal No.<b style="color: red;">*</b></label>
                                                         <input type="text" class="form-control"
                                                             style="text-transform: uppercase;"
@@ -111,19 +124,7 @@
 
                                                     </div>
 
-                                                    <div class="col-md-3 mb-4">
-                                                        <label>Policy Type<b style="color: red;">*</b></label>
-                                                        <ng-select class="text-uppercase " formControlName="policy_type"
-                                                            placeholder="Select Policy Type"
-                                                            [ngClass]="{'invalid': submitted && form.controls['policy_type'].errors}">
-                                                            <ng-option value="FRESH">FRESH</ng-option>
-                                                            <ng-option value="RENEWAL">RENEWAL</ng-option>
-                                                            <ng-option value="ROLLOVER">ROLLOVER</ng-option>
-                                                            <ng-option value="ENDORSEMENT">ENDORSEMENT</ng-option>
-                                                        </ng-select>
-                                                    </div>
-
-
+                                                  
                                                     <div class="col-md-3 mb-4">
                                                         <label>Risk Start Date<b style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt flatpickr"
@@ -132,7 +133,7 @@
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input type="date" class="form-control flatpickr-input"
+                                                            <input  type="date" class="form-control flatpickr-input"
                                                                 [title]="form.controls['risk_start_date'].value"
                                                                 placeholder="Choose date..."
                                                                 formControlName="risk_start_date"

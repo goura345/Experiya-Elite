@@ -4,19 +4,21 @@ import { PolicyService } from '@app/_services';
 import { Policy } from '@app/_models';
 
 import { Router } from '@angular/router';
-import {  AgGridModule } from 'ag-grid-angular';
+import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+import flatpickr from "flatpickr";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-entrylist',
   standalone: true,
-  imports: [CommonModule,
+  imports: [CommonModule, FormsModule,
     AgGridModule],
   templateUrl: './policylist.html',
 
 })
 export class EntrylistComponent {
- 
+
   loading = false
   policies: Policy[] = []
   id = ''
@@ -90,9 +92,28 @@ export class EntrylistComponent {
   editIcon = '<a style="cursor: pointer;"> <i class="bi bi-pencil"></i></a>';
   deleteIcon = '<a style="cursor: pointer;" class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
 
-  constructor(private policyService: PolicyService, private router: Router) {  }
+  frmDateFlatpickr: any;
+  toDateFlatpickr: any;
+  period = 'today'
+  frmDate: any
+  toDate: any
+
+  constructor(private policyService: PolicyService, private router: Router) { }
 
   ngOnInit() {
+
+    this.frmDateFlatpickr = flatpickr("#frmDate", {
+      // enableTime: true,
+      dateFormat: "Y-m-d",
+      // defaultDate: new Date(),
+      onChange: this.onFrmDateChange.bind(this) // Bind the callback to the component instance
+    });
+    this.toDateFlatpickr = flatpickr("#toDate", {
+      // enableTime: true,
+      // defaultDate: new Date(),
+      dateFormat: "Y-m-d",
+      onChange: this.onToDateChange.bind(this)
+    });
 
     this.rowData = JSON.parse(localStorage.getItem('policyRowData') || "[]")
 
@@ -112,7 +133,7 @@ export class EntrylistComponent {
     }))
 
   }
- 
+
   onEditDelete(event: any) {
     console.log(event);
 
@@ -145,8 +166,37 @@ export class EntrylistComponent {
     this.router.navigateByUrl('/policies/motor/add')
   }
 
+  ngOnDestroy() {
+    if (this.frmDateFlatpickr) {
+      this.frmDateFlatpickr.destroy();    
+    }
 
+    if (this.toDateFlatpickr) {
+      this.toDateFlatpickr.destroy();
+    }
+  }
 
+  onPeriodChange() {
 
+    if (this.period !== 'custom') {
+      this.frmDateFlatpickr.setDate(null);
+      this.toDateFlatpickr.setDate(null);
+    }
+
+  }
+
+  onFrmDateChange(selectedDates: any, dateStr: any, instance: any) {
+
+    console.log('From Date:', dateStr);
+    this.frmDate = dateStr
+
+  }
+
+  onToDateChange(selectedDates: any, dateStr: any, instance: any) {
+
+    console.log('To Date:', dateStr);
+    this.toDate = dateStr
+
+  }
 
 }

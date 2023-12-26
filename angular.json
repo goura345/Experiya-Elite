@@ -22,6 +22,8 @@
             "styles": [
               "src/styles.css",
               "node_modules/ngx-easy-table/style.css"
+            
+            
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"

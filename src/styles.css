@@ -26777,3 +26777,5 @@ h2.title {
   /* border: 1px solid red; */
   /* border: 15px solid silver; */
 }
+
+@import 'flatpickr/dist/flatpickr.min.css';
