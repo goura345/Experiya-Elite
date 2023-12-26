@@ -10,6 +10,7 @@ import flatpickr from "flatpickr";
 import { FormsModule } from '@angular/forms';
 import * as moment from 'moment';
 
+
 @Component({
   selector: 'app-entrylist',
   standalone: true,

@@ -53,8 +53,12 @@ export class PolicyService {
         return this.http.post<any>(`${environment.apiUrl}/policies/uploadFiles`, files);
     }
 
-    getFromRange(frmDate: any, toDate: any) {
+    getFromRange1(frmDate: any, toDate: any) {
         return this.http.post<Policy[]>(`${environment.apiUrl}/policies/getFromRange`, { frmDate, toDate });
+    }
+
+    getFromRange(frmDate: any, toDate: any) {
+        return this.http.get<Policy[]>(`${environment.apiUrl}/policies/getFromRange/${frmDate}|${toDate}`);
     }
 
 }

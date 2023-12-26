@@ -28,6 +28,7 @@
     "flatpickr": "^4.6.13",
     "moment": "^2.29.4",
     "ngx-easy-table": "^15.5.0",
+    "pace-js": "^1.2.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
