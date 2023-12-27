@@ -1,10 +1,7 @@
 export class Payout {
     payout_name = null;
-    insurance_company = null;
-    sp_name = null;
-    sp_brokercode = null;
-    product_name = null;
-    registration_no = null;
+    insurance_company = null;   
+    product_name = null;   
     rto_state = null;
     rto_city = null;
     vehicle_makeby = null;
@@ -34,4 +31,5 @@ export class Payout {
 
     remark = null;
     status = null;
+    createdBy = null;
 }

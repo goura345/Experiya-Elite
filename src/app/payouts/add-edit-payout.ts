@@ -72,11 +72,8 @@ export class AddEditPayoutComponent implements OnInit {
         // form with validation rules
         this.form = this.formBuilder.group({
             payout_name: [null, Validators.required],
-            insurance_company: [null, Validators.required],
-            sp_name: [null, Validators.required],
-            sp_brokercode: [null, Validators.required],
-            product_name: [null],
-            registration_no: [null, Validators.required],
+            insurance_company: [null, Validators.required],        
+            product_name: [null],         
             rto_state: [null, Validators.required],
             rto_city: [null, Validators.required],
             vehicle_makeby: [null, Validators.required],

@@ -49,30 +49,6 @@
                                                 <legend>Payout Details</legend>
                                                 <div class="form-row">
                                                     <div class="col-md-3 mb-4">
-                                                        <label>Vehicle Category<b style="color: red;">*</b></label>
-                                                        <ng-select class="text-uppercase "
-                                                            formControlName="vehicle_catagory"
-                                                            placeholder="Select Category"
-                                                            [ngClass]="{'invalid': submitted && form.controls['vehicle_catagory'].errors}"
-                                                            (change)="addValuesAndValidators()">
-                                                            <ng-option *ngFor="let category of vehicleCategories"
-                                                                [value]="category">{{ category }}</ng-option>
-                                                        </ng-select>
-                                                    </div>
-
-
-                                                    <div class="col-md-3 mb-4">
-                                                        <label>Product Name<b style="color: red;">*</b></label>
-                                                        <ng-select class="text-uppercase "
-                                                            formControlName="product_name" placeholder="Select Product"
-                                                            [ngClass]="{'invalid': submitted && form.controls['product_name'].errors}">
-                                                            <ng-option *ngFor="let product of products"
-                                                                [value]="product.name">{{ product.name }}</ng-option>
-                                                        </ng-select>
-
-                                                    </div>
-
-                                                    <div class="col-md-3 mb-4">
                                                         <label>Payout Name<b style="color: red;">*</b></label>
                                                         <input type="text" class="form-control"
                                                             style="text-transform: uppercase;"
@@ -86,10 +62,31 @@
                                                             formControlName="insurance_company"
                                                             [ngClass]="{'invalid': submitted && form.controls['insurance_company'].errors}">
                                                         </ng-select>
-
+                                                    </div>
+                                                    <div class="col-md-3 mb-4">
+                                                        <label>Product Name<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase "
+                                                            formControlName="product_name" placeholder="Select Product"
+                                                            [ngClass]="{'invalid': submitted && form.controls['product_name'].errors}">
+                                                            <ng-option *ngFor="let product of products"
+                                                                [value]="product.name">{{ product.name }}</ng-option>
+                                                        </ng-select>
 
                                                     </div>
                                                     <div class="col-md-3 mb-4">
+                                                        <label>Vehicle Category<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase "
+                                                            formControlName="vehicle_catagory"
+                                                            placeholder="Select Category"
+                                                            [ngClass]="{'invalid': submitted && form.controls['vehicle_catagory'].errors}"
+                                                            (change)="addValuesAndValidators()">
+                                                            <ng-option *ngFor="let category of vehicleCategories"
+                                                                [value]="category">{{ category }}</ng-option>
+                                                        </ng-select>
+                                                    </div>
+
+
+                                                    <!-- <div class="col-md-3 mb-4">
                                                         <label>Serving Office<b style="color: red;">*</b></label>
                                                         <ng-select class="text-uppercase" formControlName="sp_name"
                                                             placeholder="Select Branch"
@@ -108,8 +105,8 @@
                                                             <ng-option value="110001"> 1100001</ng-option>
                                                         </ng-select>
 
-                                                    </div>
-                                                    <div class="col-md-3 mb-4">
+                                                    </div> -->
+                                                    <!-- <div class="col-md-3 mb-4">
                                                         <label for="registration_no">Registration No.<b
                                                                 style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt">
@@ -118,7 +115,7 @@
                                                                 formControlName="registration_no"
                                                                 [ngClass]="{'invalid': submitted && form.controls['registration_no'].errors}">
                                                         </div>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="col-md-3 mb-4">
                                                         <label>RTO State<b style="color: red;">*</b></label>
@@ -328,6 +325,16 @@
                                                         </ng-select>
                                                     </div>
 
+                                                    <div class="col-md-3 mb-4">
+                                                        <label>CPA<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " formControlName="cpa"
+                                                            placeholder="Select CPA"
+                                                            [ngClass]="{'invalid': submitted && form.controls['cpa'].errors}">
+                                                            <ng-option value="YES">YES</ng-option>
+                                                            <ng-option value="NO">NO</ng-option>
+                                                        </ng-select>
+                                                    </div>
+
 
                                                     <div class="col-md-3 mb-4">
                                                         <label>Policy Type<b style="color: red;">*</b></label>
@@ -342,15 +349,7 @@
                                                         </ng-select>
                                                     </div>
 
-                                                    <div class="col-md-3 mb-4">
-                                                        <label>CPA<b style="color: red;">*</b></label>
-                                                        <ng-select class="text-uppercase " formControlName="cpa"
-                                                            placeholder="Select CPA"
-                                                            [ngClass]="{'invalid': submitted && form.controls['cpa'].errors}">
-                                                            <ng-option value="YES">YES</ng-option>
-                                                            <ng-option value="NO">NO</ng-option>
-                                                        </ng-select>
-                                                    </div>
+
 
 
                                                     <div class="col-md-3 mb-4">
@@ -369,7 +368,7 @@
                                                     <div class="col-md-3 mb-4">
                                                         <label for="remark">Remarks <abbr title=""
                                                                 class="text-danger">*</abbr></label>
-                                                        <input id="remark" type="text" maxlength="255"
+                                                        <input id="remark" type="text" maxlength="255" placeholder="Remark"
                                                             class="form-control" style="text-transform: uppercase;"
                                                             formControlName="remark">
                                                     </div>
@@ -406,15 +405,14 @@
                                             </div>
                                             <div class="row mb-2">
                                                 <label class="col-lg-5">TP Reward<b style="color: red;">*</b></label>
-                                                <input type="text" class="form-control col-lg-6  t" 
+                                                <input type="text" class="form-control col-lg-6  t"
                                                     formControlName="agent_tp_reward"
                                                     [ngClass]="{'invalid': submitted && form.controls['agent_tp_reward'].errors}">
                                             </div>
 
                                             <div class="row mb-2">
-                                                <label class="col-lg-5">TP Amount<b
-                                                        style="color: red;">*</b></label>
-                                                <input type="text" class="form-control col-lg-6 " 
+                                                <label class="col-lg-5">TP Amount<b style="color: red;">*</b></label>
+                                                <input type="text" class="form-control col-lg-6 "
                                                     formControlName="agent_tp_amount"
                                                     [ngClass]="{'invalid': submitted && form.controls['agent_tp_amount'].errors}">
                                             </div>
@@ -444,15 +442,14 @@
                                             </div>
                                             <div class="row mb-2">
                                                 <label class="col-lg-5">TP Reward<b style="color: red;">*</b></label>
-                                                <input type="text" class="form-control col-lg-6  " 
+                                                <input type="text" class="form-control col-lg-6  "
                                                     formControlName="self_tp_reward"
                                                     [ngClass]="{'invalid': submitted && form.controls['self_tp_reward'].errors}">
                                             </div>
 
                                             <div class="row mb-2">
-                                                <label class="col-lg-5">TP Amount<b
-                                                        style="color: red;">*</b></label>
-                                                <input type="text" class="form-control col-lg-6 " 
+                                                <label class="col-lg-5">TP Amount<b style="color: red;">*</b></label>
+                                                <input type="text" class="form-control col-lg-6 "
                                                     formControlName="self_tp_amount"
                                                     [ngClass]="{'invalid': submitted && form.controls['self_tp_amount'].errors}">
                                             </div>
