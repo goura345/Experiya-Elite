@@ -59,18 +59,14 @@
 
                                 <div class="col-md-6 ">
                                     <div class="form-group">
-                                        <button onclick="entry_filter()" type="button" id="filterlist"
+                                        <button  type="button" id="filterlist" 
                                             class="btn btn-secondary " title="Filter"><i class="fa fa-search"
                                                 aria-hidden="true"></i> </button>
 
                                         <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
-                                            onclick="resertDocument()"><i class="icofont icofont-refresh"
+                                            onclick="resertDocument()"><i class="fa fa-refresh " 
                                                 aria-hidden="true"></i>
                                         </button>
-
-                                        <button onclick="addToFilterList()" type="button" id="btnlock"
-                                            class="btn btn-secondary " title="Freeze"><i class="fa fa-snowflake"
-                                                aria-hidden="true"></i> </button>
 
                                         <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
                                             class="btn btn-secondary " title="Download"><i class="fa fa-download"
@@ -79,9 +75,9 @@
                                         <!-- data-toggle="modal" data-target=""  -->
                                         <button type="button" id="bulk_remove" onclick="clearFilterList()"
                                             class="btn btn-secondary" title="Clear filters"><i
-                                                class="icofont icofont-trash" aria-hidden="true"></i> </button>
+                                                class="fa fa-trash" aria-hidden="true"></i> </button>
 
-                                        <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter"
+                                        <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
                                             title="More Filter" onclick="showMoreFilters()"><small>More
                                                 Filter</small></a>
 
