@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { PayoutListComponent } from './payout-list';
-import { AddEditPayoutComponent } from './payout';
+import { AddEditPayoutComponent } from './add-edit-payout';
 
 export const PAYOUT_ROUTES: Routes = [
     { path: '', component: PayoutListComponent },

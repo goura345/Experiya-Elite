@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 import { AccountService, AlertService } from '@app/_services';
 
 @Component({
-    templateUrl: 'payout.html',
+    templateUrl: './add-edit-payout.html',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, NgClass, RouterLink]
 })
@@ -39,10 +39,10 @@ export class AddEditPayoutComponent implements OnInit {
             password: ['', [Validators.minLength(6), ...(!this.id ? [Validators.required] : [])]]
         });
 
-        this.title = 'Add User';
+        this.title = 'Add Payout';
         if (this.id) {
             // edit mode
-            this.title = 'Edit User';
+            this.title = 'Edit Payout';
             this.loading = true;
             this.accountService.getById(this.id)
                 .pipe(first())

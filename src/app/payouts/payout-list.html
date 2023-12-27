@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col">
                             <h1 id="page_heading" class="page-title" style="display: inline-block;"> Payout List </h1>
-                            <a onclick="addNewSomething()" href="#" class="btn btn-secondary btn-sm float-right mr-2"><i
+                            <a routerLink="/payouts/add" class="btn btn-secondary btn-sm float-right mr-2"><i
                                     class="fa fa-plus"></i> Add
                                 New</a>
                         </div>
@@ -22,12 +22,13 @@
                             <div class="row">
                                 <div class="col-md-2 col-sm-12">
                                     <select class="custom-select" name="period" id="select-period">
-                                        <option value="today">Today</option>
-                                        <option value="yesterday">Yesterday</option>
-                                        <option value="this_month">This Month</option>
-                                        <option value="last_month">Last Month</option>
-                                        <option value="current_year">Current Year</option>
-                                        <option value="custom">Custom</option>
+                                        <option value="today">TODAY</option>
+                                        <option value="yesterday">YESTERDAY</option>
+                                        <option value="this_month">THIS MONTH</option>
+                                        <option value="last_month">LAST MONTH</option>
+                                        <option value="this_year">THIS YEAR</option>
+                                        <option value="last_year">LAST YEAR</option>
+                                        <option value="custom">CUSTOM</option>
                                     </select>
                                 </div>
 
@@ -60,32 +61,27 @@
 
                                 <div class="col-md-6 ">
                                     <div class="form-group">
-                                        <button onclick="entry_filter()" type="button" id="filterlist"
-                                            class="btn btn-secondary " title="Filter"><i class="fa fa-search"
-                                                aria-hidden="true"></i> </button>
+                                        <button  type="button" id="filterlist" 
+                                        class="btn btn-secondary " title="Filter"><i class="fa fa-search"
+                                            aria-hidden="true"></i> </button>
 
-                                        <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
-                                            onclick="resertDocument()"><i class="icofont icofont-refresh"
-                                                aria-hidden="true"></i>
-                                        </button>
+                                    <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
+                                        onclick="resertDocument()"><i class="fa fa-refresh " 
+                                            aria-hidden="true"></i>
+                                    </button>
 
-                                        <button onclick="addToFilterList()" type="button" id="btnlock"
-                                            class="btn btn-secondary " title="Freeze"><i class="fa fa-snowflake"
-                                                aria-hidden="true"></i> </button>
+                                    <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
+                                        class="btn btn-secondary " title="Download"><i class="fa fa-download"
+                                            aria-hidden="true"></i> </button>
 
-                                        <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
-                                            class="btn btn-secondary " title="Download"><i class="fa fa-download"
-                                                aria-hidden="true"></i> </button>
+                                    <!-- data-toggle="modal" data-target=""  -->
+                                    <button type="button" id="bulk_remove" onclick="clearFilterList()"
+                                        class="btn btn-secondary" title="Clear filters"><i
+                                            class="fa fa-trash" aria-hidden="true"></i> </button>
 
-                                        <!-- data-toggle="modal" data-target=""  -->
-                                        <button type="button" id="bulk_remove" onclick="clearFilterList()"
-                                            class="btn btn-secondary" title="Clear filters"><i
-                                                class="icofont icofont-trash" aria-hidden="true"></i> </button>
-
-                                        <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter"
-                                            title="More Filter" onclick="showMoreFilters()"><small>More
-                                                Filter</small></a>
-
+                                    <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
+                                        title="More Filter" onclick="showMoreFilters()"><small>More
+                                            Filter</small></a>
 
                                         <div class="modal fade" id="mdlcolsetting"
                                             onmouseenter="document.getElementById('inp_search').focus()"
