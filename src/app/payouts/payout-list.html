@@ -61,27 +61,25 @@
 
                                 <div class="col-md-6 ">
                                     <div class="form-group">
-                                        <button  type="button" id="filterlist" 
-                                        class="btn btn-secondary " title="Filter"><i class="fa fa-search"
-                                            aria-hidden="true"></i> </button>
+                                        <button type="button" id="filterlist" class="btn btn-secondary "
+                                            title="Filter"><i class="fa fa-search" aria-hidden="true"></i> </button>
 
-                                    <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
-                                        onclick="resertDocument()"><i class="fa fa-refresh " 
-                                            aria-hidden="true"></i>
-                                    </button>
+                                        <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
+                                            onclick="resertDocument()"><i class="fa fa-refresh " aria-hidden="true"></i>
+                                        </button>
 
-                                    <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
-                                        class="btn btn-secondary " title="Download"><i class="fa fa-download"
-                                            aria-hidden="true"></i> </button>
+                                        <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
+                                            class="btn btn-secondary " title="Download"><i class="fa fa-download"
+                                                aria-hidden="true"></i> </button>
 
-                                    <!-- data-toggle="modal" data-target=""  -->
-                                    <button type="button" id="bulk_remove" onclick="clearFilterList()"
-                                        class="btn btn-secondary" title="Clear filters"><i
-                                            class="fa fa-trash" aria-hidden="true"></i> </button>
+                                        <!-- data-toggle="modal" data-target=""  -->
+                                        <button type="button" id="bulk_remove" onclick="clearFilterList()"
+                                            class="btn btn-secondary" title="Clear filters"><i class="fa fa-trash"
+                                                aria-hidden="true"></i> </button>
 
-                                    <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
-                                        title="More Filter" onclick="showMoreFilters()"><small>More
-                                            Filter</small></a>
+                                        <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
+                                            title="More Filter" onclick="showMoreFilters()"><small>More
+                                                Filter</small></a>
 
                                         <div class="modal fade" id="mdlcolsetting"
                                             onmouseenter="document.getElementById('inp_search').focus()"
@@ -230,15 +228,15 @@
                                     </div>
                                 </div>
                                 <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
-<!-- 
+                                    <!-- 
                                     <ngx-table style="text-wrap: nowrap" [configuration]="configuration"
                                         [data]="agents" [columns]="columns" (event)="eventEmitted($event)">
                                     </ngx-table> -->
 
                                     <ag-grid-angular class="ag-theme-quartz ag-theme-balham mt-1" style="height: 350px;"
-                                    rowSelection="single" [columnDefs]="colDefs" [rowData]="rowData"
-                                    (cellClicked)="onEditDelete($event)">
-                                </ag-grid-angular>
+                                        rowSelection="single" [columnDefs]="colDefs" [rowData]="rowData"
+                                        (cellClicked)="onEditDelete($event)">
+                                    </ag-grid-angular>
 
                                 </div>
 

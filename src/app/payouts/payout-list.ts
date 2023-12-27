@@ -96,6 +96,7 @@ export class PayoutListComponent implements OnInit {
     console.log(event);
 
     if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {     
+      console.log(event.data.id);
       this.router.navigateByUrl('/payouts/edit/' + event.data.id)
     }
     else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
