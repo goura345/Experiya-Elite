@@ -25,6 +25,7 @@ export class PayoutListComponent implements OnInit {
   colDefs: ColDef[] = [
     { headerName: "SR. NO.", field: 'serialNumber', sortable: true, filter: true },
     { headerName: "PAYOUT NAME", field: 'payout_name', sortable: true, filter: true },
+    { headerName: "POLICY TYPE", field: 'policy_type', sortable: true, filter: true },
     { headerName: "INSURER NAME", field: 'insurance_company', sortable: true, filter: true },
     // { headerName: "SERVICE PROVIDER", field: 'sp_name', sortable: true, filter: true },
     // { headerName: "BROKER CODE", field: 'sp_brokercode', sortable: true, filter: true },
@@ -43,7 +44,6 @@ export class PayoutListComponent implements OnInit {
     { headerName: "COVERAGE TYPE", field: 'coverage_type', sortable: true, filter: true },
     { headerName: "SEATING CAPACITY", field: 'seating_capacity', sortable: true, filter: true },
     { headerName: "GVW", field: 'gvw', sortable: true, filter: true },
-    { headerName: "POLICY TYPE", field: 'policy_type', sortable: true, filter: true },
     { headerName: "CPA", field: 'cpa', sortable: true, filter: true },
     { headerName: "POLICY TERM", field: 'policy_term', sortable: true, filter: true },
 

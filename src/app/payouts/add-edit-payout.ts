@@ -108,7 +108,7 @@ export class AddEditPayoutComponent implements OnInit {
 
         if (this.id) {
             // edit mode    
-            this.submitTitle = 'EDIT PAYOUT'
+            this.submitTitle = 'UPDATE PAYOUT'
             console.log('Getting ID: ', this.id);
 
             this.payoutService.getById(this.id)

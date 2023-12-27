@@ -56,6 +56,18 @@
                                                             [ngClass]="{'invalid': submitted && form.controls['payout_name'].errors}">
                                                     </div>
                                                     <div class="col-md-3 mb-4">
+                                                        <label>Policy Type<b style="color: red;">*</b></label>
+                                                        <ng-select class="text-uppercase " formControlName="policy_type"
+                                                            placeholder="Select Policy Type"
+                                                            [ngClass]="{'invalid': submitted && form.controls['policy_type'].errors}">
+                                                            <ng-option value="FRESH">FRESH</ng-option>
+                                                            <ng-option value="RENEWAL">RENEWAL</ng-option>
+                                                            <ng-option value="ROLLOVER">ROLLOVER</ng-option>
+                                                            <ng-option value="ENDORSEMENT">ENDORSEMENT</ng-option>
+                                                            <ng-option value="USED VEHICLE">USED VEHICLE</ng-option>
+                                                        </ng-select>
+                                                    </div>
+                                                    <div class="col-md-3 mb-4">
                                                         <label>Insurer Name<b style="color: red;">*</b></label>
                                                         <ng-select [items]="insurers" bindLabel="comp_name"
                                                             placeholder="SELECT INSURER" bindValue="comp_name"
@@ -336,18 +348,7 @@
                                                     </div>
 
 
-                                                    <div class="col-md-3 mb-4">
-                                                        <label>Policy Type<b style="color: red;">*</b></label>
-                                                        <ng-select class="text-uppercase " formControlName="policy_type"
-                                                            placeholder="Select Policy Type"
-                                                            [ngClass]="{'invalid': submitted && form.controls['policy_type'].errors}">
-                                                            <ng-option value="FRESH">FRESH</ng-option>
-                                                            <ng-option value="RENEWAL">RENEWAL</ng-option>
-                                                            <ng-option value="ROLLOVER">ROLLOVER</ng-option>
-                                                            <ng-option value="ENDORSEMENT">ENDORSEMENT</ng-option>
-                                                            <ng-option value="USED VEHICLE">USED VEHICLE</ng-option>
-                                                        </ng-select>
-                                                    </div>
+                                                 
 
 
 
