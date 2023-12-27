@@ -6,7 +6,7 @@
                 <header class="page-title-bar">
                     <div class="row">
                         <div class="col">
-                            <h1 id="page_heading" class="page-title" style="display: inline-block;"> Slab List </h1>
+                            <h1 id="page_heading" class="page-title" style="display: inline-block;"> Payout List </h1>
                             <a onclick="addNewSomething()" href="#" class="btn btn-secondary btn-sm float-right mr-2"><i
                                     class="fa fa-plus"></i> Add
                                 New</a>
@@ -234,10 +234,15 @@
                                     </div>
                                 </div>
                                 <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
-
+<!-- 
                                     <ngx-table style="text-wrap: nowrap" [configuration]="configuration"
                                         [data]="agents" [columns]="columns" (event)="eventEmitted($event)">
-                                    </ngx-table>
+                                    </ngx-table> -->
+
+                                    <ag-grid-angular class="ag-theme-quartz ag-theme-balham mt-1" style="height: 350px;"
+                                    rowSelection="single" [columnDefs]="colDefs" [rowData]="rowData"
+                                    (cellClicked)="onEditDelete($event)">
+                                </ag-grid-angular>
 
                                 </div>
 

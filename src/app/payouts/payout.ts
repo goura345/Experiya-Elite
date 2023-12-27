@@ -7,11 +7,11 @@ import { first } from 'rxjs/operators';
 import { AccountService, AlertService } from '@app/_services';
 
 @Component({
-    templateUrl: 'slab.html',
+    templateUrl: 'payout.html',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, NgClass, RouterLink]
 })
-export class AddEditSlabComponent implements OnInit {
+export class AddEditPayoutComponent implements OnInit {
     form!: FormGroup;
     id?: string;
     title!: string;
