@@ -48,27 +48,25 @@
                                     </div>
                                 </div>
 
-                            
+
 
                                 <div class="col-md-6 ">
                                     <div class="form-group">
-                                        <button  type="button" id="filterlist" 
-                                            class="btn btn-secondary " title="Filter"><i class="fa fa-search"
-                                                aria-hidden="true"></i> </button>
+                                        <button type="button" id="filterlist" class="btn btn-secondary "
+                                            title="Filter"><i class="fa fa-search" aria-hidden="true"></i> </button>
 
                                         <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
-                                            onclick="resertDocument()"><i class="fa fa-refresh " 
-                                                aria-hidden="true"></i>
+                                            onclick="resertDocument()"><i class="fa fa-refresh " aria-hidden="true"></i>
                                         </button>
 
-                                        <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
+                                        <button type="button" (click)="exportToExcel()" id="download_inslist"
                                             class="btn btn-secondary " title="Download"><i class="fa fa-download"
                                                 aria-hidden="true"></i> </button>
 
                                         <!-- data-toggle="modal" data-target=""  -->
                                         <button type="button" id="bulk_remove" onclick="clearFilterList()"
-                                            class="btn btn-secondary" title="Clear filters"><i
-                                                class="fa fa-trash" aria-hidden="true"></i> </button>
+                                            class="btn btn-secondary" title="Clear filters"><i class="fa fa-trash"
+                                                aria-hidden="true"></i> </button>
 
                                         <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
                                             title="More Filter" onclick="showMoreFilters()"><small>More
@@ -223,9 +221,56 @@
                                 </div>
                                 <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
 
-                                    <ag-grid-angular class="ag-theme-quartz ag-theme-balham"  rowSelection="single" style="height: 350px;" 
-                                        [columnDefs]="colDefs" [rowData]="rowData" (cellClicked)="onEditDelete($event)">
+                                    <ag-grid-angular class="ag-theme-quartz ag-theme-balham" rowSelection="single"
+                                        style="height: 350px;" [columnDefs]="colDefs" [rowData]="rowData"
+                                        (cellClicked)="onEditDelete($event)">
                                     </ag-grid-angular>
+
+                                    <!-- only for downloads -->
+                                    <table hidden id="table" class="table" *ngIf="exportData.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" *ngFor="let column of colDefs">{{ column.headerName }}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-uppercase" *ngFor="let item of exportData">
+                                                <!-- <th scope="row">1</th> -->
+                                                <td>{{ item.serialNumber }}</td>
+                                                <td>{{ item.posp_code }}</td>
+                                                <td>{{ item.registration_code }}</td>
+                                                <td>{{ item.full_name }}</td>
+                                                <td>{{ item.gender }}</td>
+                                                <td>{{ item.email_id }}</td>
+                                                <td>{{ item.mob_no }}</td>
+
+                                                <td>{{ item.address }}</td>
+                                                <td>{{ item.state }}</td>
+                                                <td>{{ item.city }}</td>
+                                                <td>{{ item.pincode }}</td>
+                                                <td>{{ item.rural_urban }}</td>
+                                                <td>{{ item.slab }}</td>
+                                                <td>{{ item.GSTIN }}</td>
+                                                <td>{{ item.account_no }}</td>
+
+                                                <td>{{ item.ifsc_code }}</td>
+                                                <td>{{ item.bank_name }}</td>
+                                                <td>{{ item.basic_qualification }}</td>
+                                                <td>{{ item.aadhar_card }}</td>
+                                                <td>{{ item.pan_card }}</td>
+                                                <td>{{ item.training_certificate }}</td>
+                                                <td>{{ item.appointment_certificate }}</td>
+                                                <td>{{ item.agreement_certificate }}</td>
+                                                <td>{{ item.bank_details }}</td>
+
+                                                <td>{{ item.login_id }}</td>
+                                                <td>{{ item.created_by }}</td>
+                                                <td>{{ item.status }}</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
                                 </div>
 

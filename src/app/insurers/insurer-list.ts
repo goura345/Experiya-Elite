@@ -4,11 +4,12 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { AlertService, InsurerService } from '@app/_services';
+import { AlertService, InsurerService, PolicyService } from '@app/_services';
 import { User } from '@app/_models';
 import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -55,6 +56,8 @@ export class InsurerListComponent implements OnInit {
         // columnDefs: this.columnDefs,
         // rowData: this.rowData,
     };
+    exportData: any[] = []
+
 
     @ViewChild('addBtn') addBtn: ElementRef | null = null
     @ViewChild('closeBtn') closeBtn: ElementRef | null = null
@@ -117,7 +120,7 @@ export class InsurerListComponent implements OnInit {
             // this.router.navigateByUrl('/insurers/edit/' + event.data.id)
 
             this.addBtn?.nativeElement.click()
-            this.id = event.data.id          
+            this.id = event.data.id
             this.title = 'Update Insurer'
             let insurer = this.insurers.find(item => item.id === this.id)
             console.log(insurer);
@@ -175,10 +178,19 @@ export class InsurerListComponent implements OnInit {
             : this.insurerService.register(this.form.value);
     }
 
-    resetForm(){
+    resetForm() {
         this.form.reset()
         this.id = ''
         this.title = 'Add Insurer'
+    }
+
+    exportToExcel() {
+        this.exportData = this.rowData;
+        setTimeout(() => {
+            var elt = document.getElementById('table');
+            var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+            XLSX.writeFile(wb, ('MySheetName.' + ('xlsx' || 'xlsx')));
+        }, 1000)
     }
 
 }

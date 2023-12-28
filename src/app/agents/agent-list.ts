@@ -4,10 +4,12 @@ import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { AgentService } from '@app/_services';
+import { AgentService, PolicyService } from '@app/_services';
 import { User } from '@app/_models';
 import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+import * as XLSX from 'xlsx';
+
 
 @Component({
     templateUrl: 'agent-list.html',
@@ -75,6 +77,7 @@ export class AgentListComponent implements OnInit {
         // rowData: this.rowData,
     };
 
+    exportData: any[] = []
 
     constructor(private agentService: AgentService, private router: Router) { }
 
@@ -138,4 +141,14 @@ export class AgentListComponent implements OnInit {
             }
         }
     }
+
+    exportToExcel() {
+        this.exportData = this.rowData;
+        setTimeout(() => {
+          var elt = document.getElementById('table');
+          var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+          XLSX.writeFile(wb, ('MySheetName.' + ('xlsx' || 'xlsx')));
+        }, 1000)
+      }
+
 }

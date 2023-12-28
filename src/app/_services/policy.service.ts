@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Policy } from '@app/_models';
 import { Observable } from 'rxjs';
+import * as XLSX from 'xlsx';
 
 
 @Injectable({ providedIn: 'root' })
@@ -60,5 +61,8 @@ export class PolicyService {
     getFromRange(frmDate: any, toDate: any) {
         return this.http.get<Policy[]>(`${environment.apiUrl}/policies/getFromRange/${frmDate}|${toDate}`);
     }
+
+    
+    
 
 }

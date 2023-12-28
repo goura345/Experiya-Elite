@@ -59,7 +59,7 @@
                                                 aria-hidden="true"></i>
                                         </button>
 
-                                        <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
+                                        <button type="button" (click)="exportToExcel()" id="download_inslist"
                                             class="btn btn-secondary " title="Download"><i class="fa fa-download"
                                                 aria-hidden="true"></i> </button>
 
@@ -225,6 +225,24 @@
                                         style="height: 350px;" [columnDefs]="colDefs" [rowData]="rowData"
                                         (cellClicked)="onEditDelete($event)">
                                     </ag-grid-angular>
+
+                                     <!-- only for downloads -->
+                                     <table hidden id="table" class="table" *ngIf="exportData.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" *ngFor="let column of colDefs">{{ column.headerName }}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-uppercase" *ngFor="let item of exportData">
+                                                <!-- <th scope="row">1</th> -->
+                                                <td>{{ item.serialNumber }}</td>
+                                                <td>{{ item.name }}</td>                                                                                              
+                                                <td>{{ item.status }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
                                 </div>
 

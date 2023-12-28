@@ -9,6 +9,7 @@ import { AccountService, PayoutService, PolicyService } from '@app/_services';
 import { User } from '@app/_models';
 import { AgGridModule, } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
+import * as XLSX from 'xlsx';
 
 @Component({
   templateUrl: 'payout-list.html',
@@ -74,6 +75,8 @@ export class PayoutListComponent implements OnInit {
   editIcon = '<a style="cursor: pointer;"> <i class="bi bi-pencil"></i></a>';
   deleteIcon = '<a style="cursor: pointer;" class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
 
+  exportData: any[] = []
+
   constructor(private payoutService: PayoutService, private router: Router) { }
 
   ngOnInit() {
@@ -112,6 +115,13 @@ export class PayoutListComponent implements OnInit {
     }
   }
 
-
+  exportToExcel() {
+    this.exportData = this.rowData;
+    setTimeout(() => {
+      var elt = document.getElementById('table');
+      var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+      XLSX.writeFile(wb, ('MySheetName.' + ('xlsx' || 'xlsx')));
+    }, 1000)
+  }
 
 }

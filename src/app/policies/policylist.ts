@@ -4,20 +4,20 @@ import { PolicyService } from '@app/_services';
 import { Policy } from '@app/_models';
 
 import { Router } from '@angular/router';
-import { AgGridModule } from 'ag-grid-angular';
+import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 import flatpickr from "flatpickr";
 import { FormsModule } from '@angular/forms';
 import * as moment from 'moment';
 import { AlertComponent } from "../_components/alert.component";
-
+import * as XLSX from 'xlsx';
 
 @Component({
-    selector: 'app-entrylist',
-    standalone: true,
-    templateUrl: './policylist.html',
-    imports: [CommonModule, FormsModule,
-        AgGridModule, AlertComponent]
+  selector: 'app-entrylist',
+  standalone: true,
+  templateUrl: './policylist.html',
+  imports: [CommonModule, FormsModule,
+    AgGridModule, AlertComponent]
 })
 export class EntrylistComponent {
 
@@ -100,10 +100,12 @@ export class EntrylistComponent {
   frmDate: Date = new Date()
   toDate: Date = new Date()
   currentDate: string = '';
+  exportData: any[] = []
+
   constructor(private policyService: PolicyService, private router: Router) { }
 
   ngOnInit() {
-   
+
     this.frmDateFlatpickr = flatpickr("#frmDate", {
       // enableTime: true,
       // dateFormat: "Y-m-d",
@@ -271,10 +273,10 @@ export class EntrylistComponent {
     console.log(this.frmDate);
 
     // Create a Moment.js object from the given date
-    let momentFrmDate = moment(this.frmDate);   
+    let momentFrmDate = moment(this.frmDate);
     let formattedFrmDate = momentFrmDate.format('YYYY-MM-DD HH:mm:ss');
     console.log('Formatted Date:', formattedFrmDate);
-    let momentToDate = moment(this.toDate);   
+    let momentToDate = moment(this.toDate);
     let formattedToDate = momentToDate.format('YYYY-MM-DD HH:mm:ss');
     console.log('Formatted Date:', formattedToDate);
 
@@ -290,6 +292,15 @@ export class EntrylistComponent {
       }
     )
 
+  }
+
+  exportToExcel() {
+    this.exportData = this.rowData;
+    setTimeout(() => {
+      var elt = document.getElementById('table');
+      var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+      XLSX.writeFile(wb, ('MySheetName.' + ('xlsx' || 'xlsx')));
+    }, 1000)
   }
 
 }

@@ -68,7 +68,7 @@
                                             onclick="resertDocument()"><i class="fa fa-refresh " aria-hidden="true"></i>
                                         </button>
 
-                                        <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
+                                        <button type="button" (click)="exportToExcel()" id="download_inslist"
                                             class="btn btn-secondary " title="Download"><i class="fa fa-download"
                                                 aria-hidden="true"></i> </button>
 
@@ -237,6 +237,55 @@
                                         rowSelection="single" [columnDefs]="colDefs" [rowData]="rowData"
                                         (cellClicked)="onEditDelete($event)">
                                     </ag-grid-angular>
+
+                                    <!-- only for downloads -->
+                                    <table hidden id="table" class="table" *ngIf="exportData.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" *ngFor="let column of colDefs">{{ column.headerName }}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-uppercase" *ngFor="let item of exportData">
+                                                <!-- <th scope="row">1</th> -->
+                                                <td>{{ item.serialNumber }}</td>
+                                                <td>{{ item.payout_name }}</td>
+                                                <td>{{ item.policy_type }}</td>
+                                                <td>{{ item.insurance_company }}</td>
+                                                <td>{{ item.product_name }}</td>
+                                                <td>{{ item.vehicle_catagory }}</td>
+                                                <td>{{ item.vehicle_makeby }}</td>
+                                                <td>{{ item.vehicle_model }}</td>
+                                                <td>{{ item.vehicle_fuel_type }}</td>
+                                                <td>{{ item.rto_state }}</td>
+                                                <td>{{ item.rto_city }}</td>
+                                                <td>{{ item.mfg_year }}</td>
+                                                <td>{{ item.addon }}</td>
+                                                <td>{{ item.ncb }}</td>
+                                                <td>{{ item.cubic_capacity }}</td>
+                                                <td>{{ item.coverage_type }}</td>
+                                                <td>{{ item.seating_capacity }}</td>
+                                                <td>{{ item.gvw }}</td>
+                                                <td>{{ item.cpa }}</td>
+                                                <td>{{ item.policy_term }}</td>
+
+                                                <td>{{ item.agent_od_reward }}</td>
+                                                <td>{{ item.agent_od_amount }}</td>
+                                                <td>{{ item.agent_tp_reward }}</td>
+                                                <td>{{ item.agent_tp_amount }}</td>
+
+                                                <td>{{ item.self_od_reward }}</td>
+                                                <td>{{ item.self_od_amount }}</td>
+                                                <td>{{ item.self_tp_reward }}</td>
+                                                <td>{{ item.self_tp_amount }}</td>
+                                                
+                                                <td>{{ item.remark }}</td>
+                                                <td>{{ item.status }}</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
                                 </div>
 

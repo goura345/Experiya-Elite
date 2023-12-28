@@ -1,6 +1,6 @@
 <div class="app-main ms-5">
     <div class="wrapper">
-      
+
         <div class="page" id="entrylist">
             <div class="page-inner text-blue116">
                 <header class="page-title-bar">
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </header>
-              
+
                 <!-- .card -->
                 <div class="card card-fluid">
                     <!-- .card-header -->
@@ -35,7 +35,7 @@
 
                                 <div class="col-md-2 col-sm-12">
                                     <div class="form-group">
-                                        <input type="text" id="frmDate" name="frmDate" data-alt-format="Y-m-d" 
+                                        <input type="text" id="frmDate" name="frmDate" data-alt-format="Y-m-d"
                                             data-date-format="d/m/Y" data-toggle="flatpickr" placeholder="DD-MM-YYYY"
                                             class="form-control flatpickr-input" [disabled]="period !== 'custom'"
                                             readonly="readonly">
@@ -43,33 +43,32 @@
                                 </div>
                                 <div class="col-md-2 col-sm-12">
                                     <div class="form-group">
-                                        <input type="text" id="toDate" name="toDate" data-alt-format="Y-m-d" 
+                                        <input type="text" id="toDate" name="toDate" data-alt-format="Y-m-d"
                                             data-date-format="d/m/Y" data-toggle="flatpickr" placeholder="DD-MM-YYYY"
                                             class="form-control datepicker flatpickr-input"
                                             [disabled]="period !== 'custom'" readonly="readonly">
                                     </div>
                                 </div>
-                              
+
 
                                 <div class="col-md-6 ">
                                     <div class="form-group">
-                                        <button  type="button" id="filterlist" (click)="onFilterPolicy()"
+                                        <button type="button" id="filterlist" (click)="onFilterPolicy()"
                                             class="btn btn-secondary " title="Filter"><i class="fa fa-search"
                                                 aria-hidden="true"></i> </button>
 
                                         <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
-                                            onclick="resertDocument()"><i class="fa fa-refresh " 
-                                                aria-hidden="true"></i>
+                                            onclick="resertDocument()"><i class="fa fa-refresh " aria-hidden="true"></i>
                                         </button>
 
-                                        <button type="button" onclick="ExportToExcel('xlsx')" id="download_inslist"
+                                        <button type="button" (click)="exportToExcel()" id="download_inslist"
                                             class="btn btn-secondary " title="Download"><i class="fa fa-download"
                                                 aria-hidden="true"></i> </button>
 
                                         <!-- data-toggle="modal" data-target=""  -->
                                         <button type="button" id="bulk_remove" onclick="clearFilterList()"
-                                            class="btn btn-secondary" title="Clear filters"><i
-                                                class="fa fa-trash" aria-hidden="true"></i> </button>
+                                            class="btn btn-secondary" title="Clear filters"><i class="fa fa-trash"
+                                                aria-hidden="true"></i> </button>
 
                                         <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
                                             title="More Filter" onclick="showMoreFilters()"><small>More
@@ -124,7 +123,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-2 ">
 
                                 </div>
@@ -233,6 +232,74 @@
                                         (cellClicked)="onEditDelete($event)">
                                     </ag-grid-angular>
 
+                                    <!-- only for downloads -->
+                                    <table hidden id="table" class="table" *ngIf="exportData.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" *ngFor="let column of colDefs">{{ column.headerName }}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-uppercase" *ngFor="let item of exportData">
+                                                <!-- <th scope="row">1</th> -->
+                                                <td>{{ item.serialNumber }}</td>
+                                                <td>{{ item.proposal_no }}</td>
+                                                <td>{{ item.policy_no }}</td>
+                                                <td>{{ item.customer_name }}</td>
+                                                <td>{{ item.insurance_company }}</td>
+                                                <td>{{ item.sp_name }}</td>
+                                                <td>{{ item.sp_brokercode }}</td>
+                                                <td>{{ item.product_name }}</td>
+                                                <td>{{ item.registration_no }}</td>
+                                                <td>{{ item.rto_state }}</td>
+                                                <td>{{ item.rto_city }}</td>
+                                                <td>{{ item.vehicle_catagory }}</td>
+                                                <td>{{ item.vehicle_makeby }}</td>
+                                                <td>{{ item.vehicle_model }}</td>
+                                                <td>{{ item.vehicle_fuel_type }}</td>
+
+                                                <td>{{ item.mfg_year }}</td>
+                                                <td>{{ item.addon }}</td>
+                                                <td>{{ item.ncb }}</td>
+                                                <td>{{ item.cubic_capacity }}</td>
+                                                <td>{{ item.coverage_type }}</td>
+                                                <td>{{ item.seating_capacity }}</td>
+                                                <td>{{ item.gvw }}</td>
+                                                <td>{{ item.policy_type }}</td>
+                                                <td>{{ item.cpa }}</td>
+
+                                                <td>{{ item.risk_start_date }}</td>
+                                                <td>{{ item.risk_end_date }}</td>
+                                                <td>{{ item.issue_date }}</td>
+                                                <td>{{ item.insured_age }}</td>
+                                                <td>{{ item.policy_term }}</td>
+                                                <td>{{ item.pos }}</td>
+                                                <td>{{ item.bqp }}</td>
+                                                <td>{{ item.employee }}</td>
+                                                <td>{{ item.remark }}</td>
+
+                                                <td>{{ item.OD_premium }}</td>
+                                                <td>{{ item.TP_terrorism }}</td>
+                                                <td>{{ item.net }}</td>
+                                                <td>{{ item.gst_amount }}</td>
+                                                <td>{{ item.gst_gcv_amount }}</td>
+                                                <td>{{ item.total }}</td>
+                                                <td>{{ item.payment_mode }}</td>
+                                                <td>{{ item.proposal }}</td>
+                                                <td>{{ item.mandate }}</td>
+                                                <td>{{ item.policy }}</td>
+                                                <td>{{ item.previous_policy }}</td>
+                                                <td>{{ item.pan_card }}</td>
+                                                <td>{{ item.aadhar_card }}</td>
+                                                <td>{{ item.vehicle_rc }}</td>
+                                                <td>{{ item.inspection_report }}</td>
+                                                <td>{{ item.status }}</td>
+
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
                                 </div>
 
