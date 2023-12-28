@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { AccountService } from './_services';
@@ -14,10 +14,12 @@ import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 @Component({
     selector: 'app-root', templateUrl: 'app.component.html',
     standalone: true,
-    imports: [NgIf, RouterOutlet, RouterLink, RouterLinkActive, AlertComponent, BaseComponent, AgGridModule]
+    imports: [NgIf, RouterOutlet, RouterLink, RouterLinkActive, AlertComponent, BaseComponent, AgGridModule, CommonModule]
 })
 export class AppComponent {
     user?: User | null;
+
+    visible = true
 
     constructor(private accountService: AccountService) {
         this.accountService.user.subscribe(x => this.user = x);
@@ -25,6 +27,10 @@ export class AppComponent {
 
     logout() {     
         this.accountService.logout();
+    }
+
+    showMenu(){      
+        this.visible = !this.visible
     }
 
 }

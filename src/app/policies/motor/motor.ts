@@ -505,6 +505,9 @@ export class MotorComponent {
       formData.append('files', filesArray[i]);
     }
 
+    // Store to local storage for further actions like payouts like so..
+    localStorage.setItem('motorFormValue', JSON.stringify(this.form.value))
+    
     this.submitting = true;
 
     if (filesArray.length > 0) {
@@ -520,7 +523,8 @@ export class MotorComponent {
                 next: () => {
                   console.log('Policy Saved!');
                   // this.alertService.success('Policy saved', true);
-                  this.router.navigateByUrl('/policies');
+                  // this.router.navigateByUrl('/policies');
+                  this.router.navigateByUrl('/payouts/list-apply-payout');
                 },
                 error: error => {
                   // this.alertService.error(error);
@@ -545,7 +549,9 @@ export class MotorComponent {
           next: () => {
             console.log('Policy Saved!');
             // this.alertService.success('Policy saved', true);
-            this.router.navigateByUrl('/policies');
+            // this.router.navigateByUrl('/policies');
+            this.router.navigateByUrl('/payouts/list-apply-payout');
+
           },
           error: error => {
             // this.alertService.error(error);

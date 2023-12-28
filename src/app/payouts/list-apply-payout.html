@@ -1,7 +1,7 @@
 <div class="app-main ms-5">
     <div class="wrapper">
         <form>
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="m-4" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 id="PayoutModalLabel" class="modal-title"> Payouts</h5>
@@ -9,42 +9,25 @@
                     <div class="modal-body">
                         <table class="table dataTable table-bordered">
                             <tbody>
-                                <tr>
-                                    <th class="text-center">Select</th>
-                                    <th>Payout Name</th>
-                                    <th>Slab</th>
-                                    <th class="text-center">Reward On</th>
-                                    <th class="text-center">Reward %age</th>
+                                <tr class="text-center">
+                                    <th class="text-center">SELECT</th>
+                                    <th>PAYOUT NAME</th>                                  
+                                    <th>OD REWARD</th>
+                                    <th>OD AMOUNT</th>
+                                    <th>TP REWARD</th>
+                                    <th>TP AMOUNT</th>                                 
                                 </tr>
 
-                                <tr>
-                                    <td class="text-center">
+                                <tr *ngFor="let payout of payouts" class="text-center">
+                                    <td>
                                         <input type="radio" value="40" checked="" class="radio" name="payout">
                                     </td>
-                                    <td>test-payout</td>
-                                    <td>ghghgh</td>
-                                    <td class="text-center">ghghgh</td>
-                                    <td class="text-center">gfgfgfg</td>
-                                </tr>
+                                    <td>{{ payout.payout_name }}</td>
 
-                                <tr>
-                                    <td class="text-center">
-                                        <input type="radio" value="40" checked="" class="radio" name="payout">
-                                    </td>
-                                    <td>test-payout</td>
-                                    <td>ghghgh</td>
-                                    <td class="text-center">ghghgh</td>
-                                    <td class="text-center">gfgfgfg</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-center">
-                                        <input type="radio" value="40" checked="" class="radio" name="payout">
-                                    </td>
-                                    <td >test-2 </td>
-                                    <td>ghghgh</td>
-                                    <td class="text-center">ghghgh</td>
-                                    <td class="text-center">gfgfgfg</td>
+                                    <td>{{ payout.agent_od_reward }}</td>
+                                    <td>{{ payout.agent_od_amount }}</td>
+                                    <td>{{ payout.agent_tp_reward }}</td>
+                                    <td>{{ payout.agent_tp_amount }}</td>
                                 </tr>
 
                             </tbody>

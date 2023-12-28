@@ -59,7 +59,7 @@
                     <!-- .top-bar -->
                     <div class="top-bar">
 
-                      
+
                         <!-- .top-bar-brand -->
                         <div class="top-bar-brand d-none1" style="background: #346CB0;">
                             <!-- toggle aside menu -->
@@ -89,7 +89,7 @@
                             </div>
                             <!-- /.top-bar-item -->
                             <!-- .top-bar-item -->
-                          
+
 
                             <div class="top-bar-item top-bar-item-full d-md-none d-lg-none d-xl-none">
                                 <!-- <img src="{%static 'images/logo.png' %}" width="150px"> -->
@@ -128,14 +128,16 @@
                                         <div class="dropdown-arrow d-lg-none" x-arrow=""></div>
                                         <div class="dropdown-arrow ml-3 d-none d-lg-block"></div>
                                         <h6 class="dropdown-header d-none d-md-block d-lg-none"> Demo </h6>
-                                    
-                                        <a class="dropdown-item" style="color: #FFFFFF; background: #346CB0; cursor: pointer;">
+
+                                        <a class="dropdown-item"
+                                            style="color: #FFFFFF; background: #346CB0; cursor: pointer;">
                                             <i class="fa fa-key" style="color: #FFFFFF;" aria-hidden="true"
                                                 id='icon'></i>&nbsp;&nbsp;
                                             Profile
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a (click)="logout()" class="dropdown-item" style="color: #FFFFFF; background: #346CB0; cursor: pointer;">
+                                        <a (click)="logout()" class="dropdown-item"
+                                            style="color: #FFFFFF; background: #346CB0; cursor: pointer;">
                                             <i class="fa fa-sign-out" style="color: #FFFFFF;" aria-hidden="true"
                                                 id='icon'></i>&nbsp;&nbsp; Logout
                                         </a>
@@ -185,15 +187,16 @@
                                             <span class="menu-text text-blue"
                                                 style="margin-left: 10px;">Dashboard</span>
                                         </a>
+
                                     </li>
 
-                                    <li class="menu-item has-child" style="width: 100%;">
-                                        <a href="#" class="menu-link">
+                                    <li class="menu-item has-child" style="width: 100%;" (click)="showMenu()">
+                                        <a class="menu-link">
                                             <i class="fa fa-book text-blue" aria-hidden="true" id='icon'></i>
                                             <span class="menu-text text-blue" style="margin-left: 10px;">New
                                                 Policy</span></a>
 
-                                        <ul class="">
+                                        <ul class="" [ngClass]="{'menu dropdown': visible}">
 
                                             <li class="menu-item" routerLink="policies/motor/add" style="width: 100%;">
                                                 <a style="margin-left: 1rem; " class="menu-link text-blue">Motor</a>
@@ -310,6 +313,15 @@
                                         </a>
                                     </li>
 
+                                    <li class="menu-header">Settings </li>
+                                    <!-- /.menu-header -->
+                                    <li class="menu-item ">
+                                        <a class="menu-link">
+                                            <i class='fa fa-user-circle text-blue' id='icon'></i>
+                                            <span class="menu-text text-blue" style="color:#346cb0; margin-left: 10px;">Profile</span></a>
+                                        <!-- child menu -->
+                                    </li>
+                                   
                                 </ul>
 
                             </nav>
@@ -330,7 +342,7 @@
         </div>
 
         <div class="col">
-            <alert></alert>
+            <!-- <alert></alert> -->
             <router-outlet></router-outlet>
 
         </div>

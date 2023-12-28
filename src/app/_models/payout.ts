@@ -1,13 +1,13 @@
 export class Payout {
     payout_name = null;
     insurance_company = null;   
-    product_name = null;   
-    rto_state = null;
-    rto_city = null;
+    product_name = null;      
+    vehicle_catagory = null;
     vehicle_makeby = null;
     vehicle_model = null;
-    vehicle_catagory = null;
     vehicle_fuel_type = null;
+    rto_state = null;
+    rto_city = null;
     mfg_year = null;
     addon = null;
     ncb = null;
