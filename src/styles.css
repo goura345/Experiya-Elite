@@ -26709,16 +26709,16 @@ h2.title {
 }
 
 ::-webkit-scrollbar-thumb {
-  /* background: #30619f;
+  background: #30619f;
   border: 0 none #fff;
-  border-radius: 0; */
-  /* background: #f7c46c; */
-  background: silver;
+  border-radius: 0;
+  /* background: #f7c46c; 
+   background: silver; */
 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  /* background: #f7c46c; */
+  background: #f7c46c;
 }
 
 
