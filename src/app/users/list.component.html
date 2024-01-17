@@ -1,7 +1,7 @@
 <div class="app-main ms-5">
     <div class="wrapper">
         <div class="page" id="entrylist">
-            <div class="page-inner text-blue116">
+            <div class="page-inner text-blue116" style="margin-left: 200px;">
                 <header class="page-title-bar">
                     <div class="row">
                         <div class="col">
@@ -20,7 +20,8 @@
                         <form id="frminslist" autocomplete="off">
                             <div class="row">
                                 <div class="col-md-2 col-sm-12">
-                                    <select class="custom-select" name="period" id="select-period">
+                                    <select class="custom-select" name="period" id="select-period"  [(ngModel)]="period"
+                                    (change)="onPeriodChange()">
                                         <option value="today">TODAY</option>
                                         <option value="yesterday">YESTERDAY</option>
                                         <option value="this_month">THIS MONTH</option>
@@ -35,14 +36,15 @@
                                     <div class="form-group">
                                         <input type="text" id="frmDate" data-alt-format="Y-m-d" data-date-format="d/m/Y"
                                             data-toggle="flatpickr" placeholder="DD-MM-YYYY"
-                                            class="form-control flatpickr-input" disabled="" readonly="readonly">
+                                            class="form-control flatpickr-input" [disabled]="period !== 'custom'"
+                                            readonly="readonly">
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-12">
                                     <div class="form-group">
                                         <input type="text" id="toDate" data-alt-format="Y-m-d" data-date-format="d/m/Y"
                                             data-toggle="flatpickr" placeholder="DD-MM-YYYY"
-                                            class="form-control datepicker flatpickr-input" disabled=""
+                                            class="form-control datepicker flatpickr-input" [disabled]="period !== 'custom'"
                                             readonly="readonly">
                                     </div>
                                 </div>

@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
+import flatpickr from "flatpickr";
 
 import { AlertService, InsurerService, PolicyService } from '@app/_services';
 import { User } from '@app/_models';
@@ -10,12 +11,13 @@ import { AgGridModule } from 'ag-grid-angular'; // Angular Grid Logic
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import * as XLSX from 'xlsx';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
     templateUrl: 'insurer-list.html',
     standalone: true,
-    imports: [RouterLink, NgFor, NgIf, AgGridModule, ReactiveFormsModule, CommonModule]
+    imports: [RouterLink, NgFor, NgIf, AgGridModule, ReactiveFormsModule, CommonModule, FormsModule]
 })
 export class InsurerListComponent implements OnInit {
 
@@ -56,6 +58,13 @@ export class InsurerListComponent implements OnInit {
         // columnDefs: this.columnDefs,
         // rowData: this.rowData,
     };
+    frmDateFlatpickr: any;
+    toDateFlatpickr: any;
+    period = 'today'
+    frmDate: Date = new Date()
+    toDate: Date = new Date()
+    currentDate: string = '';
+
     exportData: any[] = []
 
 
@@ -66,8 +75,23 @@ export class InsurerListComponent implements OnInit {
         private alertService: AlertService) { }
 
     ngOnInit() {
+        this.frmDateFlatpickr = flatpickr("#frmDate", {
+            // enableTime: true,
+            // dateFormat: "Y-m-d",
+            // defaultDate: new Date(),
+            onChange: this.onFrmDateChange.bind(this) // Bind the callback to the component instance
+          });
+          this.toDateFlatpickr = flatpickr("#toDate", {
+            // enableTime: true,
+            // defaultDate: new Date(),
+            // dateFormat: "Y-m-d",
+            onChange: this.onToDateChange.bind(this)
+          });
+
 
         this.rowData = JSON.parse(localStorage.getItem('insurerRowData') || "[]")
+
+      
 
         this.title = 'Add Insurer';
         this.submitTitle = 'SAVE'
@@ -171,6 +195,22 @@ export class InsurerListComponent implements OnInit {
             })
     }
 
+    onFrmDateChange(selectedDates: any, dateStr: any, instance: any) {
+
+        // console.log('From Date:', dateStr);
+        // this.frmDate = dateStr
+        // console.log(this.frmDateFlatpickr.now);
+    
+      }
+    
+      onToDateChange(selectedDates: any, dateStr: any, instance: any) {
+    
+        // console.log('To Date:', dateStr);
+    
+    
+      }
+
+
     saveInsurer() {
         // create or update user based on id param
         return this.id
@@ -192,5 +232,76 @@ export class InsurerListComponent implements OnInit {
             XLSX.writeFile(wb, ('MySheetName.' + ('xlsx' || 'xlsx')));
         }, 1000)
     }
+
+    onPeriodChange() {
+
+        if (this.period === 'today') {
+          this.frmDateFlatpickr.setDate(new Date());
+          this.toDateFlatpickr.setDate(new Date());
+        }
+        else if (this.period === 'yesterday') {
+          let today = new Date();
+          let yesterday = new Date(today);
+          yesterday.setDate(today.getDate() - 1);
+          this.frmDateFlatpickr.setDate(yesterday);
+          this.toDateFlatpickr.setDate(today);
+    
+        }
+        else if (this.period === 'this_month') {
+          // calculate date for this month
+          let date = new Date();
+          let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+          let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+          console.log("First day = " + firstDay);
+          console.log("Last day = " + lastDay);
+          this.frmDateFlatpickr.setDate(firstDay);
+          this.toDateFlatpickr.setDate(lastDay);
+        }
+        else if (this.period === 'last_month') {
+          // calculate date for last month
+    
+          let date = new Date();
+          let firstDayOfLastMonth = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+          let lastDayOfLastMonth = new Date(date.getFullYear(), date.getMonth(), 0);
+    
+          console.log("First day of the last month = " + firstDayOfLastMonth);
+          console.log("Last day of the last month = " + lastDayOfLastMonth);
+          this.frmDateFlatpickr.setDate(firstDayOfLastMonth);
+          this.toDateFlatpickr.setDate(lastDayOfLastMonth);
+    
+        }
+        else if (this.period === 'this_year') {
+          // calculate date for this year
+    
+          let date = new Date();
+          let firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+          let lastDayOfYear = new Date(date.getFullYear(), 11, 31);
+    
+          console.log("First day of the year = " + firstDayOfYear);
+          console.log("Last day of the year = " + lastDayOfYear);
+    
+          this.frmDateFlatpickr.setDate(firstDayOfYear);
+          this.toDateFlatpickr.setDate(lastDayOfYear);
+        }
+        else if (this.period === 'last_year') {
+          // calculate date for last year
+    
+          let date = new Date();
+          let firstDayOfLastYear = new Date(date.getFullYear() - 1, 0, 1);
+          let lastDayOfLastYear = new Date(date.getFullYear() - 1, 11, 31);
+    
+          console.log("First day of the last year = " + firstDayOfLastYear);
+          console.log("Last day of the last year = " + lastDayOfLastYear);
+          this.frmDateFlatpickr.setDate(firstDayOfLastYear);
+          this.toDateFlatpickr.setDate(lastDayOfLastYear);
+    
+        }
+        else if (this.period === 'custom') {
+          this.frmDateFlatpickr.setDate(null);
+          this.toDateFlatpickr.setDate(null);
+        }
+    
+      }
+    
 
 }

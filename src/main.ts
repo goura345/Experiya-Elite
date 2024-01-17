@@ -10,6 +10,7 @@ import { jwtInterceptor, errorInterceptor } from '@app/_helpers';
 import { APP_ROUTES } from '@app/app.routes';
 import { environment } from '@environments/environment';
 import { enableProdMode } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 if (environment.production) {
     enableProdMode();
@@ -17,15 +18,13 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
     providers: [
-        provideRouter(APP_ROUTES),
-        provideHttpClient(
-            withInterceptors([
-                jwtInterceptor, 
-                errorInterceptor,
-
-                // fake backend
-                // fakeBackendInterceptor
-            ])
-        )
-    ]
+    provideRouter(APP_ROUTES),
+    provideHttpClient(withInterceptors([
+        jwtInterceptor,
+        errorInterceptor,
+        // fake backend
+        // fakeBackendInterceptor
+    ])),
+    provideAnimations()
+]
 });

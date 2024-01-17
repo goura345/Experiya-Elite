@@ -422,6 +422,7 @@ h6 {
 .lead {
   font-size: 1.25rem;
   font-weight: 400;
+  
 }
 
 .display-1 {
@@ -4417,6 +4418,7 @@ input[type="submit"].btn-block {
 .nav-link {
   display: block;
   padding: 0.375rem 1rem;
+  color: #0036A1;
 }
 
 .nav-link:focus,
@@ -4425,7 +4427,7 @@ input[type="submit"].btn-block {
 }
 
 .nav-link.disabled {
-  color: #888c9b;
+  /* color: #888c9b; */
   pointer-events: none;
   cursor: default;
 }
@@ -4442,17 +4444,20 @@ input[type="submit"].btn-block {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
+  color: #0036A1;
 }
 
 .nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
   border-color: #e6e8ed #e6e8ed rgba(34, 34, 48, 0.1);
+  color: #0036A1;
 }
 
 .nav-tabs .nav-link.disabled {
   color: #888c9b;
   background-color: transparent;
   border-color: transparent;
+  color: #0036A1;
 }
 
 .nav-tabs .nav-item.show .nav-link,
@@ -4460,6 +4465,7 @@ input[type="submit"].btn-block {
   color: #222230;
   background-color: transparent;
   border-color: #346cb0;
+  color: #0036A1;
 }
 
 .nav-tabs .dropdown-menu {
@@ -4476,6 +4482,7 @@ input[type="submit"].btn-block {
 .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #346cb0;
+  color: #0036A1;
 }
 
 .nav-fill .nav-item {
@@ -17250,7 +17257,7 @@ a.text-box:hover {
 
 .stacked-menu {
   position: relative;
-  padding: 0.25rem 0;
+  /* padding: 0.25rem 0; */
   background-color: transparent;
 }
 
@@ -17793,7 +17800,7 @@ a.text-box:hover {
 }
 
 .stacked-menu {
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
   width: 100%;
   margin-bottom: 1rem;
 }
@@ -26712,8 +26719,8 @@ h2.title {
   background: #30619f;
   border: 0 none #fff;
   border-radius: 0;
-  /* background: #f7c46c; 
-   background: silver; */
+   background: #f7c46c; 
+   background: silver; 
 
 }
 
@@ -26778,5 +26785,57 @@ h2.title {
   /* border: 15px solid silver; */
 }
 
+/* Rotate arrow on active state */
+.arrow.active {
+  transform: rotate(180deg);
+
+}
+
+
+
 @import 'flatpickr/dist/flatpickr.min.css';
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* .back {
+  
+
+  position: absolute;
+  width: 1280px;
+  height: 619px;
+  left: 0px;
+  top: 0px;
+
+  background: linear-gradient(180deg, rgba(114, 195, 206, 0) 0%, #72C3CE 60.1%);
+
+} */
+
+.back{
+  /* position: absolute; */
+  /* width: 1280px;
+  height: 619px; */
+  /* left: 0px;
+  top: 0px; */
+
+  background: linear-gradient(180deg, rgba(114, 195, 206, 0) 0%, #72C3CE 60.1%);
+
+}
+.font{
+  font-family: Rosarivo;
+font-size: 24px;
+font-weight: 400;
+line-height: 34px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+.homes{
+  color: #0036A1;
+
+}
+
+.btn {
+  background-color: #0036A1;
+  color: whitesmoke
+}

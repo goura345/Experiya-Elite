@@ -1,7 +1,7 @@
-<div class="app-main ms-5">
+<div class="app-main ms-5" style="margin-left: 700px;">
     <div class="wrapper">
         <div class="page " id="motor_entry">
-            <div class="page-inner">
+            <div class="page-inner" style="margin-left: 200px;">
                 <div class="ajax-progressBar">
                     <div class="postProgress"></div>
                 </div>
@@ -363,13 +363,14 @@
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input type="date" class="form-control flatpickr-input" [title]="form.controls['risk_start_date'].value"
+                                                            <input type="date" class="form-control flatpickr-input"
+                                                                [title]="form.controls['risk_start_date'].value"
                                                                 placeholder="Choose date..."
                                                                 formControlName="risk_start_date"
                                                                 [ngClass]="{'invalid': submitted && form.controls['risk_start_date'].errors}">
                                                         </div>
                                                     </div>
-                                                 
+
                                                     <div class="col-md-3 mb-4">
                                                         <label>Risk End Date<b style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt flatpickr"
@@ -378,7 +379,8 @@
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input type="date" class="form-control flatpickr-input" [title]="form.controls['risk_end_date'].value"
+                                                            <input type="date" class="form-control flatpickr-input"
+                                                                [title]="form.controls['risk_end_date'].value"
                                                                 placeholder="Choose date..."
                                                                 formControlName="risk_end_date"
                                                                 [ngClass]="{'invalid': submitted && form.controls['risk_end_date'].errors}">
@@ -394,7 +396,8 @@
                                                             data-date-format="Y-m-d">
 
                                                             <input type="date"
-                                                                class="form-control flatpickr-input black-out" [title]="form.controls['issue_date'].value"
+                                                                class="form-control flatpickr-input black-out"
+                                                                [title]="form.controls['issue_date'].value"
                                                                 placeholder="Choose date..."
                                                                 formControlName="issue_date"
                                                                 [ngClass]="{'invalid': submitted && form.controls['issue_date'].errors}">
@@ -419,7 +422,7 @@
                                                             <ng-option value="5">5</ng-option>
                                                         </ng-select>
                                                     </div>
-                                                  
+
                                                     <div class="col-md-3 mb-4">
                                                         <label>POSP<b style="color: red;">*</b></label>
                                                         <input type="text" data-bs-toggle="modal"

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
+import flatpickr from "flatpickr";
 
 import { AccountService, PayoutService, PolicyService } from '@app/_services';
 // import { Columns, Config, DefaultConfig, TableModule } from 'ngx-easy-table';
@@ -10,11 +11,12 @@ import { User } from '@app/_models';
 import { AgGridModule, } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community'; // Column Definitions Interface
 import * as XLSX from 'xlsx';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   templateUrl: 'payout-list.html',
   standalone: true,
-  imports: [RouterLink, NgFor, NgIf, AgGridModule]
+  imports: [RouterLink, NgFor, NgIf, AgGridModule, FormsModule]
 })
 export class PayoutListComponent implements OnInit {
 
@@ -70,20 +72,41 @@ export class PayoutListComponent implements OnInit {
     },
 
   ];
+  frmDateFlatpickr: any;
+  toDateFlatpickr: any;
+  period = 'today'
+  frmDate: Date = new Date()
+  toDate: Date = new Date()
+  currentDate: string = '';
+ 
+
+  exportData: any[] = []
+
+  constructor(private payoutService: PayoutService, private router: Router) { }
+  
   // Row Data: The data to be displayed.
   rowData: any[] = []
   editIcon = '<a style="cursor: pointer;"> <i class="bi bi-pencil"></i></a>';
   deleteIcon = '<a style="cursor: pointer;" class="ms-2"><i class="bi bi-trash3" style="color: red;"></i></a>';
 
-  exportData: any[] = []
-
-  constructor(private payoutService: PayoutService, private router: Router) { }
-
-  ngOnInit() {
+  
+ngOnInit() {
+  this.frmDateFlatpickr = flatpickr("#frmDate", {
+    // enableTime: true,
+    // dateFormat: "Y-m-d",
+    // defaultDate: new Date(),
+    onChange: this.onFrmDateChange.bind(this) // Bind the callback to the component instance
+  });
+  this.toDateFlatpickr = flatpickr("#toDate", {
+    // enableTime: true,
+    // defaultDate: new Date(),
+    // dateFormat: "Y-m-d",
+    onChange: this.onToDateChange.bind(this)
+  });
 
     this.rowData = JSON.parse(localStorage.getItem('payoutRowData') || "[]")
     // return      
-    this.payoutService.getAll().subscribe((data: any) => {
+    this.payoutService.getAll()    .subscribe((data: any) => {
       // console.log(data);
       this.payouts = data
       this.rowData = data.map((item: any, index: any) => ({ ...item, serialNumber: index + 1 }));
@@ -95,13 +118,31 @@ export class PayoutListComponent implements OnInit {
     }))
   }
 
+  deleteUser(id: string) {
+    const user = this.payouts!.find(x => x.id === id);
+    user.isDeleting = true;
+    this.payoutService.delete(id)
+        .pipe(first())
+        .subscribe(() => this.payouts = this.payouts!.filter(x => x.id !== id));
+}
+
+eventEmitted($event: { event: string; value: any }): void {
+    return
+    // this.clicked = JSON.stringify($event);    
+    console.log('$event', $event);
+    this.id = $event.value.row.id
+    this.router.navigateByUrl('users/edit/' + this.id)
+}
+
   onEditDelete(event: any) {
     console.log(event);
 
     if (event.event.srcElement.outerHTML == '<i class="bi bi-pencil"></i>') {     
       console.log(event.data.id);
       this.router.navigateByUrl('/payouts/edit/' + event.data.id)
+    
     }
+    
     else if (event.event.srcElement.outerHTML == '<i class="bi bi-trash3" style="color: red;"></i>') {
       if (confirm(`Do you really want to delete this payout: ${event.data.payout_name}`)) {
         console.log('deleting payout:');
@@ -115,6 +156,21 @@ export class PayoutListComponent implements OnInit {
     }
   }
 
+  onFrmDateChange(selectedDates: any, dateStr: any, instance: any) {
+
+    // console.log('From Date:', dateStr);
+    // this.frmDate = dateStr
+    // console.log(this.frmDateFlatpickr.now);
+
+  }
+
+  onToDateChange(selectedDates: any, dateStr: any, instance: any) {
+
+    // console.log('To Date:', dateStr);
+
+
+  }
+
   exportToExcel() {
     this.exportData = this.rowData;
     setTimeout(() => {
@@ -122,6 +178,76 @@ export class PayoutListComponent implements OnInit {
       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
       XLSX.writeFile(wb, ('MySheetName.' + ('xlsx' || 'xlsx')));
     }, 1000)
+  }
+
+  onPeriodChange() {
+
+    if (this.period === 'today') {
+      this.frmDateFlatpickr.setDate(new Date());
+      this.toDateFlatpickr.setDate(new Date());
+    }
+    else if (this.period === 'yesterday') {
+      let today = new Date();
+      let yesterday = new Date(today);
+      yesterday.setDate(today.getDate() - 1);
+      this.frmDateFlatpickr.setDate(yesterday);
+      this.toDateFlatpickr.setDate(today);
+
+    }
+    else if (this.period === 'this_month') {
+      // calculate date for this month
+      let date = new Date();
+      let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+      let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      console.log("First day = " + firstDay);
+      console.log("Last day = " + lastDay);
+      this.frmDateFlatpickr.setDate(firstDay);
+      this.toDateFlatpickr.setDate(lastDay);
+    }
+    else if (this.period === 'last_month') {
+      // calculate date for last month
+
+      let date = new Date();
+      let firstDayOfLastMonth = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+      let lastDayOfLastMonth = new Date(date.getFullYear(), date.getMonth(), 0);
+
+      console.log("First day of the last month = " + firstDayOfLastMonth);
+      console.log("Last day of the last month = " + lastDayOfLastMonth);
+      this.frmDateFlatpickr.setDate(firstDayOfLastMonth);
+      this.toDateFlatpickr.setDate(lastDayOfLastMonth);
+
+    }
+    else if (this.period === 'this_year') {
+      // calculate date for this year
+
+      let date = new Date();
+      let firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+      let lastDayOfYear = new Date(date.getFullYear(), 11, 31);
+
+      console.log("First day of the year = " + firstDayOfYear);
+      console.log("Last day of the year = " + lastDayOfYear);
+
+      this.frmDateFlatpickr.setDate(firstDayOfYear);
+      this.toDateFlatpickr.setDate(lastDayOfYear);
+    }
+    else if (this.period === 'last_year') {
+      // calculate date for last year
+
+      let date = new Date();
+      let firstDayOfLastYear = new Date(date.getFullYear() - 1, 0, 1);
+      let lastDayOfLastYear = new Date(date.getFullYear() - 1, 11, 31);
+
+      console.log("First day of the last year = " + firstDayOfLastYear);
+      console.log("Last day of the last year = " + lastDayOfLastYear);
+      this.frmDateFlatpickr.setDate(firstDayOfLastYear);
+      this.toDateFlatpickr.setDate(lastDayOfLastYear);
+
+    }
+    else if (this.period === 'custom') {
+      this.frmDateFlatpickr.setDate(null);
+      this.toDateFlatpickr.setDate(null);
+    }
+
   }
 
 }

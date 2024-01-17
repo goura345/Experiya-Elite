@@ -1,7 +1,7 @@
 <div class="app-main ms-5">
     <div class="wrapper">
         <div class="page " id="motor_entry">
-            <div class="page-inner">
+            <div class="page-inner" style="margin-left: 200px">
                 <div class="ajax-progressBar">
                     <div class="postProgress"></div>
                 </div>
@@ -124,7 +124,7 @@
 
                                                     </div>
 
-                                                  
+
                                                     <div class="col-md-3 mb-4">
                                                         <label>Risk Start Date<b style="color: red;">*</b></label>
                                                         <div class="input-group input-group-alt flatpickr"
@@ -133,7 +133,7 @@
                                                             data-alt-input-class="form-control"
                                                             data-date-format="Y-m-d">
 
-                                                            <input  type="date" class="form-control flatpickr-input"
+                                                            <input type="date" class="form-control flatpickr-input"
                                                                 [title]="form.controls['risk_start_date'].value"
                                                                 placeholder="Choose date..."
                                                                 formControlName="risk_start_date"
@@ -420,22 +420,29 @@
 
                             <hr>
                             <!-- submit data -->
-                            <div class="form-row">
-                                <div class="col-md-12 col-sm-12" style="background-color: #346CB0; ">
+                            
+                            <div class="form-row  ">
+                                <style>
+                                    .policy{
+                                        background: linear-gradient(180deg, rgba(114, 195, 206, 0) 0%, #72C3CE 51.68%);
+
+                                    }
+                                </style>
+                                <div class="col-md-12 col-sm-12 policy " >
                                     <div id="payoutSection" class="card card-inverse "
                                         style="background-color: #346CB0;">
                                         <!-- .card -->
                                         <div class="card-header p-2">
-                                            <h4 class="card-title mb-1">Payouts</h4>
+                                            <h4 class="card-title mb-1 ">Payouts</h4>
                                         </div>
-                                        <div class="card-body" style="background-color: #346CB0; ">
+                                        <div class="card-body policy" >
                                             <p><span class="icofont icofont-hand-right ml-1"></span> The Payout will be
                                                 shown as
                                                 per the Policy Details</p>
                                             <p><span class="icofont icofont-hand-right ml-1"></span> You can add manual
                                                 Payout
                                                 after the Policy saved</p>
-                                            <div class="text-center">
+                                            <div class="text-center" >
                                                 <button
                                                     style="background-color: #FFFFFF; color: #346CB0; font-weight: bold;"
                                                     type="submit" class="btn w-100p">

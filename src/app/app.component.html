@@ -8,13 +8,13 @@
     </ul>
 </nav>  -->
 
-<div class="page" id="entrylist">
+<div class="page back" id="entrylist ">
 
-    <div class="d-flex gap-5">
+    <div class="d-flex gap-5" style="height: 0px;">
         <div class="col-1">
-            <div class=" " hidden style="">
-                <h4 style="color: white; margin-top: 8px;">Experiya Book </h4>
-                <div class="list-group">
+            <div class=" ">
+              
+                <div class="list-group" hidden>
                     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                         The current link item
                     </a>
@@ -25,19 +25,22 @@
                         item</a>
                 </div>
             </div>
+            <div *ngIf="user">
 
             <style>
                 /* Basic menu styles */
                 .menu {
                     list-style: none;
-                    padding: 0;
-                    margin: 0;
+                    padding: 0px;
+                    margin: 0px;
+                    margin-top: 0px;
                 }
 
                 .menu-item {
                     display: inline-block;
                     padding: 1px 20px;
                     cursor: pointer;
+
                 }
 
                 /* Hover effect */
@@ -61,7 +64,7 @@
 
 
                         <!-- .top-bar-brand -->
-                        <div class="top-bar-brand d-none1" style="background: #346CB0;">
+                        <div class="top-bar-brand d-none1 hub">
                             <!-- toggle aside menu -->
                             <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside-menu"
                                 aria-label="toggle aside menu" style="background: #346CB0;">
@@ -72,18 +75,43 @@
 
                                 </span>
 
+
+
+                                <a [routerLink]="['']">
+                                    <img src="assets/1.jpeg" alt="Experiya Elites" class=""
+                                        style="width:50px; height: 50px; border-radius: 50%;">
+                                </a>
+                                <style>
+                                    .hub {
+                                        background: linear-gradient(180deg, rgba(114, 195, 206, 0) 0%, #72C3CE 51.68%);
+
+                                    }
+                                </style>
+
                             </button> <!-- /toggle aside menu -->
 
-                            <h4 style="color: white; margin-top: 8px;">Experiya Book </h4>
+
+                            <div style="display: flex; align-items: center; color: white;">
+                                <!-- <img src="assets/1.jpeg" alt="Experiya Book"
+                                    style="width:60px; height: 60px; border-radius: 50%;"> -->
+                                <!-- <span style="margin-left: 10px;">Experiya Book</span> -->
+                                <div style="display: flex; align-items: center; color: blue;">
+                                    <span style class="animated-text " style="margin-left: 10px;cursor: pointer;" (click)="navigateToHome()">Experiya Elite</span>
+                                </div>
+
+
+
+
+                            </div>
 
                         </div>
                         <!-- /.top-bar-brand -->
                         <!-- .top-bar-list -->
-                        <div class="top-bar-list">
+                        <div class="top-bar-list hub ">
                             <!-- .top-bar-item -->
                             <div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
                                 <!-- toggle menu -->
-                                <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside"
+                                <button class="hamburger hamburger-squeeze " type="button" data-toggle="aside"
                                     aria-label="toggle menu"><span class="hamburger-box"><span
                                             class="hamburger-inner"></span></span></button> <!-- /toggle menu -->
                             </div>
@@ -93,7 +121,7 @@
 
                             <div class="top-bar-item top-bar-item-full d-md-none d-lg-none d-xl-none">
                                 <!-- <img src="{%static 'images/logo.png' %}" width="150px"> -->
-                                <h4 style="color: white; margin-top: 8px;">Experiya Book </h4>
+                                <h4 style="color: white; margin-top: 8px;">Experiya Elite</h4>
 
                             </div>
                             <div id="notification_div"
@@ -115,16 +143,17 @@
                                 <!-- .btn-account -->
 
 
-                                <div class="dropdown d-none d-md-flex">
+                                <div class="dropdown d-none d-md-flex me-5">
                                     <button id="hello" class="btn-account" type="button" data-bs-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                         <span class="user-avatar user-avatar-md">
                                             <img src="" alt="Demo">
-                                            <!-- <img src="/media/{{request.session.profile_image }}" alt="Demo"> -->
+                                            <img src="https://cdn.vectorstock.com/i/1000x1000/23/81/default-avatar-profile-icon-vector-18942381.webp"
+                                                alt="Demo">
                                         </span>
                                     </button> <!-- .dropdown-menu -->
 
-                                    <div class="dropdown-menu" style="color: #FFFFFF; background: #346CB0; ">
+                                    <div class="dropdown-menu me-5"  style="color: #FFFFFF; background: #346CB0; margin-right: 150px;">
                                         <div class="dropdown-arrow d-lg-none" x-arrow=""></div>
                                         <div class="dropdown-arrow ml-3 d-none d-lg-block"></div>
                                         <h6 class="dropdown-header d-none d-md-block d-lg-none"> Demo </h6>
@@ -155,10 +184,12 @@
                 </header>
 
                 <aside class="app-aside app-aside-expand-md app-aside-light" style="background: #FFFFFF;">
+
                     <!-- .aside-content -->
                     <div class="aside-content">
 
                         <div class="aside-menu overflow-hidden ps ps--active-y">
+
                             <!-- .stacked-menu -->
                             <nav id="stacked-menu" class="stacked-menu stacked-menu-has-collapsible">
                                 <!-- .menu -->
@@ -175,162 +206,194 @@
                                             color: #FFFFFF
                                         }
                                     </style>
+                                    <div style="height: 600px;  overflow: scroll; background-color: lightcyan;">
 
-                                    <li class="text-center text-primary"><span class="" id="liteDate"></span>
-                                    </li>
+                                        <li class="text-center text-primary"><span class="" id="liteDate"></span>
+                                        </li>
 
-                                    <li class="menu-header">General </li>
+                                        <li class="menu-header">General </li>
 
-                                    <li class="menu-item has-active" style="width: 100%;" routerLink="/">
-                                        <a href="#" class="menu-link">
-                                            <i class="fa fa-home" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue"
-                                                style="margin-left: 10px;">Dashboard</span>
-                                        </a>
+                                        <li class="menu-item has-active" style="width: 100%;" routerLink="home">
+                                            <a  class="menu-link">
+                                                <i class="fa fa-home" aria-hidden="true" id='icon'></i>
+                                                <span class="menu-text text-blue"
+                                                    style="margin-left: 10px;">Dashboard</span>
+                                            </a>
 
-                                    </li>
+                                        </li>
 
-                                    <li class="menu-item has-child" style="width: 100%;" (click)="showMenu()">
-                                        <a class="menu-link">
-                                            <i class="fa fa-book text-blue" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue" style="margin-left: 10px;">New
-                                                Policy</span></a>
+                                        <li class="menu-item" style="width: 100%;" (click)="toggleDropdownPolicy()">
+                                            <a class="menu-link">
+                                                <i class="fa fa-book text-blue" aria-hidden="true" id='icon'></i>
+                                                <span class="menu-text text-blue" style="margin-left: 10px;">New
+                                                    Policy</span>
+                                                <i class="fa fa-angle-down arrow" style="margin-left: 40px;"
+                                                    [ngClass]="{'active': isPolicyVisible}" id="dropdownArrow"></i>
+                                            </a>
+                                            <ul class="menu" [ngClass]="{'dropdown': isPolicyVisible}">
+                                                <li class="menu-item" routerLink="policies/motor/add"
+                                                    *ngIf="isPolicyVisible" (click)="navigate('vcategory')"
+                                                    style="width: 100%;">
+                                                    <a style="margin-left: 1rem; " class="menu-link text-blue">Motor</a>
+                                                </li>
+                                                <li class="menu-item" routerLink="policies/non-motor/add"
+                                                    *ngIf="isPolicyVisible" (click)="navigate('vmake')">
+                                                    <a style="margin-left: 1rem; "
+                                                        class="menu-link text-blue">Non-Motor</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="#" style="margin-left: 1rem;" *ngIf="isPolicyVisible"
+                                                        (click)="navigate('vmake')" class="menu-link text-blue"
+                                                        onclick="alert('Claim-section is Under Construction!!')">Claim</a>
+                                                </li>
+                                            </ul>
+                                        </li>
 
-                                        <ul class="" [ngClass]="{'menu dropdown': visible}">
-
-                                            <li class="menu-item" routerLink="policies/motor/add" style="width: 100%;">
-                                                <a style="margin-left: 1rem; " class="menu-link text-blue">Motor</a>
-                                            </li>
-                                            <li class="menu-item " routerLink="policies/non-motor/add">
-                                                <a style="margin-left: 1rem; " class="menu-link text-blue">Non-Motor</a>
-                                            </li>
-                                            <li class="menu-item ">
-                                                <a href="#" style="margin-left: 1rem;" class="menu-link text-blue"
-                                                    onclick="alert('Claim-section is Under Construction!!')">Claim</a>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-
-                                    <li routerLink="policies" class="menu-item has-active" style="width: 100%;">
-                                        <a class="menu-link">
-                                            <i class="fa fa-bars text-blue" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue" style="margin-left: 10px;">Entry
-                                                List</span>
-                                        </a>
-                                    </li>
-
-                                </ul>
-
-                                <ul class="menu">
-
-                                    <style>
-                                        .text-blue {
-                                            color: #346CB0;
-                                            font-weight: 700;
-
-                                        }
-
-                                        .text-white-ff {
-                                            color: #FFFFFF
-                                        }
-                                    </style>
-
-                                    <li class="text-center text-primary"><span class="" id="liteDate"></span>
-                                    </li>
-
-                                    <li class="menu-header">Manage </li>
-
-                                    <li routerLink="agents" class="menu-item " style="width: 100%;">
-                                        <a class="menu-link">
-                                            <i class="fa fa-user-friends text-blue" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue" style="margin-left: 10px;">POSP</span>
-                                        </a>
-                                    </li>
-
-                                    <li routerLink="payouts" class="menu-item " style="width: 100%;">
-                                        <a class="menu-link">
-                                            <i class="fa fa-solid fa-book text-blue" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue" style="margin-left: 10px;">Payouts</span>
-                                        </a>
-                                    </li>
-
-                                    <li routerLink="insurers" class="menu-item " style="width: 100%;">
-                                        <a class="menu-link">
-                                            <i class="fa fa-solid fa-building text-blue" aria-hidden="true"
-                                                id='icon'></i>
-                                            <span class="menu-text text-blue" style="margin-left: 10px;">Insurers</span>
-                                        </a>
-                                    </li>
-
-                                    <li routerLink="service-providers" class="menu-item " style="width: 100%;" hidden>
-                                        <a class="menu-link">
-                                            <i class="fa fa-solid fa-user-tie text-blue" aria-hidden="true"
-                                                id='icon'></i>
-                                            <span class="menu-text text-blue"
-                                                style="margin-left: 10px;">Providers</span>
-                                        </a>
-                                    </li>
-
-                                    <li routerLink="products" class="menu-item " style="width: 100%;">
-                                        <a class="menu-link">
-                                            <i class="fa fa-product-hunt text-blue" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue" style="margin-left: 10px;">Products</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="menu-item has-child" style="width: 100%;">
-                                        <a class="menu-link">
-                                            <i class="fa fa-car text-blue" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue"
-                                                style="margin-left: 10px;">Vehicles</span></a>
-
+                                        <li routerLink="policies" class="menu-item has-active" style="width: 100%;">
+                                            <a class="menu-link">
+                                                <i class="fa fa-bars text-blue" aria-hidden="true" id='icon'></i>
+                                                <span class="menu-text text-blue" style="margin-left: 10px;">Entry
+                                                    List</span>
+                                            </a>
+                                        </li>
                                         <ul class="menu">
 
-                                            <li class="menu-item" onclick="ShowPage('vcategory')">
-                                                <a style="margin-left: 1rem; " class="menu-link text-blue">Category</a>
+                                            <style>
+                                                .text-blue {
+                                                    color: #346CB0;
+                                                    font-weight: 700;
+
+                                                }
+
+                                                .text-white-ff {
+                                                    color: #FFFFFF
+                                                }
+                                            </style>
+
+                                            <li class="text-center text-primary"><span class="" id="liteDate"></span>
                                             </li>
-                                            <li class="menu-item " onclick="ShowPage('vmake')">
-                                                <a style="margin-left: 1rem; " class="menu-link text-blue">Make</a>
+
+                                            <li class="menu-header">Manage </li>
+
+                                            <li routerLink="agents" class="menu-item " style="width: 100%;">
+                                                <a class="menu-link">
+                                                    <i class="fa fa-user-friends text-blue" aria-hidden="true"
+                                                        id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="margin-left: 10px;">POSP</span>
+                                                </a>
                                             </li>
-                                            <li class="menu-item " onclick="ShowPage('vmodel')">
-                                                <a style="margin-left: 1rem; " class="menu-link text-blue">Model</a>
+
+                                            <li routerLink="payouts" class="menu-item " style="width: 100%;">
+                                                <a class="menu-link">
+                                                    <i class="fa fa-solid fa-book text-blue" aria-hidden="true"
+                                                        id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="margin-left: 10px;">Payouts</span>
+                                                </a>
                                             </li>
+
+                                            <li routerLink="insurers" class="menu-item " style="width: 100%;">
+                                                <a class="menu-link">
+                                                    <i class="fa fa-solid fa-building text-blue" aria-hidden="true"
+                                                        id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="margin-left: 10px;">Insurers</span>
+                                                </a>
+                                            </li>
+
+                                            <li routerLink="service-providers" class="menu-item " style="width: 100%;"
+                                                hidden>
+                                                <a class="menu-link">
+                                                    <i class="fa fa-solid fa-user-tie text-blue" aria-hidden="true"
+                                                        id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="margin-left: 10px;">Providers</span>
+                                                </a>
+                                            </li>
+
+                                            <li routerLink="products" class="menu-item " style="width: 100%;">
+                                                <a class="menu-link">
+                                                    <i class="fa fa-product-hunt text-blue" aria-hidden="true"
+                                                        id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="margin-left: 10px;">Products</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item" style="width: 100%;"
+                                                (click)="toggleDropdownVehicle()">
+                                                <a class="menu-link">
+                                                    <i class="fa fa-car text-blue" aria-hidden="true" id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="margin-left: 10px;">Vehicles</span>
+                                                    <i class="fa fa-angle-down arrow" style="margin-left: 60px;"
+                                                        [ngClass]="{'active': isVehicleVisible}" id="dropdownArrow"></i>
+                                                </a>
+                                                <ul class="menu" [ngClass]="{'dropdown': isVehicleVisible}">
+                                                    <li class="menu-item" *ngIf="isVehicleVisible"
+                                                        (click)="navigateVehicle('vcategory')">
+                                                        <a style="margin-left: 1rem; "
+                                                            class="menu-link text-blue">Category</a>
+                                                    </li>
+                                                    <li class="menu-item" *ngIf="isVehicleVisible"
+                                                        (click)="navigateVehicle('vmake')">
+                                                        <a style="margin-left: 1rem; "
+                                                            class="menu-link text-blue">Make</a>
+                                                    </li>
+                                                    <li class="menu-item" *ngIf="isVehicleVisible"
+                                                        (click)="navigateVehicle('vmodel')">
+                                                        <a style="margin-left: 1rem; "
+                                                            class="menu-link text-blue">Model</a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+
+
+
+
+                                            <li class="menu-item " routerLink="users" style="width: 100%;">
+                                                <a class="menu-link">
+                                                    <i class="fa fa-user text-blue" aria-hidden="true" id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="margin-left: 10px;">Users</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="menu-item " style="width: 100%;">
+                                                <a class="menu-link">
+                                                    <i class="fa fa-trash text-blue" aria-hidden="true" id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="margin-left: 10px;">Trash</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="menu-header">Settings </li>
+                                            <!-- /.menu-header -->
+                                            <li class="menu-item ">
+                                                <a class="menu-link">
+                                                    <i class='fa fa-user-circle text-blue' id='icon'></i>
+                                                    <span class="menu-text text-blue"
+                                                        style="color:#346cb0; margin-left: 10px;">Profile</span></a>
+                                                <!-- child menu -->
+                                            </li>
+
                                         </ul>
-                                    </li>
+                                        <footer class="aside-footer border-top p-2">
+                                            <button class="btn btn-light btn-block text-primary" data-toggle="skin"
+                                                disabled>
+                                            </button>
+                                        </footer>
+                                    </div>
 
-                                    <li class="menu-item " routerLink="users" style="width: 100%;">
-                                        <a class="menu-link">
-                                            <i class="fa fa-user text-blue" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue" style="margin-left: 10px;">Users</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="menu-item " style="width: 100%;">
-                                        <a class="menu-link">
-                                            <i class="fa fa-trash text-blue" aria-hidden="true" id='icon'></i>
-                                            <span class="menu-text text-blue" style="margin-left: 10px;">Trash</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="menu-header">Settings </li>
-                                    <!-- /.menu-header -->
-                                    <li class="menu-item ">
-                                        <a class="menu-link">
-                                            <i class='fa fa-user-circle text-blue' id='icon'></i>
-                                            <span class="menu-text text-blue" style="color:#346cb0; margin-left: 10px;">Profile</span></a>
-                                        <!-- child menu -->
-                                    </li>
-                                   
                                 </ul>
+
 
                             </nav>
                         </div>
 
-                        <footer class="aside-footer border-top p-2">
-                            <button class="btn btn-light btn-block text-primary" data-toggle="skin" disabled>
-                            </button>
-                        </footer>
+
+
                         <!-- /Skin changer -->
                     </div>
                     <!-- /.aside-content -->
@@ -338,13 +401,16 @@
 
                 <div class="aside-backdrop"></div>
             </div>
-
-        </div>
-
-        <div class="col">
-            <!-- <alert></alert> -->
-            <router-outlet></router-outlet>
+        </div>   
 
         </div>
     </div>
+
+        <div class="col ">
+            <!-- <alert></alert> -->
+       
+            <router-outlet></router-outlet>
+      
+        </div>
+    
 </div>
