@@ -7,9 +7,9 @@
                     <div class="row">
                         <div class="col">
                             <h1 id="page_heading" class="page-title" style="display: inline-block;"> Agent List </h1>
-                            <a routerLink="/agents/add" class="btn btn-secondary btn-sm float-right mr-2"><i
+                            <button routerLink="/agents/add" class="btn btn-sm float-right mr-2 btn"><i
                                     class="fa fa-plus"></i> Add
-                                New</a>
+                                New</button>
                         </div>
                     </div>
                 </header>
@@ -54,20 +54,20 @@
 
                                 <div class="col-md-6 ">
                                     <div class="form-group">
-                                        <button type="button" id="filterlist" class="btn btn-secondary "
+                                        <button type="button" id="filterlist" class="btn "
                                             title="Filter"><i class="fa fa-search" aria-hidden="true"></i> </button>
 
-                                        <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
+                                        <button style="margin: 4px;" type="button" id="btnreset" class="btn " title="Refresh"
                                             onclick="resertDocument()"><i class="fa fa-refresh " aria-hidden="true"></i>
                                         </button>
 
                                         <button type="button" (click)="exportToExcel()" id="download_inslist"
-                                            class="btn btn-secondary " title="Download"><i class="fa fa-download"
+                                            class="btn  " title="Download"><i class="fa fa-download"
                                                 aria-hidden="true"></i> </button>
 
                                         <!-- data-toggle="modal" data-target=""  -->
-                                        <button type="button" id="bulk_remove" onclick="clearFilterList()"
-                                            class="btn btn-secondary" title="Clear filters"><i class="fa fa-trash"
+                                        <button style="margin: 4px;" type="button" id="bulk_remove" onclick="clearFilterList()"
+                                            class="btn " title="Clear filters"><i class="fa fa-trash"
                                                 aria-hidden="true"></i> </button>
 
                                         <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
@@ -293,6 +293,7 @@
                     <!-- /.page-inner -->
                 </div>
                 <!-- /.page -->
+                <button routerLink="/home" type="button" class="btn btn-primary btn-sm">Small button</button>
             </div>
 
         </div>
