@@ -1,442 +1,386 @@
-<div class="buttons" style="margin-top: 70px;">
-    <button routerLink="/policies" class="neumorphic active">
-        <i class="fa-light fa-fire"></i>
-        <span>entry list</span>
-    </button>
+<div class="app-main  mydiv " style="margin-top: 7px; margin: 0px; padding: 0px;width: 100%;">
 
+    <style>
+        body {
+            /* font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-weight: 300px;
+            font-size: 1.75rem; */
 
-    <button routerLink="/agents" class="neumorphic active">
-        <i class="fa-light fa-dna"></i>
-        <span>POSP</span>
-    </button>
-    <button  (click)="showPolicyListContent()" class="neumorphic active">
-        <i class="fa-light fa-chart-mixed"></i>
-        <span>payouts</span>
-    </button>
-    <button routerLink="/users" class="neumorphic active">
-        <i class="fa-light fa-atom"></i>
-        <span>users</span>
-    </button>
-    <button routerLink="/insurers" class="neumorphic active">
-        <i class="fa-light fa-seedling"></i>
-        <span>insurers</span>
-    </button>
-    <button routerLink="/products" class="neumorphic active">
-        <i class="fa-light fa-disease"></i>
-        <span>products</span>
-    </button>
+            font-family: 'Rosarivo', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 22px;
+            letter-spacing: 0em;
+            text-align: left;
 
-</div>
-
-<style>
-    @import url('https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css');
-
-    button.neumorphic {
-        container-type: inline-size;
-        aspect-ratio: 1/1;
-        border: 0.5rem solid transparent;
-        border-radius: 1rem;
-        color: hsl(0 0% 10%);
-        background: none;
-
-        display: grid;
-        place-content: center;
-        gap: 1rem;
-
-        --shadow:
-            -.5rem -.5rem 1rem hsl(0 0% 100% / .75),
-            .5rem .5rem 1rem hsl(0 0% 50% / .5);
-        box-shadow: var(--shadow);
-        outline: none;
-        transition: all 0.1s;
-
-        &:hover,
-        &:focus-visible {
-            color: hsl(10 80% 50%);
-            scale: 1.1
         }
 
-        &:active,
-        &.active {
-            box-shadow:
-                var(--shadow),
-                inset .5rem .5rem 1rem hsl(0 0% 50% / .5),
-                inset -.5rem -.5rem 1rem hsl(0 0% 100% / .75);
-            color: hsl(10 80% 50%);
+        nav {
+            background-color: #0C3E48;
+            overflow: hidden;
 
-            >i {
-                font-size: 28cqi
-            }
-
-            ;
-
-            >span {
-                font-size: 13cqi
-            }
-
-            ;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
-        >i {
-            font-size: 31cqi;
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 18px;
         }
 
-        >span {
-            font-family: system-ui, sans-serif;
-            font-size: 16cqi;
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
         }
-    }
 
-    body {
-        background-color: #e5e9f4;
-        padding: 2rem;
-    }
-
-    h1 {
-        text-align: center;
-        color: hsl(0 0% 10%);
-        font-family: system-ui, sans-serif;
-        font-size: 3rem;
-    }
-
-    .buttons {
-        display: grid;
-        width: min(75rem, 100%);
-        margin-inline: auto;
-        grid-template-columns: repeat(auto-fit, minmax(min(8rem, 100%), 1fr));
-        gap: 2rem;
-    }
-</style>
-
-<!-- <button type="button" class="btn btn-outline-danger">Danger</button> -->
+        .mydiv {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            /* margin: 0px;
+            padding: 0px; */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Add box shadow here */
+        }
+    </style>
 
 
+    <body style="margin-top: 60px; ">
 
-<div class="app-main ms-5" *ngIf="showPolicyList">
-    <div class="wrapper">
+        <nav>
+            <a href="#home" style="margin-left: 30px; font-size: 18px;">Home</a>
+            <a href="#about" routerLink="/agents" style=" font-size: 18px;">POSP</a>
+            <a href="#services" routerLink="/payouts" style=" font-size: 18px;">Payout</a>
+            <a href="#products" routerLink="/products" style=" font-size: 18px;">Products</a>
+            <a href="#contact" routerLink="/users" style=" font-size: 18px;">Users</a>
+            <a href="#contact" routerLink="/insurers" style=" font-size: 18px;">Insurers</a>
+            <a routerLink="/policies/motor/add" style=" font-size: 18px;">Motor</a>
+            <a href="#contact" routerLink="/policies/non-motor/add" style=" font-size: 18px;">Non-motor</a>
+            <a href="#contact" routerLink="/policies" style=" font-size: 18px;">Entrylist</a>
 
-        <div class="page" id="entrylist">
-            <div class="page-inner text-blue116" style="margin-left: 200px;">
-                <header class="page-title-bar">
-                    <div class="row">
-                        <div class="col">
-                            <h1 id="page_heading" class="page-title" style="display: inline-block;"> Policy List </h1>
-                            <a style="color: white;" (click)="navigateToMotorPolicy()" class="btn  btn-sm float-right mr-2"><i
-                                    class="fa fa-plus"></i> Add
-                                New</a>
-                        </div>
-                    </div>
-                </header>
+        </nav>
 
-                <!-- .card -->
-                <div class="card card-fluid">
-                    <!-- .card-header -->
-                    <div class="card-header">
-                        <form id="frminslist" autocomplete="off">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-12">
-                                    <select class="custom-select" name="period" [(ngModel)]="period"
-                                        (change)="onPeriodChange()">
-                                        <option value="today">TODAY</option>
-                                        <option value="yesterday">YESTERDAY</option>
-                                        <option value="this_month">THIS MONTH</option>
-                                        <option value="last_month">LAST MONTH</option>
-                                        <option value="this_year">THIS YEAR</option>
-                                        <option value="last_year">LAST YEAR</option>
-                                        <option value="custom">CUSTOM</option>
-                                    </select>
+        <!-- Your content goes here -->
+        <div full style="border: black; width: 100%;">
+            <div class="wrapper ms-5 " style="margin-top: 40px; box-shadow: black; width: 100%;">
+                <div class="page full" style="border: black;">
+                    <!-- .page-inner -->
+                    <div style="background-color: #f2f7fc ;  border: black; width: 100%;"
+                        class="page-inner text-blue116 ">
+                        <!-- .page-title-bar -->
+                        <header class="page-title-bar ">
+                            <!-- page title stuff goes here -->
+                            <div class="row"  >
+                                <div class="col-md-5 col-sm-12">
+                                    <h1 class="page-title "> Dashboard </h1>
+
+                                    <a routerLink="/home"></a>
+
                                 </div>
 
-                                <div class="col-md-2 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" id="frmDate" name="frmDate" data-alt-format="Y-m-d"
-                                            data-date-format="d/m/Y" data-toggle="flatpickr" placeholder="DD-MM-YYYY"
-                                            class="form-control flatpickr-input" [disabled]="period !== 'custom'"
-                                            readonly="readonly">
+
+                            </div>
+                        </header>
+                        <!-- .page-section -->
+                        <div class="page-section">
+                            <div class="section-block">
+                                <!-- metric row -->
+                                <div class="metric-row">
+                                    <div class="col-lg-12">
+                                        <div class="metric-row metric-flush">
+                                            <!-- metric column -->
+
+                                            <div class="col" style="background-color: #3C5876; color: white;">
+                                                <a routerLink="/agents"
+                                                    class="metric metric-bordered align-items-center">
+                                                    <h2 class=" ">POSP </h2>
+                                                    <p class="metric-value h3">
+                                                        <sub><span class="icofont icofont-users-alt-1"></span></sub>
+                                                        <span id="agentcount" class="value">{{ countInfo.totalAgent
+                                                            }}</span>
+                                                    </p>
+                                                </a> <!-- /.metric -->
+                                            </div><!-- /metric column -->
+
+                                            <div class="col" style="background-color: #EC6051;color: white;">
+                                                <!-- .metric -->
+                                                <a routerLink="/insurers"
+                                                    class="metric metric-bordered align-items-center">
+                                                    <h2 class="">Insurers </h2>
+                                                    <p class="metric-value h3">
+                                                        <sub><span class="icofont icofont-business-man"></span></sub>
+                                                        <span id="spcount" class="value">{{ countInfo.totalInsurer
+                                                            }}</span>
+                                                    </p>
+                                                </a> <!-- /.metric -->
+                                            </div><!-- /metric column -->
+
+                                            <div class="col" style="background-color: #3CAAAF;color: white;">
+                                                <!-- .metric -->
+                                                <a routerLink="/insurers"
+                                                    class="metric metric-bordered align-items-center">
+                                                    <h2 class="">Products </h2>
+                                                    <p class="metric-value h3">
+                                                        <sub><span class="icofont icofont-business-man"></span></sub>
+                                                        <span id="spcount" class="value">{{ countInfo.totalProduct
+                                                            }}</span>
+                                                    </p>
+                                                </a> <!-- /.metric -->
+                                            </div><!-- /metric column -->
+
+
+                                            <div class="col" style="background-color: #897AAA;color: white;">
+                                                <!-- .metric -->
+                                                <a routerLink="/users"
+                                                    class="metric metric-bordered align-items-center">
+                                                    <h2 class="">Staff </h2>
+                                                    <p class="metric-value h3">
+                                                        <sub><span class="icofont icofont-users-alt-5"></span></sub>
+                                                        <span id="staffcount" class="value">
+                                                            {{ countInfo.totalUser }} </span>
+                                                    </p>
+                                                </a> <!-- /.metric -->
+                                            </div><!-- /metric column -->
+
+                                            <div class="col" style="background-color: #2B688A; color: white;">
+                                                <!-- .metric -->
+                                                <a routerLink="/policies"
+                                                    class="metric metric-bordered align-items-center">
+                                                    <h2 class="">Total Policies </h2>
+                                                    <p class="metric-value h3">
+                                                        <sub><span class="icofont icofont icofont-ebook"></span></sub>
+                                                        <span id="policycount" class="value">
+                                                            {{ countInfo.totalPolicy }}
+                                                        </span>
+                                                    </p>
+                                                </a> <!-- /.metric -->
+                                            </div><!-- /metric column -->
+                                        </div>
+                                    </div><!-- metric column -->
+                                </div><!-- /metric row -->
+                            </div>
+                            <!-- .section-block -->
+
+                            <div class="section-block">
+                                <div class="row">
+                                    <div class="col-xl-9">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                (01-Jan-2023 to 01-Jan-2024)
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="text-right mb-2">
+                                                    <div class="dropdown">
+
+                                                        <button class="btn btn-secondary" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false"><span>This
+                                                                Year</span> <i
+                                                                class="fa fa-fw fa-caret-down"></i></button>
+                                                        <!-- .dropdown-menu -->
+                                                        <button class="btn btn-info">Go</button>
+                                                        <!-- .dropdown-menu -->
+
+                                                        <div
+                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-md stop-propagation">
+                                                            <div class="dropdown-arrow"></div>
+                                                            <!-- .custom-control -->
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" class="custom-control-input"
+                                                                    id="dpYear" name="dpFilter" value="This Year"
+                                                                    checked=""> <label
+                                                                    class="custom-control-label d-flex justify-content-between"
+                                                                    for="dpYear"><span>This Year</span> <span
+                                                                        class="text-muted">2023</span></label>
+                                                            </div><!-- /.custom-control -->
+                                                            <!-- .custom-control -->
+
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" class="custom-control-input"
+                                                                    id="dpCustom" name="dpFilter" value="Custom">
+                                                                <label class="custom-control-label"
+                                                                    for="dpCustom">Custom</label>
+                                                                <div class="custom-control-hint my-1">
+                                                                    <!-- datepicker:range -->
+                                                                    <input type="text" name="custom_date" value=""
+                                                                        class="form-control flatpickr-input"
+                                                                        data-toggle="flatpickr" data-mode="range"
+                                                                        data-date-format="d-m-Y" readonly="readonly">
+                                                                    <!-- /datepicker:range -->
+                                                                </div>
+                                                            </div><!-- /.custom-control -->
+                                                        </div><!-- /.dropdown-menu -->
+
+                                                    </div><!-- /.dropdown -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="card card-body" style="background-color: rgb(165, 216, 231);">
+                                                <div class="card-header p-0 mb-3 pb-2 ">Policies</div>
+                                                <!-- legend -->
+                                                <ul class="list-inline small ">
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-fw fa-circle text-green"></i> OK Policies
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-fw fa-circle text-red"></i> Cancelled Policies
+                                                    </li>
+                                                </ul><!-- /legend -->
+                                                <!-- <img src="assets\grph.png" alt=""> -->
+                                                <div>
+                                                    <canvas id="totalPolicy"></canvas>
+                                                </div>
+                                            </div><!-- /.card -->
+                                        </div>
+                                        <div class="row">
+                                            <div class="card card-body"  style="background-color: rgb(165, 216, 231);">
+                                                <div class="card-header p-0 mb-3 pb-2">Commission</div>
+
+                                                <ul class="list-inline small ">
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-fw fa-circle text-green"></i> Amount
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-fw fa-circle text-red"></i> Pending
+                                                    </li>
+                                                </ul>
+                                                <div>
+                                                    <canvas></canvas>
+                                                </div>
+
+                                            </div><!-- /.card -->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" id="toDate" name="toDate" data-alt-format="Y-m-d"
-                                            data-date-format="d/m/Y" data-toggle="flatpickr" placeholder="DD-MM-YYYY"
-                                            class="form-control datepicker flatpickr-input"
-                                            [disabled]="period !== 'custom'" readonly="readonly">
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-6 ">
-                                    <div class="form-group">
-                                        <button type="button" id="filterlist" (click)="onFilterPolicy()"
-                                            class="btn btn-secondary " title="Filter"><i class="fa fa-search"
-                                                aria-hidden="true"></i> </button>
-
-                                        <button type="button" id="btnreset" class="btn btn-secondary" title="Refresh"
-                                            onclick="resertDocument()"><i class="fa fa-refresh " aria-hidden="true"></i>
-                                        </button>
-
-                                        <button type="button" (click)="exportToExcel()" id="download_inslist"
-                                            class="btn btn-secondary " title="Download"><i class="fa fa-download"
-                                                aria-hidden="true"></i> </button>
-
-                                        <!-- data-toggle="modal" data-target=""  -->
-                                        <button type="button" id="bulk_remove" onclick="clearFilterList()"
-                                            class="btn btn-secondary" title="Clear filters"><i class="fa fa-trash"
-                                                aria-hidden="true"></i> </button>
-
-                                        <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
-                                            title="More Filter" onclick="showMoreFilters()"><small>More
-                                                Filter</small></a>
-
-
-                                        <div class="modal fade" id="mdlcolsetting"
-                                            onmouseenter="document.getElementById('inp_search').focus()"
-                                            style="height: 400px">
-
-                                            <div class="modal-dialog" role="document">
-
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 id="rtoModalLabel" class="modal-title"> Delete Policy</h5>
-                                                    </div>
-                                                    <div class="modal-body ">
-                                                        <div class="form-row">
-                                                            <div class="col-md-12 mb-4">
-                                                                <div class=""><label>Are You Sure? You want to delete
-                                                                        the
-                                                                        Record(s)..<input hidden id="inp_search"
-                                                                            type="text" value="" class="form-control"
-                                                                            name="agent"
-                                                                            style="text-transform: uppercase;"
-                                                                            title="Search POS using Name, mobile no, email, pan/aadhar number">
-                                                                    </label></div>
+                                    <div class="col-xl-3">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="card card-fluid">
+                                                    <!-- .card-header -->
+                                                    <div class="card-header"> Subscription</div><!-- /.card-header -->
+                                                    <!-- .card-body -->
+                                                    <div class="card-body ">
+                                                        <h2 class="metric-label">Expire On</h2>
+                                                        <p class="metric-value h3">
+                                                            <sub><i class="icofont icofont-ui-calendar"
+                                                                    style="color: #346CB0"></i></sub>
+                                                            <span class="value" style="color: #346CB0;">Never</span>
+                                                        </p>
+                                                        <p class="pt-3">
+                                                            <small class="text-muted "
+                                                                style="color: rgb(110, 17, 244);">
+                                                                (Life-time Activation)</small>
+                                                        </p>
+                                                    </div><!-- /.card-body -->
+                                                </div><!-- /.card -->
+                                            </div>
+                                            <div class="col-xl-12">
+                                                <div class="card">
+                                                    <div class="card-header"> Storage Overview</div>
+                                                    <div class="card-body">
+                                                        <div class="card bg-light">
+                                                            <div class="card-body">
+                                                                <span><i class="fa fa-hdd " aria-hidden="true"></i>
+                                                                    Storage Usage</span>
+                                                                <div title="0%" class="progress progress-lg mb-1">
+                                                                    <div class="progress-bar bg-primary"
+                                                                        role="progressbar" style="width: 0%;"
+                                                                        aria-valuenow="0" aria-valuemin="0"
+                                                                        aria-valuemax="100"> 0% </div>
+                                                                </div>
+                                                                <!-- <p class="">3 GB free of 3 GB </p> -->
                                                             </div>
-
                                                         </div>
-
-                                                        <div class="modal-footer">
-                                                            <button id="btnExit" type="button"
-                                                                class="btn btn-secondary w-100p"
-                                                                data-dismiss="modal">Cancel</button>
-
-                                                            <button type="button" id="posUpdate"
-                                                                onclick="bulk_policy_remove()"
-                                                                class="btn btn-primary w-100p "
-                                                                style="background: red;">Delete</button>
-
-                                                        </div>
+                                                        <dl class="d-flex justify-content-between mb-0">
+                                                            <dt class="text-left">
+                                                                <div class="tile">
+                                                                    <i class="icofont-file-alt text-blue116"></i>
+                                                                </div>
+                                                                <span class="mr-2">New Policy</span>
+                                                            </dt>
+                                                            <dd class="text-right">
+                                                                0 MB </dd>
+                                                        </dl>
+                                                        <hr>
+                                                        <dl class="d-flex justify-content-between">
+                                                            <dt class="text-left">
+                                                                <div class="tile">
+                                                                    <i class="icofont-file-alt text-blue116"></i>
+                                                                </div>
+                                                                <span class="mr-2">Previous Policy</span>
+                                                            </dt>
+                                                            <dd class="text-right">
+                                                                0 MB </dd>
+                                                        </dl>
+                                                        <hr>
+                                                        <dl class="d-flex justify-content-between">
+                                                            <dt class="text-left">
+                                                                <div class="tile">
+                                                                    <i class="icofont-file-alt text-blue116"></i>
+                                                                </div>
+                                                                <span class="mr-2">RC<small> (Registration
+                                                                        Certificate)</small></span>
+                                                            </dt>
+                                                            <dd class="text-right">
+                                                                0 MB </dd>
+                                                        </dl>
+                                                        <hr>
+                                                        <dl class="d-flex justify-content-between">
+                                                            <dt class="text-left">
+                                                                <div class="tile">
+                                                                    <i class="icofont-file-alt text-blue116"></i>
+                                                                </div>
+                                                                <span class="mr-2">Agent Documents</span>
+                                                            </dt>
+                                                            <dd class="text-right">
+                                                                0 MB </dd>
+                                                        </dl>
+                                                        <hr>
+                                                        <dl class="d-flex justify-content-between">
+                                                            <dt class="text-left">
+                                                                <div class="tile">
+                                                                    <i class="icofont-file-alt text-blue116"></i>
+                                                                </div>
+                                                                <span class="mr-2">Payment Screenshots</span>
+                                                            </dt>
+                                                            <dd class="text-right">
+                                                                0 MB </dd>
+                                                        </dl>
                                                     </div>
 
                                                 </div>
-
                                             </div>
-                                            <!-- <body onload="setFocus()">
-                                                
-                                             </body> -->
-
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-2 ">
-
-                                </div>
-
-                            </div>
-                            <div id="morefilters" class="row" hidden>
-                                <div class="form-row">
-                                    <input id="ps1" name="ps1" type="checkbox" value="No Payouts" class="checkbox mr-2"
-                                        style="margin-bottom: auto; margin-top: 4px;">
-                                    <label for="ps1">Payout-less Policies</label>
-                                </div>
-
-                                <div class="col-md-4 mb-4">
-
-                                    <input type="text" id="search-select_vc" class="form-control"
-                                        placeholder="Select any field">
-                                    <select id="filter_type" name="filter_type" data-parsley-required-message=""
-                                        multiple data-parsley-required="true" class="custom-select " required
-                                        onchange="add_filter_type()">
-                                        <option value="pos">POSPS</option>
-                                        <option value="insurance_company">Insurers</option>
-                                        <option value="vehicle_catagory">Vehicle Catagory</option>
-                                        <option value="vehicle_makeby">Vehicle Makeby</option>
-                                        <option value="vehicle_model">Vehicle Model</option>
-                                        <option value="vehicle_fuel_type">Fuel Type</option>
-                                        <option value="cubic_capacity">Cubic Capacity</option>
-                                        <option value="seating_capacity">Seating Capacity</option>
-                                        <option value="coverage_type">Coverage Type</option>
-                                        <option value="gvw">GVW</option>
-                                        <option value="policy_type">Policy Type</option>
-                                        <option value="addon">Addon</option>
-                                        <option value="ncb">NCB</option>
-                                        <option value="cpa">CPA</option>
-
-                                    </select>
-                                    <!-- <input type="text" id="search-select_vc" class="form-control"> -->
-
-                                    <button id="select-all_vc" hidden>Select All</button>
-                                    <button id="deselect-all_vc" hidden>Deselect All</button>
-
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                    <!-- /.card-header -->
-                    <!-- .card-body -->
-                    <div class="card-body">
-
-                        <div class="" hidden>
-                            <div id="tblInsurance_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer no-scroll">
-                                <div class="form-row  mb-3">
-                                    <div class="col-md-6">
-                                        <div class="dataTables_length" id="tblInsurance_length">
-                                            <label>
-                                                Show
-                                                <select id="select_length" name="tblInsurance_length"
-                                                    onchange="showNextRows(true)" aria-controls="tblInsurance"
-                                                    class="custom-select">
-                                                    <option value="3">3</option>
-                                                    <option value="5">5</option>
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                    <option value="0" selected>all</option>
-                                                </select>
-                                                entries
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div id="tblInsurance_filter" class="dataTables_filter"><label>Search:<input
-                                                    value="" type="search" id="myInput" oninput="delayedSearch()"
-                                                    onkeypress="searchTableOnEnterKey(event)" class="form-control"
-                                                    placeholder="" aria-controls="tblInsurance"></label></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive">
-                            <div class="dataTables_scroll">
-                                <div class="dataTables_scrollHead"
-                                    style="position: relative; border: 0px; width: 100%;">
-                                    <div class="dataTables_scrollHeadInner"
-                                        style="box-sizing: content-box; width: auto; padding-right: 0px;">
-                                        <table
-                                            class="table table-striped1 table-hover no-wrap table-bordered no-footer dataTable"
-                                            aria-describedby="tblInsurance_info" role="grid"
-                                            style="margin-left: 0px; width: 5774.97px;">
-
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="dataTables_scrollBody" style="position: relative;  width: 100%;">
-
-                                    <!-- @if (loading) {
-                                    <span class="spinner-border spinner-border-sm me-1"></span>
-                                    Loading...
-                                    } -->
-
-                                    <ag-grid-angular class="ag-theme-quartz ag-theme-balham mt-1" style="height: 350px;"
-                                        rowSelection="single" [columnDefs]="colDefs" [rowData]="rowData"
-                                        (cellClicked)="onEditDelete($event)">
-                                    </ag-grid-angular>
-
-                                    <!-- only for downloads -->
-                                    <table hidden id="table" class="table" *ngIf="exportData.length > 0">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" *ngFor="let column of colDefs">{{ column.headerName }}
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="text-uppercase" *ngFor="let item of exportData">
-                                                <!-- <th scope="row">1</th> -->
-                                                <td>{{ item.serialNumber }}</td>
-                                                <td>{{ item.proposal_no }}</td>
-                                                <td>{{ item.policy_no }}</td>
-                                                <td>{{ item.customer_name }}</td>
-                                                <td>{{ item.insurance_company }}</td>
-                                                <td>{{ item.sp_name }}</td>
-                                                <td>{{ item.sp_brokercode }}</td>
-                                                <td>{{ item.product_name }}</td>
-                                                <td>{{ item.registration_no }}</td>
-                                                <td>{{ item.rto_state }}</td>
-                                                <td>{{ item.rto_city }}</td>
-                                                <td>{{ item.vehicle_catagory }}</td>
-                                                <td>{{ item.vehicle_makeby }}</td>
-                                                <td>{{ item.vehicle_model }}</td>
-                                                <td>{{ item.vehicle_fuel_type }}</td>
-
-                                                <td>{{ item.mfg_year }}</td>
-                                                <td>{{ item.addon }}</td>
-                                                <td>{{ item.ncb }}</td>
-                                                <td>{{ item.cubic_capacity }}</td>
-                                                <td>{{ item.coverage_type }}</td>
-                                                <td>{{ item.seating_capacity }}</td>
-                                                <td>{{ item.gvw }}</td>
-                                                <td>{{ item.policy_type }}</td>
-                                                <td>{{ item.cpa }}</td>
-
-                                                <td>{{ item.risk_start_date }}</td>
-                                                <td>{{ item.risk_end_date }}</td>
-                                                <td>{{ item.issue_date }}</td>
-                                                <td>{{ item.insured_age }}</td>
-                                                <td>{{ item.policy_term }}</td>
-                                                <td>{{ item.pos }}</td>
-                                                <td>{{ item.bqp }}</td>
-                                                <td>{{ item.employee }}</td>
-                                                <td>{{ item.remark }}</td>
-
-                                                <td>{{ item.OD_premium }}</td>
-                                                <td>{{ item.TP_terrorism }}</td>
-                                                <td>{{ item.net }}</td>
-                                                <td>{{ item.gst_amount }}</td>
-                                                <td>{{ item.gst_gcv_amount }}</td>
-                                                <td>{{ item.total }}</td>
-                                                <td>{{ item.payment_mode }}</td>
-                                                <td>{{ item.proposal }}</td>
-                                                <td>{{ item.mandate }}</td>
-                                                <td>{{ item.policy }}</td>
-                                                <td>{{ item.previous_policy }}</td>
-                                                <td>{{ item.pan_card }}</td>
-                                                <td>{{ item.aadhar_card }}</td>
-                                                <td>{{ item.vehicle_rc }}</td>
-                                                <td>{{ item.inspection_report }}</td>
-                                                <td>{{ item.status }}</td>
-
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <a id="upButton" class="btn  " href="#" title="Scroll to Top">
-                            <i class="fas fa-chevron-up"></i>
-                        </a>
-
-                        <button id="pevButton" class="btn btn-secondary mt-3" hidden
-                            style="float: right; background-color: #346CB0; color: #FFFFFF; ">Back</button>
-
-                    </div>
-
-
-
-                    <!-- /.page-inner -->
+                            </div><!-- /.section-block -->
+                        </div><!-- /.page-section -->
+                    </div><!-- /.page-inner -->
                 </div>
-                <!-- /.page -->
             </div>
-
         </div>
-    </div>
+
+    </body>
+
+
+
+
+
 </div>
+<style>
+    .full {
+        background: linear-gradient(180deg, rgba(114, 195, 206, 0) 0%, #72C3CE 51.68%);
+
+    }
+</style>

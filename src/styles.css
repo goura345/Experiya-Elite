@@ -17626,7 +17626,7 @@ a.text-box:hover {
   transform: rotate(90deg);
 }
 
-.pace {
+/* .pace {
   pointer-events: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -17672,7 +17672,7 @@ a.text-box:hover {
 
 .pace-inactive {
   display: none;
-}
+} */
 
 @-webkit-keyframes pace-spinner {
   0% {
