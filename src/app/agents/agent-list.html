@@ -1,8 +1,9 @@
-<div class="app-main ms-5">
-    <div class="wrapper" style="margin-right: 220px;">
+
+<div class="app-main ms-1" >
+    <div class="wrapper" style="width: 100%;">
 
         <div class="page" id="entrylist">
-            <div class="page-inner text-blue116"  style="margin-left: 200px;">
+            <div class="page-inner text-blue116" style=" width: 100%; padding: 0px;margin: 0px;margin-top: 15px;">
                 <header class="page-title-bar">
                     <div class="row">
                         <div class="col">
@@ -15,9 +16,10 @@
                 </header>
 
                 <!-- .card -->
-                <div class="card card-fluid">
+                <div class="card card-fluid" style="background-color: rgb(216, 242, 250);">
                     <!-- .card-header -->
-                    <div class="card-header">
+                  
+                    <div class="card-header" style="background-color: rgb(161, 238, 238);" >
                         <form id="frminslist" autocomplete="off">
                             <div class="row">
                                 <div class="col-md-2 col-sm-12">
@@ -54,11 +56,12 @@
 
                                 <div class="col-md-6 ">
                                     <div class="form-group">
-                                        <button type="button" id="filterlist" class="btn "
-                                            title="Filter"><i class="fa fa-search" aria-hidden="true"></i> </button>
+                                        <button type="button" id="filterlist" class="btn " title="Filter"><i
+                                                class="fa fa-search" aria-hidden="true"></i> </button>
 
-                                        <button style="margin: 4px;" type="button" id="btnreset" class="btn " title="Refresh"
-                                            onclick="resertDocument()"><i class="fa fa-refresh " aria-hidden="true"></i>
+                                        <button style="margin: 4px;" type="button" id="btnreset" class="btn "
+                                            title="Refresh" onclick="resertDocument()"><i class="fa fa-refresh "
+                                                aria-hidden="true"></i>
                                         </button>
 
                                         <button type="button" (click)="exportToExcel()" id="download_inslist"
@@ -66,9 +69,9 @@
                                                 aria-hidden="true"></i> </button>
 
                                         <!-- data-toggle="modal" data-target=""  -->
-                                        <button style="margin: 4px;" type="button" id="bulk_remove" onclick="clearFilterList()"
-                                            class="btn " title="Clear filters"><i class="fa fa-trash"
-                                                aria-hidden="true"></i> </button>
+                                        <button style="margin: 4px;" type="button" id="bulk_remove"
+                                            onclick="clearFilterList()" class="btn " title="Clear filters"><i
+                                                class="fa fa-trash" aria-hidden="true"></i> </button>
 
                                         <a id="linkShowFilterDiv" href="#" class="no-wrap pl-0 morefilter" hidden
                                             title="More Filter" onclick="showMoreFilters()"><small>More

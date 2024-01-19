@@ -1,4 +1,4 @@
-<div class="app-main  mydiv " style="margin-top: 7px; margin: 0px; padding: 0px;width: 100%;">
+<div class="app-main  mydiv " style=" padding: 0px;width: 100%;">
 
     <style>
         body {
@@ -20,16 +20,17 @@
         }
 
         nav {
-            background-color: #0C3E48;
-            overflow: hidden;
+            background-color: rgb(12, 56, 65);
+          overflow:hidden;
 
             width: 100%;
             top: 0;
             z-index: 1000;
 
-            position: fixed;
-            top: 60px;
-            left: 0;
+            position:fixed;
+            top: 50px;
+            left: 0px;
+            
 
         }
 
@@ -45,7 +46,7 @@
 
         nav a:hover {
             background-color: #ddd;
-            color: black;
+            color: black
         }
 
         .mydiv {
@@ -60,14 +61,14 @@
     </style>
 
 
-    <body style="margin-top: 60px; ">
+    <body style="margin-top: 49px; ">
 
         <nav>
             <a href="#home" style="margin-left: 30px; font-size: 18px;">Home</a>
             <a href="#about" routerLink="/agents" style=" font-size: 18px;">POSP</a>
             <a href="#services" routerLink="/payouts" style=" font-size: 18px;">Payout</a>
             <a href="#products" routerLink="/products" style=" font-size: 18px;">Products</a>
-            <a href="#contact" routerLink="/users" style=" font-size: 18px;">Users</a>
+            <a routerLink="/users" style="font-size: 18px;">Users</a>
             <a href="#contact" routerLink="/insurers" style=" font-size: 18px;">Insurers</a>
             <a routerLink="/policies/motor/add" style=" font-size: 18px;">Motor</a>
             <a href="#contact" routerLink="/policies/non-motor/add" style=" font-size: 18px;">Non-motor</a>
@@ -105,7 +106,7 @@
                                         <!-- metric column -->
 
                                         <div class="col"
-                                            style="background-color: #3C5876; color: white; box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
+                                            style=" margin-right: 15px;background-color: #3C5876; color: white; box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
                                             <a routerLink="/agents" class="metric metric-bordered align-items-center">
                                                 <h2 class=" ">POSP </h2>
                                                 <p class="metric-value h3">
@@ -117,7 +118,7 @@
                                         </div><!-- /metric column -->
 
                                         <div class="col"
-                                            style="background-color: #EC6051;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
+                                            style=" margin-right: 15px;background-color: #EC6051;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
                                             <!-- .metric -->
                                             <a routerLink="/insurers" class="metric metric-bordered align-items-center">
                                                 <h2 class="">Insurers </h2>
@@ -130,7 +131,7 @@
                                         </div><!-- /metric column -->
 
                                         <div class="col"
-                                            style="background-color: #3CAAAF;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
+                                            style="margin-right: 15px;background-color: #3CAAAF;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
                                             <!-- .metric -->
                                             <a routerLink="/insurers" class="metric metric-bordered align-items-center">
                                                 <h2 class="">Products </h2>
@@ -144,7 +145,7 @@
 
 
                                         <div class="col"
-                                            style="background-color: #897AAA;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
+                                            style="margin-right: 15px;background-color: #897AAA;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
                                             <!-- .metric -->
                                             <a routerLink="/users" class="metric metric-bordered align-items-center">
                                                 <h2 class="">Staff </h2>
@@ -164,7 +165,7 @@
 
 
                                         <div class="col"
-                                            style="background-color: #2B688A; color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
+                                            style="margin-right: 15px;background-color: #2B688A; color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
                                             <!-- .metric -->
                                             <a routerLink="/policies" class="metric metric-bordered align-items-center">
                                                 <h2 class="">Total Policies </h2>
@@ -234,9 +235,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row" style="box-shadow:0 4px 8px rgba(0.8, 0.8, 0.8, 0.6) ;">
 
-                                        <div class="card card-body" style="background-color: rgb(216, 242, 250);">
+                                        <div class="card card-body " style="background-color: rgb(216, 242, 250);">
                                             <div class="card-header p-0 mb-3 pb-2 ">Policies</div>
                                             <!-- legend -->
                                             <ul class="list-inline small ">
@@ -296,7 +297,8 @@
                                         </div>
                                         <div class="col-xl-12">
                                             <div class="card">
-                                                <div class="card-header"> Storage Overview</div>
+                                                <div class="card-header" style="background-color: rgb(216, 242, 250);">
+                                                    Storage Overview</div>
                                                 <div class="card-body">
                                                     <div class="card bg-light">
                                                         <div class="card-body">
@@ -378,9 +380,8 @@
             </div>
 
         </div>
-
+       
     </body>
-
 
 
 
