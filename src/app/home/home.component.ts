@@ -313,6 +313,10 @@ export class HomeComponent {
             })
           }
         }
+ 
       }
-}
+
+
+
+    }
 

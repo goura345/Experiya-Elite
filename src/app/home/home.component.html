@@ -1,3 +1,13 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+
+
 <div class="app-main  mydiv " style=" padding: 0px;width: 100%;">
 
     <style>
@@ -21,16 +31,16 @@
 
         nav {
             background-color: rgb(12, 56, 65);
-          overflow:hidden;
+            overflow: hidden;
 
             width: 100%;
             top: 0;
             z-index: 1000;
 
-            position:fixed;
+            position: fixed;
             top: 50px;
             left: 0px;
-            
+
 
         }
 
@@ -102,84 +112,147 @@
                             <!-- metric row -->
                             <div class="metric-row">
                                 <div class="col-lg-12">
-                                    <div class="metric-row metric-flush">
-                                        <!-- metric column -->
-
-                                        <div class="col"
-                                            style=" margin-right: 15px;background-color: #3C5876; color: white; box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
-                                            <a routerLink="/agents" class="metric metric-bordered align-items-center">
-                                                <h2 class=" ">POSP </h2>
-                                                <p class="metric-value h3">
-                                                    <sub><span class="icofont icofont-users-alt-1"></span></sub>
-                                                    <span id="agentcount" class="value">{{ countInfo.totalAgent
-                                                        }}</span>
-                                                </p>
-                                            </a> <!-- /.metric -->
-                                        </div><!-- /metric column -->
-
-                                        <div class="col"
-                                            style=" margin-right: 15px;background-color: #EC6051;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
-                                            <!-- .metric -->
-                                            <a routerLink="/insurers" class="metric metric-bordered align-items-center">
-                                                <h2 class="">Insurers </h2>
-                                                <p class="metric-value h3">
-                                                    <sub><span class="icofont icofont-business-man"></span></sub>
-                                                    <span id="spcount" class="value">{{ countInfo.totalInsurer
-                                                        }}</span>
-                                                </p>
-                                            </a> <!-- /.metric -->
-                                        </div><!-- /metric column -->
-
-                                        <div class="col"
-                                            style="margin-right: 15px;background-color: #3CAAAF;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
-                                            <!-- .metric -->
-                                            <a routerLink="/insurers" class="metric metric-bordered align-items-center">
-                                                <h2 class="">Products </h2>
-                                                <p class="metric-value h3">
-                                                    <sub><span class="icofont icofont-business-man"></span></sub>
-                                                    <span id="spcount" class="value">{{ countInfo.totalProduct
-                                                        }}</span>
-                                                </p>
-                                            </a> <!-- /.metric -->
-                                        </div><!-- /metric column -->
 
 
-                                        <div class="col"
-                                            style="margin-right: 15px;background-color: #897AAA;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
-                                            <!-- .metric -->
-                                            <a routerLink="/users" class="metric metric-bordered align-items-center">
-                                                <h2 class="">Staff </h2>
-                                                <p class="metric-value h3">
-                                                    <sub><span class="icofont icofont-users-alt-5"></span></sub>
-                                                    <span id="staffcount" class="value">
-                                                        {{ countInfo.totalUser }} </span>
-                                                </p>
-                                            </a> <!-- /.metric -->
-                                        </div><!-- /metric column -->
-                                        <style>
-                                            .col:hover {
-                                                transform: scale(1.1);
-                                                /* Adjust the scale factor as needed */
-                                            }
-                                        </style>
 
 
-                                        <div class="col"
-                                            style="margin-right: 15px;background-color: #2B688A; color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);">
-                                            <!-- .metric -->
-                                            <a routerLink="/policies" class="metric metric-bordered align-items-center">
-                                                <h2 class="">Total Policies </h2>
-                                                <p class="metric-value h3">
-                                                    <sub><span class="icofont icofont icofont-ebook"></span></sub>
-                                                    <span id="policycount" class="value">
-                                                        {{ countInfo.totalPolicy }}
-                                                    </span>
-                                                </p>
-                                            </a> <!-- /.metric -->
-                                        </div><!-- /metric column -->
+                                    <div id="carouselExample" class="carousel slide">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="metric-row metric-flush">
+                                                    <!-- Metric columns for POSP, Insurers, Products, and Staff -->
+                                                    <!-- ... (your existing code) ... -->
+                                                    <div class="col"
+                                                        style=" margin-right: 15px;background-color: #3C5876; color: white; box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6); text-decoration: underline;">
+                                                        <a routerLink="/agents"
+                                                            class="metric metric-bordered align-items-center">
+                                                            <h2 class=" ">POSP </h2>
+
+                                                        </a> <!-- /.metric -->
+                                                    </div><!-- /metric column -->
+
+                                                    <div class="col"
+                                                        style=" margin-right: 15px;background-color: #EC6051;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);text-decoration: underline;">
+                                                        <!-- .metric -->
+                                                        <a routerLink="/insurers"
+                                                            class="metric metric-bordered align-items-center">
+                                                            <h2 class="">Insurers </h2>
+
+                                                        </a> <!-- /.metric -->
+                                                    </div><!-- /metric column -->
+
+                                                    <div class="col"
+                                                        style="margin-right: 15px;background-color: #3CAAAF;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);text-decoration: underline;">
+                                                        <!-- .metric -->
+                                                        <a routerLink="/products"
+                                                            class="metric metric-bordered align-items-center">
+                                                            <h2 class="">Products </h2>
+
+                                                        </a> <!-- /.metric -->
+                                                    </div><!-- /metric column -->
+
+
+                                                    <div class="col"
+                                                        style="margin-right: 15px;background-color: #897AAA;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);text-decoration: underline;">
+                                                        <!-- .metric -->
+                                                        <a routerLink="/users"
+                                                            class="metric metric-bordered align-items-center">
+                                                            <h2 class="">Staff </h2>
+
+                                                        </a> <!-- /.metric -->
+                                                    </div><!-- /metric column -->
+                                                    <style>
+                                                        .col:hover {
+                                                            transform: scale(1.1);
+                                                            /* Adjust the scale factor as needed */
+                                                        }
+                                                    </style>
+
+
+
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="metric-row metric-flush">
+                                                    <!-- Metric columns for POSP, Insurers, Products, and Staff -->
+                                                    <!-- ... (your existing code) ... -->
+                                                    <div class="col"
+                                                        style="margin-right: 15px;background-color: #2B688A; color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);text-decoration: underline;">
+                                                        <!-- .metric -->
+                                                        <a routerLink="/policies"
+                                                            class="metric metric-bordered align-items-center">
+                                                            <h2 class="">Total Policies </h2>
+
+                                                        </a> <!-- /.metric -->
+                                                    </div><!-- /metric column -->
+
+                                                    <div class="col"
+                                                        style=" margin-right: 15px;background-color: #EC6051;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);text-decoration: underline;">
+                                                        <!-- .metric -->
+                                                        <a routerLink=""
+                                                            class="metric metric-bordered align-items-center">
+                                                            <h2 class="">Total Premium </h2>
+
+                                                        </a> <!-- /.metric -->
+                                                    </div><!-- /metric column -->
+
+                                                    <div class="col"
+                                                        style="margin-right: 15px;background-color: #3CAAAF;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);text-decoration: underline;">
+                                                        <!-- .metric -->
+                                                        <a routerLink=""
+                                                            class="metric metric-bordered align-items-center">
+                                                            <h2 class="">Direct Premium </h2>
+
+                                                        </a> <!-- /.metric -->
+                                                    </div><!-- /metric column -->
+
+
+                                                    <div class="col"
+                                                        style="margin-right: 15px;background-color: #897AAA;color: white;box-shadow: 0 4px 8px rgba(0.8, 0.8, 0.8, 0.6);text-decoration: underline;">
+                                                        <!-- .metric -->
+                                                        <a routerLink="/users"
+                                                            class="metric metric-bordered align-items-center">
+                                                            <h2 class="">POSP premium </h2>
+
+                                                        </a> <!-- /.metric -->
+                                                    </div><!-- /metric column -->
+                                                    <style>
+                                                        .col:hover {
+                                                            transform: scale(1.1);
+                                                            /* Adjust the scale factor as needed */
+                                                        }
+                                                    </style>
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExample" data-bs-slide="prev"
+                                            style="margin-left: -50px;">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExample" data-bs-slide="next"
+                                            style="margin-right: -50px;">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
                                     </div>
+
+                                 
+                                    
+
+
                                 </div><!-- metric column -->
                             </div><!-- /metric row -->
+
+                           
+
+                           
                         </div>
                         <!-- .section-block -->
 
@@ -194,10 +267,12 @@
                                             <div class="text-right mb-2">
                                                 <div class="dropdown">
 
-                                                    <button class="btn btn-secondary" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"><span>This
+                                                    <button class="btn btn-info" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false"
+                                                        style="margin-right: 10px;"><span>This
                                                             Year</span> <i class="fa fa-fw fa-caret-down"></i></button>
                                                     <!-- .dropdown-menu -->
+
                                                     <button class="btn btn-info">Go</button>
                                                     <!-- .dropdown-menu -->
 
@@ -254,7 +329,7 @@
                                             </div>
                                         </div><!-- /.card -->
                                     </div>
-                                    <div class="row">
+                                    <div class="row" style="box-shadow:0 4px 8px rgba(0.2, 0.0, 0.8, 0.3) ;">
                                         <div class="card card-body" style="background-color: rgb(216, 242, 250);">
                                             <div class="card-header p-0 mb-3 pb-2">Commission</div>
 
@@ -380,9 +455,8 @@
             </div>
 
         </div>
-       
-    </body>
 
+    </body>
 
 
 
